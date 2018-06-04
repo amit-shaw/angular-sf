@@ -1,0 +1,25 @@
+.basic-info-header{
+    background: #506b9f;
+    min-height: 115px;
+}
+.profile-pic{
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 7px 19px rgba(0, 0, 0, 0.25);
+    height: 150px;
+    width: 150px;
+    position: relative;
+    top: 44px;
+}
+.info-name{
+    color: #52658ce8;
+    font-size: 30px;
+    font-style: bold;
+    font-weight: bold;
+    font-family: Roboto, arial, sans-serif;
+}
+.info-designation,.info-mobile{
+    color: #666668;
+    font-size: 17px;
+    font-family: arial;
+}
