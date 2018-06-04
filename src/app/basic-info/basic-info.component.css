@@ -9,7 +9,7 @@
     height: 150px;
     width: 150px;
     position: relative;
-    top: 44px;
+    top: 31px;
 }
 .info-name{
     color: #52658ce8;
@@ -22,4 +22,40 @@
     color: #666668;
     font-size: 17px;
     font-family: arial;
+}
+/*.facebook-share{
+    width: 52px;
+    height: 50px;
+    background-size: 151px;
+    background: url("../../assets/social-media-icon.png") 0 0;
+}*/
+.facebook-share-icon,.twitter-media-icon,.linkedin-media-icon{
+    width:90%;
+}
+.company-info-header{
+    font-size: 20px;
+    font-weight: bold;
+    color: #627396;
+}
+.company-header-hr{
+    border: solid 1px #b1bacb !important;
+    margin-top: 1px;
+    padding:0;
+}
+.field-title{
+    font-weight: bold;
+    color: #666668;
+    font-size: 14px;
+}
+.padding-buttom-1{
+    padding-bottom: 1%;
+}
+.no-padding{
+    padding:0 !important;
+}
+.padding-top-1{
+    padding-top:1%;
+}
+.hover-grey:hover{
+    background-color: #80808042;
 }
