@@ -10,7 +10,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NaicsCodeComponent } from './naics-code/naics-code.component';
 import { Select2Module } from 'ng2-select2';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
-
+import { NaicsCodeEditComponent } from './naics-code-edit/naics-code-edit.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -18,17 +19,21 @@ import { CompanyProfileComponent } from './company-profile/company-profile.compo
     AppComponent,
     BasicInfoComponent,
     NaicsCodeComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    NaicsCodeEditComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
     Select2Module,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NaicsCodeEditComponent,BasicInfoComponent]
+
 })
 
 export class AppModule { }
