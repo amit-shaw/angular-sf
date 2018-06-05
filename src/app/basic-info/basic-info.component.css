@@ -1,6 +1,7 @@
 .basic-info-header{
-    background: #506b9f;
+    /*background: #506b9f;*/
     min-height: 115px;
+    background: linear-gradient(-90deg, #506b9ff5, #506b9fd6);
 }
 .profile-pic{
     border: 2px solid white;
@@ -58,4 +59,57 @@
 }
 .hover-grey:hover{
     background-color: #80808042;
+}
+.edit-icon{
+    color: white;
+    font-size: 26px;
+    position: relative;
+    left: 6%;
+    cursor: pointer;
+}
+/****  Edit design  ****/
+.file-input-hide{
+    width: 22px;
+    position: relative;
+    top: -24px;
+    opacity: 0;
+    height: 10px;
+}
+.image-upload-pencil{
+    position: absolute;
+    top: 87%;
+    left: 64%;
+    color: #5e77a7;
+    font-size: 20px;
+    z-index: 9;
+    font-weight: bold;
+    background: white;
+    padding: 8px 6px 0px 8px;
+    border-radius: 50%;
+    border: 1px solid #5e77a7;
+}
+.social-media-edit-icons{
+    padding:9px;
+}
+.basic-info-edit{
+    background: #8080802e;
+}
+.work-info-title,.basic-info-title{
+    font-size: 25px;
+    font-weight: bold;
+    color: #666668;
+    padding:0;
+}
+.basic-info-edit-section{
+    padding:2% 0% 0% 4%;
+}
+.edit-save-btn{
+    background: #2368c7;
+    color: white;
+    width: 72%;
+    padding: 1%;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4%;
 }

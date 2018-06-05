@@ -11,7 +11,7 @@ export class BasicInfoComponent implements OnInit {
 
   ngOnInit() {
   }
-  url = '';
+  url = '../../assets/profile-placeholder.png';
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader:any

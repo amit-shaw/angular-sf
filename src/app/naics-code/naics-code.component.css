@@ -1,0 +1,21 @@
+.naics-code-header{
+    width: fit-content;
+}
+.naics-code-header-hr{
+    margin-top: 2px;
+    padding: 0;
+    height: 1px;
+    background: #808080eb;
+}
+.naics-code-val{
+    background: #8080804d;
+    width: fit-content;
+    border-radius: 6px;
+    padding: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000a1;
+}
+.margin-bittom-1{
+    margin-bottom: 1%;
+}
