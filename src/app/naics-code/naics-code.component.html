@@ -1,9 +1,17 @@
 <div class="container">
-  <div class="naics-code-header">
-    <span class="naics-icon"></span>
-    <span class="naics-tile">NAICS Codes</span>
-    <hr class="naics-code-header-hr">
+  <div class="naics-code-header row">
+    <div class="col-md-4">
+      <span class="naics-icon"></span>
+      <span class="naics-tile">NAICS Codes</span>
+      <hr class="naics-code-header-hr">
+    </div>
+    <div class="naics-code-edit-iocn col-md-1 col-md-offset-7">
+      <button mat-button (click)="openDialog()">
+        <span class="glyphicon glyphicon-pencil"></span>
+      </button>
+    </div>
   </div>
+  
   <div class="naics-code-data row">
     <div class="col-md-12 margin-bittom-1">
       <span class="naics-code-val">111110 - Soyabean Farming</span>
@@ -20,25 +28,5 @@
     <div class="col-md-12 margin-bittom-1">
       <span class="naics-code-val">111150 - Rice Farming</span>
     </div>
-  </div>
-</div>
-<div class="container naics-code-edit-section">
-  <div class="naics-code-edit-header">
-      NAICS Codes
-      <hr>
-  </div>
-  <div class="naics-code-edit-info">
-    <div class="edit-title">
-      <label for="">NAICS Codes :</label>
-    </div>
-    <div>
-      <select2 [data]="exampleData"
-      [options]="options"
-      [width]="500"
-      [value]="value"
-      (valueChanged)="changed($event)">
-      </select2>
-    </div>
-      
   </div>
 </div>

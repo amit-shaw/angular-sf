@@ -1,6 +1,3 @@
-.naics-code-header{
-    width: fit-content;
-}
 .naics-code-header-hr{
     margin-top: 2px;
     padding: 0;
@@ -18,4 +15,18 @@
 }
 .margin-bittom-1{
     margin-bottom: 1%;
+}
+.naics-code-header{
+    font-size: 20px;
+    font-weight: bold;
+    color: #627396;
+}
+.naics-code-edit-iocn{
+    font-size: 25px;
+    color: #627396;
+    font-weight: bold;
+}
+.naics-code-edit-iocn button{
+    background: transparent;
+    border: none;
 }

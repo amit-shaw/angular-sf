@@ -1,0 +1,20 @@
+<div class="container naics-code-edit-section">
+  <div class="naics-code-edit-header">
+      NAICS Codes
+      <hr>
+  </div>
+  <div class="naics-code-edit-info">
+    <div class="edit-title">
+      <label for="">NAICS Codes :</label>
+    </div>
+    <div>
+      <select2 [data]="exampleData"
+      [options]="options"
+      [width]="500"
+      [value]="value"
+      (valueChanged)="changed($event)">
+      </select2>
+    </div>
+      
+  </div>
+</div>
