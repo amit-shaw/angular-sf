@@ -13,6 +13,7 @@ export class NaicsCodeEditComponent implements OnInit {
   public options: Select2Options;
   public value: string[];
   public current: string;
+  
 
   ngOnInit() {
     this.exampleData = [
