@@ -1,5 +1,6 @@
 .company-prof-header{font-size: 20px;font-weight: bold;color: #627396;line-height: 28px;padding: 19px 30px 6px 0px;}
-.company-prof .field-title{font-weight: bold;color: #666668; font-size: 14px;}
+.company-prof .edit-icon{color: #52658C;margin-top: 18px;font-size: 26px;float: right;cursor: pointer;}
+.company-prof .field-title{font-weight: bold;color: #666668; font-size: 14px; line-height: 34px;}
 .company-prof .field-descr{text-align: justify;line-height: 26px;}
 .company-prof .company-header-hr{border: solid 1px #b1bacb !important; margin-top: 1px;padding: 0;}
 .company-prof .margin-0{padding: 0px;}
@@ -7,3 +8,12 @@
 .naics-code-data{line-height: 32px;}
 .company-prof .show-more-comp{font-size: 18px; line-height: 0px;font-weight: bold;color: #627396;}
 .company-prof .down-arrow{color: #627396;font-size: 17px;}
+.company-prof .lne{ border: 0; height: 0;border-top: 1px solid rgba(0, 0, 0, 0.1);border-bottom: 1px solid rgba(255, 255, 255, 0.3);}
+.backg-shdw {background: #fdfbfb;box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);margin-top: 35px; margin-bottom: 35px;}
+.company-prof .p-3{padding: 0px 15px;}
+
+.compny-prof-popup .title{font-size: 25px;font-weight: bold;color: #666668;padding: 0;}
+ .compny-pop-bg{background: #F0F0F1; border: 6px solid #54545447;}
+ .cmpny-pop-save button{margin: 10px;padding: 7px 17px 7px 17px;font-size: 18px;}
+ .compny-prof-popup .lne{ border: 0; height: 0;border-top: 1px solid rgba(0, 0, 0, 0.1);border-bottom: 1px solid rgba(255, 255, 255, 0.3);}
+ .compny-prof-popup .edit-icon{color: #52658C;margin-top: 18px;font-size: 26px;float: right;cursor: pointer;}
