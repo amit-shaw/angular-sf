@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NaicsCodeComponent } from './naics-code/naics-code.component';
 import { Select2Module } from 'ng2-select2';
+import { CompanyProfileComponent } from './company-profile/company-profile.component';
 
 
 
@@ -16,7 +17,8 @@ import { Select2Module } from 'ng2-select2';
   declarations: [
     AppComponent,
     BasicInfoComponent,
-    NaicsCodeComponent
+    NaicsCodeComponent,
+    CompanyProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -28,4 +30,5 @@ import { Select2Module } from 'ng2-select2';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
