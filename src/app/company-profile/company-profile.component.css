@@ -5,3 +5,5 @@
 .company-prof .margin-0{padding: 0px;}
 .naics-code-val{background: #E6E7E8; padding: 5px;border-radius: 8px;}
 .naics-code-data{line-height: 32px;}
+.company-prof .show-more-comp{font-size: 18px; line-height: 0px;font-weight: bold;color: #627396;}
+.company-prof .down-arrow{color: #627396;font-size: 17px;}
