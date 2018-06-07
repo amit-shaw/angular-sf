@@ -2,6 +2,7 @@
     /*background: #506b9f;*/
     min-height: 115px;
     background: linear-gradient(-90deg, #506b9ff5, #506b9fd6);
+    height: 151px;
 }
 .profile-pic{
     border: 2px solid white;
@@ -93,12 +94,17 @@
 }
 .basic-info-edit{
     background: #8080802e;
+    border: 6px solid #54545447;
 }
 .work-info-title,.basic-info-title{
     font-size: 25px;
     font-weight: bold;
     color: #666668;
     padding:0;
+}
+.work-info{ 
+    padding-left: 47px;
+    
 }
 .basic-info-edit-section{
     padding:2% 0% 0% 4%;
@@ -112,4 +118,67 @@
     font-weight: bold;
     border: none;
     border-radius: 4%;
+}
+.sv-basic-btn{
+    margin: 0 0 15px 3px;
+    padding: 7px 17px 7px 17px;
+    font-size: 18px;
+}
+.basic-info-main{
+    padding: 21px 30px 0px 31px;
+    background: white;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+}
+
+.logo-img{
+    width: 272px;
+    position: absolute;
+    top: 7px;
+    padding: 64px;
+    background: #FAFAFA;
+    z-index: 1;
+}
+
+
+.rec{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid #292828;
+    top: 7px;
+    margin-left: 222px;
+}
+.rec-1{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 53px solid transparent;
+    border-bottom: 13px solid #292828;
+    top: 8px;
+    margin-left: -6px;
+}
+.rec-2{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 15px solid #292828;
+    margin-left: 222px;
+   
+}
+.rec-3{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 44px solid transparent;
+    border-top: 14px solid #292828;
+    /* top: 9px; */
+    margin-left: -6px;
+    
 }
