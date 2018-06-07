@@ -1,0 +1,12 @@
+.compny-prof-popup .title{font-size: 25px;font-weight: bold;color: #666668;padding: 0;}
+ .compny-pop-bg{background: #F0F0F1; border: 6px solid #54545447;}
+ .cmpny-pop-save button{margin: 10px;padding: 7px 17px 7px 17px;font-size: 18px;}
+ .compny-prof-popup .lne{ border: 0; height: 0;border-top: 1px solid rgba(0, 0, 0, 0.1);border-bottom: 1px solid rgba(255, 255, 255, 0.3);}
+ .compny-prof-popup .edit-icon{color: #52658C;margin-top: 18px;font-size: 26px;float: right;cursor: pointer;}
+ .mat-dialog-container{
+    padding: 0 !important;
+    background: red;
+}
+.company-profile-edit-section{
+    width:100%;
+}

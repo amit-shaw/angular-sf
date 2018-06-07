@@ -12,6 +12,8 @@ import { Select2Module } from 'ng2-select2';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { NaicsCodeEditComponent } from './naics-code-edit/naics-code-edit.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { CompanyProfileEditComponent } from './company-profile-edit/company-profile-edit.component';
+import { RegistrationQuestionComponent } from './registration-question/registration-question.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     BasicInfoComponent,
     NaicsCodeComponent,
     CompanyProfileComponent,
-    NaicsCodeEditComponent
+    NaicsCodeEditComponent,
+    CompanyProfileEditComponent,
+    RegistrationQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ import {MatDialogModule} from '@angular/material/dialog';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NaicsCodeEditComponent,BasicInfoComponent]
+  entryComponents: [NaicsCodeEditComponent,BasicInfoComponent,CompanyProfileEditComponent]
 
 })
 

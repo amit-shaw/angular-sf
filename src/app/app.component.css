@@ -1,0 +1,4 @@
+span.select2-container{
+    position:fixed !important;
+    z-index:99999 !important;
+}
