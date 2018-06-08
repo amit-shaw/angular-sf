@@ -1,0 +1,93 @@
+.registration-que-data{
+    line-height: 32px;
+}
+.registration-que .p-3 {
+    padding: 0px 15px;
+}
+.registration-que-val {
+    background: #E6E7E8;
+    padding: 5px;
+    border-radius: 8px;
+}
+.registration-que-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #627396;
+    line-height: 28px;
+    padding: 19px 30px 6px 0px;
+}
+
+.registration-que .registration-que-hr {
+    border: solid 1px #b1bacb !important;
+    margin-top: 1px;
+    padding: 0;
+}
+.registration-que .lne {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.registration-que .show-more-comp {
+    font-size: 18px;
+    line-height: 0px;
+    font-weight: bold;
+    color: #627396;
+}
+.registration-que .down-arrow {
+    color: #627396;
+    font-size: 17px;
+}
+.backg-shdw {
+    background: #fdfbfb;
+    -webkit-box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.registration-que .que{
+    font-weight: bold;
+    color: #5f5d5dd9;
+    margin: 0;
+}
+
+.registration-que-popup .edit-icon[_ngcontent-c3] {
+    color: #52658C;
+    margin-top: 18px;
+    font-size: 26px;
+    float: right;
+    cursor: pointer;
+}
+.registration-que-popup .reg-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #666668;
+    padding: 0;
+}
+
+.registration-que-popup .lne {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.registration-que-popup .reg-rqu-list{
+    list-style-type: none;
+}
+.registration-que-popup .reg-que-list-sty{text-align: right;}
+.registration-que-popup .msg{    font-size: 11px;
+    color: red;}
+    .registration-que-popup .que{font-size: 18px;
+        font-weight: 600;
+        color: #777676;}
+        .registration-que-popup {    background: #e8e8e8;
+            padding: 23px 0px 0px 0px;
+            border: 6px solid #54545447;    color: #696868;}
+           .registration-que-popup .edit-icon{color: #52658C;
+                /* margin-top: 18px; */
+                font-size: 26px;
+                float: right;
+                cursor: pointer;}
+                .registration-que-popup  .sv-que-btn{    margin: 0px 66px 18px 11px;
+                    padding: 7px 17px 7px 17px;
+                    font-size: 18px;float: right;}
