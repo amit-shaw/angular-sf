@@ -14,6 +14,7 @@ import { NaicsCodeEditComponent } from './naics-code-edit/naics-code-edit.compon
 import {MatDialogModule} from '@angular/material/dialog';
 import { CompanyProfileEditComponent } from './company-profile-edit/company-profile-edit.component';
 import { RegistrationQuestionComponent } from './registration-question/registration-question.component';
+import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { RegistrationQuestionComponent } from './registration-question/registrat
     CompanyProfileComponent,
     NaicsCodeEditComponent,
     CompanyProfileEditComponent,
-    RegistrationQuestionComponent
+    RegistrationQuestionComponent,
+    BasicInfoEditComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { RegistrationQuestionComponent } from './registration-question/registrat
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NaicsCodeEditComponent,BasicInfoComponent,CompanyProfileEditComponent]
+  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent]
 
 })
 

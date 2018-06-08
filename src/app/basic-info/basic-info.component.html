@@ -6,11 +6,14 @@
     <div class="col-md-6">
       sumit
     </div>
-    <div class="col-md-6">
-        <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
+    <div class="col-md-5">
+        <!--<i class="fa fa-pencil edit-icon" aria-hidden="true"></i> -->
       <div class="col-xs-4 col-xs-offset-7">
         <img src="../../assets/profile-placeholder.png" class="profile-pic">
       </div>
+    </div>
+    <div class="col-md-1">
+      <i aria-hidden="true" class="fa fa-pencil edit-icon" (click)="openDialog()"></i> 
     </div>
   </div>
   <div class="logo-img"><img src="https://www.eventdex.com/wp-content/themes/eventdex/assets/images/eventdex-logo-dark.png"/></div>
@@ -74,96 +77,4 @@
   </div> -->
   </div>
 </div>
-</div>
-<div class="container basic-info-edit">
-  <div class="basic-info-header row">
-    <div class="col-md-6">
-          sumit
-    </div>
-    <div class="col-md-6">
-      <div class="col-xs-4 col-xs-offset-7">
-        <span class="glyphicon glyphicon-pencil image-upload-pencil">
-          <input type='file' (change)="onSelectFile($event)" class="file-input-hide">
-        </span>
-        <img [src]="url" class="profile-pic">
-      </div>
-    </div>
-  </div>
-  <div class="basic-info-edit-section row">
-    <div class="col-md-12 basic-info-title">
-      Basic Information
-    </div>
-    <div class="form-group col-md-4">
-      <label for="email">First name:</label>
-      <input type="email" class="form-control" id="email">
-    </div>
-    <div class="form-group col-md-4">
-        <label for="email">Last name:</label>
-        <input type="email" class="form-control" id="email">
-    </div>
-    <div class="col-md-4 form-group social-media-edit-icons">
-      <div class="col-md-3"></div>
-        <div class="facebook-share col-md-3 col-xs-3">
-            <img src="../../assets/fb-media-icon.png" class="facebook-share-icon">
-          </div>
-          <div class="linkedin-share col-md-3 col-xs-3">
-            <img src="../../assets/linkedin-media-icon.png" class="linkedin-media-icon">
-          </div>
-          <div class="twitter-share col-md-3 col-xs-3">
-            <img src="../../assets/twitter-media-icon.png" class="twitter-media-icon">
-          </div>
-    </div>
-  <div class="form-group col-md-4">
-    <label for="email">Job Title:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group col-md-4">
-    <label for="email">Company Name:</label>
-    <input type="email" class="form-control" id="email">
-  </div>
-  <div class="form-group col-md-4">
-      <label for="email">Facebook Id:</label>
-      <input type="email" class="form-control" id="email">
-  </div>
-    <div class="form-group col-md-4">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="email">Mobile Number:</label>
-      <input type="email" class="form-control" id="email">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="email">Linkedin Id:</label>
-      <input type="email" class="form-control" id="email">
-    </div>
-    <div class="form-group col-md-4 col-md-offset-8">
-      <label for="email">Twitter Id:</label>
-      <input type="email" class="form-control" id="email">
-    </div>
-    <div class="work-info-title col-md-12">
-      Work Information
-    </div>
-    <div class="form-group col-md-4">
-      <label for="email">MatchMaking Emial:</label>
-      <input type="email" class="form-control" id="email">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="email">Work Phone number:</label>
-      <input type="email" class="form-control" id="email">
-    </div>
-  </div> 
-  <hr class="company-header-hr"> 
-  <div class="work-info row">
-    <div class="work-info-title col-md-12">Social Networks</div>
-    <div class="social-media-show col-md-6">
-      <span>On </span><mat-slide-toggle color="primary">
-        If enabled, your social profiles would be visible to viewers
-      </mat-slide-toggle>
-    </div>
-    <div class="save-btn col-md-2 col-md-offset-4">
-        <button class="btn btn-primary sv-basic-btn " type="button" name="save">Save</button>
-      <!--<input type="button" value="SAVE" name="save" class="edit-save-btn"> -->
-    </div>
-  </div>
 </div>

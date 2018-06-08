@@ -1,0 +1,185 @@
+.basic-info-header{
+    /*background: #506b9f;*/
+    min-height: 115px;
+    background: linear-gradient(-90deg, #506b9ff5, #506b9fd6);
+    height: 151px;
+}
+.profile-pic{
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: 0 7px 19px rgba(0, 0, 0, 0.25);
+    height: 150px;
+    width: 150px;
+    position: relative;
+    top: 31px;
+}
+.info-name{
+    color: #52658ce8;
+    font-size: 30px;
+    font-style: bold;
+    font-weight: bold;
+    font-family: Roboto, arial, sans-serif;
+}
+.info-designation,.info-mobile{
+    color: #666668;
+    font-size: 17px;
+    font-family: arial;
+}
+/*.facebook-share{
+    width: 52px;
+    height: 50px;
+    background-size: 151px;
+    background: url("../../assets/social-media-icon.png") 0 0;
+}*/
+.facebook-share-icon,.twitter-media-icon,.linkedin-media-icon{
+    width:90%;
+}
+.company-info-header{
+    font-size: 20px;
+    font-weight: bold;
+    color: #627396;
+}
+.company-header-hr{
+    border: solid 1px #b1bacb !important;
+    margin-top: 1px;
+    padding:0;
+}
+.field-title{
+    font-weight: bold;
+    color: #666668;
+    font-size: 14px;
+}
+.padding-buttom-1{
+    padding-bottom: 1%;
+}
+.no-padding{
+    padding:0 !important;
+}
+.padding-top-1{
+    padding-top:1%;
+}
+.hover-grey:hover{
+    background-color: #80808042;
+}
+.edit-icon{
+    color: white;
+    font-size: 26px;
+    position: relative;
+    left: 6%;
+    cursor: pointer;
+}
+/****  Edit design  ****/
+.file-input-hide{
+    width: 22px;
+    position: relative;
+    top: -24px;
+    opacity: 0;
+    height: 10px;
+}
+.image-upload-pencil{
+    position: absolute;
+    top: 87%;
+    left: 64%;
+    color: #5e77a7;
+    font-size: 20px;
+    z-index: 9;
+    font-weight: bold;
+    background: white;
+    padding: 8px 6px 0px 8px;
+    border-radius: 50%;
+    border: 1px solid #5e77a7;
+}
+.social-media-edit-icons{
+    padding:9px;
+}
+.basic-info-edit{
+    background: #8080802e;
+    border: 6px solid #54545447;
+    width:100%;
+}
+.work-info-title,.basic-info-title{
+    font-size: 25px;
+    font-weight: bold;
+    color: #666668;
+    padding:0;
+}
+.work-info{ 
+    padding-left: 47px;
+    
+}
+.basic-info-edit-section{
+    padding:2% 0% 0% 4%;
+}
+.edit-save-btn{
+    background: #2368c7;
+    color: white;
+    width: 72%;
+    padding: 1%;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4%;
+}
+.sv-basic-btn{
+    margin: 0 0 15px 3px;
+    padding: 7px 17px 7px 17px;
+    font-size: 18px;
+}
+.basic-info-main{
+    padding: 21px 30px 0px 31px;
+    background: white;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+}
+
+.logo-img{
+    width: 272px;
+    position: absolute;
+    top: 7px;
+    padding: 64px;
+    background: #FAFAFA;
+    z-index: 1;
+}
+
+
+.rec{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid #292828;
+    top: 7px;
+    margin-left: 222px;
+}
+.rec-1{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 53px solid transparent;
+    border-bottom: 13px solid #292828;
+    top: 8px;
+    margin-left: -6px;
+}
+.rec-2{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 15px solid #292828;
+    margin-left: 222px;
+   
+}
+.rec-3{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 44px solid transparent;
+    border-top: 14px solid #292828;
+    /* top: 9px; */
+    margin-left: -6px;
+    
+}
