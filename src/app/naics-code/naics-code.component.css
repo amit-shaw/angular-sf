@@ -22,7 +22,7 @@
     color: #627396;
 }
 .naics-code-edit-iocn{
-    font-size: 25px;
+    font-size: 27px;
     color: #627396;
     font-weight: bold;
 }
@@ -31,9 +31,12 @@
     border: none;
 }
 .naice-main{
-    background: white;
+    background: #fdfbfb;
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
     padding: 15px;
-    margin-top: 27px;
+    margin-top: 12px;
 
+}
+.edit-icon{
+    margin-left: 29px;
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
@@ -15,6 +15,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CompanyProfileEditComponent } from './company-profile-edit/company-profile-edit.component';
 import { RegistrationQuestionComponent } from './registration-question/registration-question.component';
 import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.component';
+import { WorkAddressEditComponent } from './work-address-edit/work-address-edit.component';
+import { ProjectInfoEditComponent } from './project-info-edit/project-info-edit.component';
 
 
 @NgModule({
@@ -26,10 +28,13 @@ import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.compon
     NaicsCodeEditComponent,
     CompanyProfileEditComponent,
     RegistrationQuestionComponent,
-    BasicInfoEditComponent
+    BasicInfoEditComponent,
+    WorkAddressEditComponent,
+    ProjectInfoEditComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
     Select2Module,
@@ -38,7 +43,7 @@ import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.compon
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent]
+  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent]
 
 })
 

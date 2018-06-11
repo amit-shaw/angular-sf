@@ -14,7 +14,8 @@ export class NaicsCodeComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
   openDialog() {
     const dialogRef = this.dialog.open(NaicsCodeEditComponent, {
-      height: '350px'
+      height: '350px',
+      width:'700px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

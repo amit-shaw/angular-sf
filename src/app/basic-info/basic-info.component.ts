@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import { BasicInfoEditComponent } from '../basic-info-edit/basic-info-edit.component';
+import { WorkAddressEditComponent } from '../work-address-edit/work-address-edit.component';
 
 @Component({
   selector: 'app-basic-info',
@@ -8,11 +9,22 @@ import { BasicInfoEditComponent } from '../basic-info-edit/basic-info-edit.compo
   styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent implements OnInit {
-
+ // editcomponent:string;
   constructor(public dialog: MatDialog) {}
   openDialog() {
+    
     const dialogRef = this.dialog.open(BasicInfoEditComponent, {
       height: '500px'
+      //width:'500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  openDialogWorkAddress(){
+    const dialogRef = this.dialog.open(WorkAddressEditComponent, {
+      height: '400px'
       //width:'500px'
     });
 

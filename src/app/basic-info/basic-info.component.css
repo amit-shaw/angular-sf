@@ -58,8 +58,18 @@
 .padding-top-1{
     padding-top:1%;
 }
+.edit-pencil-btn{
+    display:none;
+    float:right;
+}
+.edit-pencil-btn i{
+    color: #52658C
+}
 .hover-grey:hover{
     background-color: #80808042;
+}
+.hover-grey:hover .edit-pencil-btn{
+    display:block;
 }
 .edit-icon{
     color: white;
@@ -126,7 +136,7 @@
 }
 .basic-info-main{
     padding: 21px 30px 0px 31px;
-    background: white;
+    background: #fdfbfb;
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
     margin-bottom: 25px;
 }

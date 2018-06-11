@@ -1,0 +1,13 @@
+<div class="container project-info-edit-section">
+  <form #formRef="ngForm">
+    <div *ngFor="let word2 of words2; let in=index" class="col-sm-3">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="words2[in].value" name="name{{in}}" class="form-control" #name="ngModel" required />
+          <!--<p [hidden]="words2[in].value">Field is required</p>
+          {{formRef.form.name1}}-->
+        </div>
+        <br />
+    </div>
+    <button [disabled]="!formRef.form.valid" (click)="add()">Add input</button>
+  </form>
+</div>

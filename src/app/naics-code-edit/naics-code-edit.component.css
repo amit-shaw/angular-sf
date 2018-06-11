@@ -1,3 +1,15 @@
 span.select2-container{
     position:fixed !important;
 }
+.naics-code-edit-section{
+    width:100%;
+    background: #F0F0F1;
+    border: 6px solid #54545447;
+}
+.naics-code-edit-header{
+    font-size: 25px;
+    font-weight: bold;
+    color: #666668;
+    padding: 0;
+}
+
