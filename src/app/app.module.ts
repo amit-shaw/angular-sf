@@ -15,6 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CompanyProfileEditComponent } from './company-profile-edit/company-profile-edit.component';
 import { RegistrationQuestionComponent } from './registration-question/registration-question.component';
 import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.component';
+import { PrintProfileComponent } from './print-profile/print-profile.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.compon
     NaicsCodeEditComponent,
     CompanyProfileEditComponent,
     RegistrationQuestionComponent,
-    BasicInfoEditComponent
+    BasicInfoEditComponent,
+    PrintProfileComponent
   ],
   imports: [
     BrowserModule,
