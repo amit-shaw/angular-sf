@@ -17,6 +17,7 @@ import { RegistrationQuestionComponent } from './registration-question/registrat
 import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.component';
 import { WorkAddressEditComponent } from './work-address-edit/work-address-edit.component';
 import { ProjectInfoEditComponent } from './project-info-edit/project-info-edit.component';
+import { PrintProfileComponent } from './print-profile/print-profile.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ProjectInfoEditComponent } from './project-info-edit/project-info-edit.
     RegistrationQuestionComponent,
     BasicInfoEditComponent,
     WorkAddressEditComponent,
-    ProjectInfoEditComponent
+    ProjectInfoEditComponent,
+    PrintProfileComponent
   ],
   imports: [
     BrowserModule,

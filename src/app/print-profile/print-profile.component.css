@@ -1,0 +1,23 @@
+.print-profle-id h3{font-size: 20px; font-weight: bold;color: #627396;}
+.print-profle-id h4{color: #8e8c8c; font-size: 15px;}
+.print-profle-id h5{color: #8e8c8c;}
+.border-btm{    margin-bottom: 44px;
+    border-bottom: 3px solid #ccc8c8;}
+.print-profle-dp{padding: 41px;}
+.print-profle-bar{    padding: 37px;}
+.print-profile-compny{    background: #c1c1c182;    padding: 12px;    font-size: 18px;
+    font-weight: bold;}
+.print-profile-info{    padding: 19px 0px 0 0;}
+.print-profile-info ul{    list-style-type: none;    color: #696868;    padding: 0 0 0 10px;}
+.print-prf-compny{   padding: 21px 27px 0 23px;}
+.print-profle-naics ul{list-style: none;padding: 0;}
+.print-profle-naics{    padding: 15px 0px 17px 6px;}
+.print-prf-tbl{    padding: 24px 20px 0 20px;}
+.print-prf-additinl ul{list-style: none;    padding: 0;}
+.print-prf-additinl{padding: 18px 3px 9px 18px;}
+.print-prf{    background: #dfdfdf29;
+    border: 1px #f7f4f4 solid;}
+    .print-prf-logo{padding: 32px 0 0 151px;}
+    .print-prf-head{padding: 0;}
+    .print-prf-sec{padding: 0;}
+   .print-prf-head-sub {    padding: 12px;}
