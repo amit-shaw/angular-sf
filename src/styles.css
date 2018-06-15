@@ -4,3 +4,6 @@
 .mat-dialog-container{
     padding: 0 !important;
 }
+.mat-expansion-panel-content.mat-expanded{
+    overflow: auto !important;
+}

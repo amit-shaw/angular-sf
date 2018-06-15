@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-basic-info-edit',
   templateUrl: './basic-info-edit.component.html',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class BasicInfoEditComponent implements OnInit {
 
   constructor() { }
-
+  
   ngOnInit() {
   }
   url = '../../assets/profile-placeholder.png';

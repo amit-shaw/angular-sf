@@ -24,12 +24,12 @@
   <div>
   <div class="personal-info-section row padding-top-1 padding-buttom-1">
     <div class="personal-data col-md-12">
-      <div class="info-name">Durga Mikkilineni</div>
+      <div class="info-name">{{basic_info_data.tktProf.First_Name__c}} {{basic_info_data.tktProf.Last_Name__c}}</div>
     </div>
     <div class="personal-data-sec1 col-md-12 no-padding">
       <div class="col-md-6 col-xs-6">
-        <div class="info-designation">Co founder | Eventdex</div>
-        <div class="info-mobile">+1 (732) 333-1901</div>
+        <div class="info-designation">{{basic_info_data.tktProf.TKT_Job_Title__c}} | {{basic_info_data.tktProf.TKT_Company__c}}</div>
+        <div class="info-mobile">{{basic_info_data.tktProf.Mobile__c}}</div>
       </div>
       <div class="social-media col-md-3 col-md-offset-3 col-xs-6">
         <div class="col-md-1 col-xs-0"></div>
@@ -45,6 +45,39 @@
       </div>
     </div>  
   </div>
+  <div class="personal-info-section row">
+      <div class="personal-info-header col-md-12">
+        <span>
+        <i class="fa fa-briefcase" aria-hidden="true"></i>
+        Personal Information
+        <hr class="personal-info-header-hr"> 
+      </span>     
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey">
+          <span class="field-title">Prefix:</span>
+          <span class="field-val">{{basic_info_data.tktProf.Prefix__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey">
+        <span class="field-title">Suffix:</span>
+        <span class="field-val">{{basic_info_data.tktProf.Suffix__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey">
+        <span class="field-title">Home Phone number:</span>
+        <span class="field-val">{{basic_info_data.tktProf.Home_Phone__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey">
+        <span class="field-title">Gender:</span>
+        <span class="field-val">{{basic_info_data.tktProf.Gender__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey">
+        <span class="field-title">Age:</span>
+        <span class="field-val">{{basic_info_data.tktProf.Age__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey">
+        <span class="field-title">Date of birth:</span>
+        <span class="field-val">{{basic_info_data.tktProf.DOB__c}}</span>
+      </div>
+  </div>
   <div class="company-info-section row">
     <div class="company-info-header col-md-4">
       <i class="fa fa-briefcase" aria-hidden="true"></i>
@@ -54,15 +87,15 @@
     
     <div class="col-md-12 padding-buttom-1 hover-grey">
       <span class="field-title">Email:</span>
-      <span class="field-val">durga@eventdex.com</span>
+      <span class="field-val">{{basic_info_data.tktProf.Email__c}}</span>
     </div>
     <div class="col-md-12 padding-buttom-1 hover-grey">
       <span class="field-title">MatchMaking Email: </span>
-      <span class="field-val">durga@eventdex.com</span>
+      <span class="field-val">{{basic_info_data.tktProf.Secondary_email__c}}</span>
     </div>
     <div class="col-md-12 padding-buttom-1 hover-grey">
       <span class="field-title">Work Phone Number: </span>
-      <span class="field-val">+1 (732) 333-1901</span>
+      <span class="field-val">{{basic_info_data.tktProf.Work_Phone__c}}</span>
     </div>
     <div class="col-md-12 padding-buttom-1 hover-grey">
       <span class="field-title">Work address: </span>

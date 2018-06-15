@@ -75,19 +75,27 @@
     list-style-type: none;
 }
 .registration-que-popup .reg-que-list-sty{text-align: right;}
-.registration-que-popup .msg{    font-size: 11px;
-    color: red;}
-    .registration-que-popup .que{font-size: 18px;
-        font-weight: 600;
-        color: #777676;}
-        .registration-que-popup {    background: #e8e8e8;
-            padding: 23px 0px 0px 0px;
-            border: 6px solid #54545447;    color: #696868;}
-           .registration-que-popup .edit-icon{color: #52658C;
-                /* margin-top: 18px; */
-                font-size: 26px;
-                float: right;
-                cursor: pointer;}
-                .registration-que-popup  .sv-que-btn{    margin: 0px 66px 18px 11px;
-                    padding: 7px 17px 7px 17px;
-                    font-size: 18px;float: right;}
+.registration-que-popup .msg{   
+    font-size: 11px;
+    color: red;
+}
+.registration-que-popup .que{
+    font-size: 18px;
+    font-weight: 600;
+    color: #777676;
+}
+.registration-que-popup {    
+    background: #e8e8e8;
+    padding: 23px 0px 0px 0px;
+    border: 6px solid #54545447;    color: #696868;}
+.registration-que-popup .edit-icon{
+    color: #52658C;
+    font-size: 26px;
+    float: right;
+    cursor: pointer;
+}
+.registration-que-popup  .sv-que-btn{    
+    margin: 0px 66px 18px 11px;
+    padding: 7px 17px 7px 17px;
+    font-size: 18px;float: right;
+}

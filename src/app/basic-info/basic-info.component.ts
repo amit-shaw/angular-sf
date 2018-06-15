@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import { BasicInfoEditComponent } from '../basic-info-edit/basic-info-edit.component';
 import { WorkAddressEditComponent } from '../work-address-edit/work-address-edit.component';
+import { SalesforceService } from '../../service/salesforce.service';
+import { GetdataService } from '../getdata.service';
 
 @Component({
   selector: 'app-basic-info',
@@ -10,7 +12,10 @@ import { WorkAddressEditComponent } from '../work-address-edit/work-address-edit
 })
 export class BasicInfoComponent implements OnInit {
  // editcomponent:string;
-  constructor(public dialog: MatDialog) {}
+  //@Input() sending:String="Amit Kumar shaw";
+  basic_info_data:any[];
+  constructor(public dialog: MatDialog,private sfService: SalesforceService,private getdataService:GetdataService) {}
+  
   openDialog() {
     
     const dialogRef = this.dialog.open(BasicInfoEditComponent, {
@@ -34,7 +39,12 @@ export class BasicInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sfService.callRemote('BLN_MM_ViewAdminProfileCon.getProfileData',
+    this.successCallback, this.failedCallback);
+    this.getdataService.getData();
+    this.getdataService.getPersonalInfo();
   }
+
   url = '../../assets/profile-placeholder.png';
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
@@ -49,5 +59,19 @@ export class BasicInfoComponent implements OnInit {
       }
     }
   }
-
+  public getSFResourse = (path: string) => this.sfService.getSFResource;
+  public successCallback = (response) => {
+    this.basic_info_data = JSON.parse(response);
+   // response = response
+   /*for(var d in response){
+     console.log(d);
+   }
+    var wantedData = response.filter(function(i) {
+      return i.Group_Name__c === 'Basic Information';
+    });
+    console.log(wantedData);*/
+    console.log("Result =>");
+    console.log(this.basic_info_data);
+  }
+  private failedCallback = (response) => console.log(response)
 }

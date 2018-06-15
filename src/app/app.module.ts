@@ -17,6 +17,11 @@ import { RegistrationQuestionComponent } from './registration-question/registrat
 import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.component';
 import { WorkAddressEditComponent } from './work-address-edit/work-address-edit.component';
 import { ProjectInfoEditComponent } from './project-info-edit/project-info-edit.component';
+import { RegistrationQuestionEditComponent } from './registration-question-edit/registration-question-edit.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { SalesforceService } from './../service/salesforce.service';
+import { GetdataService } from './getdata.service';
+
 
 
 @NgModule({
@@ -30,7 +35,8 @@ import { ProjectInfoEditComponent } from './project-info-edit/project-info-edit.
     RegistrationQuestionComponent,
     BasicInfoEditComponent,
     WorkAddressEditComponent,
-    ProjectInfoEditComponent
+    ProjectInfoEditComponent,
+    RegistrationQuestionEditComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +45,10 @@ import { ProjectInfoEditComponent } from './project-info-edit/project-info-edit.
     MatSlideToggleModule,
     Select2Module,
     AngularFontAwesomeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
-  providers: [],
+  providers: [SalesforceService,GetdataService],
   bootstrap: [AppComponent],
   entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent]
 
