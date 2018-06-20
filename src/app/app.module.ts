@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
@@ -21,6 +21,7 @@ import { RegistrationQuestionEditComponent } from './registration-question-edit/
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SalesforceService } from './../service/salesforce.service';
 import { GetdataService } from './getdata.service';
+import { CompanyContactComponent } from './company-contact/company-contact.component';
 
 
 
@@ -36,11 +37,13 @@ import { GetdataService } from './getdata.service';
     BasicInfoEditComponent,
     WorkAddressEditComponent,
     ProjectInfoEditComponent,
-    RegistrationQuestionEditComponent
+    RegistrationQuestionEditComponent,
+    CompanyContactComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
     Select2Module,
@@ -50,7 +53,7 @@ import { GetdataService } from './getdata.service';
   ],
   providers: [SalesforceService,GetdataService],
   bootstrap: [AppComponent],
-  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent]
+  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent,CompanyContactComponent]
 
 })
 

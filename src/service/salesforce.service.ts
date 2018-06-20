@@ -23,7 +23,6 @@ export class SalesforceService {
           reject(error);
         }*/
         if (event.status) {
-            //console.log(result);
             resolve(result);
         } else {
           reject(result);
@@ -32,13 +31,12 @@ export class SalesforceService {
       config || { buffer: false, escape: false }
     );
   }
-  /*public callRemoteForGet(methodName: string, resolve, reject, config?: any) {
+  public callRemoteForSettings(methodName: string, resolve, reject, config?: any) {
     console.log(methodName);
     Visualforce.remoting.Manager.invokeAction(
      methodName,
      function (result, event) {
-        if (event.status) {
-            
+        if (event.status) {     
             resolve(result);
         } else {
           reject(result);
@@ -46,5 +44,21 @@ export class SalesforceService {
       },
       config || { buffer: false, escape: false }
     );
-  }*/
+  }
+  public callRemoteUpdateForBasic(methodName:string,params:any,resolve, reject, config?: any){
+    console.log("Called this");
+    console.log(params);
+    Visualforce.remoting.Manager.invokeAction(
+     methodName,
+     params,
+     function (result, event) {
+        if (event.status) {     
+            resolve(result);
+        } else {
+          reject(result);
+        }
+      },
+      config || { buffer: false, escape: false }
+    );
+  }
 }
