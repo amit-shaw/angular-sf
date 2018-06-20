@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
@@ -17,7 +17,13 @@ import { RegistrationQuestionComponent } from './registration-question/registrat
 import { BasicInfoEditComponent } from './basic-info-edit/basic-info-edit.component';
 import { WorkAddressEditComponent } from './work-address-edit/work-address-edit.component';
 import { ProjectInfoEditComponent } from './project-info-edit/project-info-edit.component';
+
 import { PrintProfileComponent } from './print-profile/print-profile.component';
+import { RegistrationQuestionEditComponent } from './registration-question-edit/registration-question-edit.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { SalesforceService } from './../service/salesforce.service';
+import { GetdataService } from './getdata.service';
+import { CompanyContactComponent } from './company-contact/company-contact.component';
 
 
 @NgModule({
@@ -32,20 +38,22 @@ import { PrintProfileComponent } from './print-profile/print-profile.component';
     BasicInfoEditComponent,
     WorkAddressEditComponent,
     ProjectInfoEditComponent,
-    PrintProfileComponent
+    PrintProfileComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
     Select2Module,
     AngularFontAwesomeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
-  providers: [],
+  providers: [SalesforceService,GetdataService],
   bootstrap: [AppComponent],
-  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent]
+  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent,CompanyContactComponent]
 
 })
 

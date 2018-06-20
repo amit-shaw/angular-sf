@@ -24,12 +24,12 @@
   <div>
   <div class="personal-info-section row padding-top-1 padding-buttom-1">
     <div class="personal-data col-md-12">
-      <div class="info-name">Durga Mikkilineni</div>
+      <div class="info-name">{{basic.Prefix__c}} {{basic.First_Name__c}} {{basic.Last_Name__c}} {{basic.Suffix__c}}</div>
     </div>
     <div class="personal-data-sec1 col-md-12 no-padding">
       <div class="col-md-6 col-xs-6">
-        <div class="info-designation">Co founder | Eventdex</div>
-        <div class="info-mobile">+1 (732) 333-1901</div>
+        <div class="info-designation">{{basic.TKT_Job_Title__c}} | {{basic.TKT_Company__c}}</div>
+        <div class="info-mobile">{{basic.Mobile__c}}</div>
       </div>
       <div class="social-media col-md-3 col-md-offset-3 col-xs-6">
         <div class="col-md-1 col-xs-0"></div>
@@ -45,24 +45,58 @@
       </div>
     </div>  
   </div>
+  <div class="personal-info-section row">
+      <div class="personal-info-header col-md-12">
+        <span>
+        <i class="fa fa-briefcase" aria-hidden="true"></i>
+        Personal Information
+        <hr class="personal-info-header-hr"> 
+      </span>     
+      </div>
+      <!--<div class="col-md-6 padding-buttom-1 hover-grey">
+          <span class="field-title">Prefix:</span>
+          <span class="field-val">{{basic.Prefix__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey">
+        <span class="field-title">Suffix:</span>
+        <span class="field-val">{{basic.Suffix__c}}</span>
+      </div> -->
+      <div class="col-md-6 padding-buttom-1 hover-grey" *ngIf='basic_set[10].biw.readaccess'>
+        <span class="field-title">{{basic_set[10].biw.labelname}}:</span>
+        <span class="field-val">{{basic.Home_Phone__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey" *ngIf='basic_set[12].biw.readaccess'>
+        <span class="field-title">{{basic_set[12].biw.labelname}}:</span>
+        <span class="field-val">{{basic.Gender__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey" *ngIf='basic_set[11].biw.readaccess'>
+        <span class="field-title">{{basic_set[11].biw.labelname}}:</span>
+        <span class="field-val">{{basic.Age__c}}</span>
+      </div>
+      <div class="col-md-6 padding-buttom-1 hover-grey" *ngIf='basic_set[13].biw.readaccess'>
+        <span class="field-title">{{basic_set[13].biw.labelname}}:</span>
+        <span class="field-val">{{basic.DOB__c}}</span>
+      </div>
+  </div>
   <div class="company-info-section row">
-    <div class="company-info-header col-md-4">
+    <div class="company-info-header col-md-12">
       <i class="fa fa-briefcase" aria-hidden="true"></i>
       Company Contact Information
-      <hr class="company-header-hr">      
+      <span class="glyphicon glyphicon-pencil edit-company" (click)="openCompanyContact()"></span>
+      <hr class="company-header-hr">  
     </div>
     
-    <div class="col-md-12 padding-buttom-1 hover-grey">
-      <span class="field-title">Email:</span>
-      <span class="field-val">durga@eventdex.com</span>
+    <div class="col-md-12 padding-buttom-1 hover-grey" *ngIf='basic_set[3].biw.readaccess'>
+      <span class="field-title">{{basic_set[3].biw.labelname}}:</span>
+      <span class="field-val">{{basic.Email__c}}</span>
     </div>
-    <div class="col-md-12 padding-buttom-1 hover-grey">
+    <!--<div class="col-md-12 padding-buttom-1 hover-grey">
       <span class="field-title">MatchMaking Email: </span>
-      <span class="field-val">durga@eventdex.com</span>
-    </div>
-    <div class="col-md-12 padding-buttom-1 hover-grey">
-      <span class="field-title">Work Phone Number: </span>
-      <span class="field-val">+1 (732) 333-1901</span>
+      <span class="field-val">{{basic.Secondary_email__c}}</span>
+    </div> -->
+    <div class="col-md-12 padding-buttom-1 hover-grey" *ngIf='basic_set[9].biw.readaccess'>
+      <span class="field-title">{{basic_set[9].biw.labelname}}: </span>
+      <span class="field-val">{{basic.Work_Phone__c}}</span>
     </div>
     <div class="col-md-12 padding-buttom-1 hover-grey">
       <span class="field-title">Work address: </span>

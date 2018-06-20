@@ -1,0 +1,28 @@
+<div class="container basic-info-edit">
+  <div class="basic-info-edit-section row">
+    <div class="col-md-12 basic-info-title">
+      Company Contact Information
+    </div>
+    <form (ngSubmit)="onSubmit()" #personalInfoForm="ngForm" [formGroup]="companyContactEdit">
+      <div *ngIf='basic_set[6].biw.readaccess' class="col-md-4">
+        <label for="email">{{basic_set[6].biw.labelname}}</label>
+        <input type="text" class="form-control" id="tkt-company" [required]='basic_set[6].biw.required' [readonly]='!basic_set[6].biw.updateaccess'
+          [value]='basic.TKT_Company__c' name="name" formControlName="TKT_Company__c">
+      </div>
+      <div *ngIf='basic_set[7].biw.readaccess' class="col-md-4">
+        <label for="email">{{basic_set[7].biw.labelname}}</label>
+        <input type="text" class="form-control" id="tkt-job" [required]='basic_set[7].biw.required' [readonly]='!basic_set[7].biw.updateaccess'
+          [value]='basic.TKT_Job_Title__c' name="tkt-job" formControlName="TKT_Job_Title__c">
+      </div>
+      <div *ngIf='basic_set[9].biw.readaccess' class="col-md-4">
+        <label for="email">{{basic_set[9].biw.labelname}}</label>
+        <input type="text" class="form-control" id="dob__c" [required]='basic_set[9].biw.required' [readonly]='!basic_set[9].biw.updateaccess'
+          [value]='basic.Work_Phone__c' name="DOB__c" formControlName="Work_Phone__c">
+      </div>
+      <div class="col-md-3 col-md-offset-8 action-section">
+        <button type="submit" class="btn btn-cancel" (click)="onCancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

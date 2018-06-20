@@ -1,7 +1,7 @@
-<div class="container basic-info-edit">
+<!--<div class="container basic-info-edit">
   <div class="basic-info-header row">
     <div class="col-md-6">
-          sumit
+          
     </div>
     <div class="col-md-6">
       <div class="col-xs-4 col-xs-offset-7">
@@ -86,7 +86,160 @@
     </div>
     <div class="save-btn col-md-2 col-md-offset-4">
         <button class="btn btn-primary sv-basic-btn " type="button" name="save">Save</button>
-      <!--<input type="button" value="SAVE" name="save" class="edit-save-btn"> -->
+      
     </div>
   </div>
 </div>
+-->
+<div class="container basic-info-edit">
+  <div class="basic-info-header row">
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-6">
+      <div class="col-xs-4 col-xs-offset-7">
+        <span class="glyphicon glyphicon-pencil image-upload-pencil">
+          <input type='file' (change)="onSelectFile($event)" class="file-input-hide">
+        </span>
+        <img [src]="url" class="profile-pic">
+      </div>
+    </div>
+  </div>
+  <div class="basic-info-edit-section row">
+    <div class="col-md-12 basic-info-title">
+      Basic Information
+    </div>
+    <form (ngSubmit)="onSubmit()" #personalInfoForm="ngForm" [formGroup]="basicEdit">
+      <!--<div class="form-group col-md-4" *ngFor='let fields of basic_set'> -->
+      <div *ngIf='basic_set[0].biw.readaccess && basic_set[0].biw.columnname == "Prefix__c"' class="col-md-2">
+        <label for="email">{{basic_set[0].biw.labelname}}</label>
+        <select id="prefix" formControlName="Prefix__c" class="form-control" [(ngModel)]="dataval.Prefix__c">
+          <option *ngFor="let p of prefix" [ngValue]="p">{{ p }}</option>
+        </select>
+      </div>
+      <div *ngIf='basic_set[1].biw.readaccess' class="col-md-4">
+        <label for="email">{{basic_set[1].biw.labelname}}</label>
+        <input type="text" class="form-control" id="First_Name__c" [required]='basic_set[1].biw.required' [readonly]='basic_set[1].biw.updateaccess'
+          value='{{basic.First_Name__c}}' name="First_Name__c" formControlName="First_Name__c">
+      </div>
+      <div *ngIf='basic_set[2].biw.readaccess && basic_set[2].biw.columnname == "Last_Name__c"' class="col-md-4">
+        <label for="email">{{basic_set[2].biw.labelname}}</label>
+        <input type="text" class="form-control" id="Last_Name__c" [required]='basic_set[2].biw.required' [readonly]='!basic_set[2].biw.updateaccess'
+          [value]='basic.Last_Name__c' name="Last_Name__c" formControlName="Last_Name__c">
+      </div>
+      <div *ngIf='basic_set[5].biw.readaccess && basic_set[5].biw.columnname == "Suffix__c"' class="col-md-2">
+        <label for="email">{{basic_set[5].biw.labelname}}</label>
+        <select id="suffix" formControlName="Suffix__c" class="form-control" [(ngModel)]="dataval.Suffix__c">
+          <option *ngFor="let s of suffix" [ngValue]="s">{{ s }}</option>
+        </select>
+      </div>
+      <div *ngIf='basic_set[3].biw.readaccess && basic_set[3].biw.columnname == "Email__c"' class="col-md-6">
+        <label for="email">{{basic_set[3].biw.labelname}}</label>
+        <input type="text" class="form-control" id="Email__c" [required]='basic_set[3].biw.required' [readonly]='!basic_set[3].biw.updateaccess'
+          [value]='basic.Email__c' name="Email__c" formControlName="Email__c">
+      </div>
+      <div *ngIf='basic_set[4].biw.readaccess' class="col-md-6">
+        <label for="email">{{basic_set[4].biw.labelname}}</label>
+        <input type="text" class="form-control" id="verify_email" [required]='basic_set[4].biw.required' [readonly]='!basic_set[4].biw.updateaccess'>
+      </div>
+
+      <!-- <div *ngIf='fields.biw.readaccess && fields.biw.columnname == "Name"'>
+        <label for="email">{{fields.biw.labelname}}</label>
+        <input type="text" class="form-control" [id]="fields.biw.columnname"
+            [required]='fields.biw.required'
+            [readonly]='!fields.biw.updateaccess'
+            [value]='basic.TKT_Company__c'
+            name="TKT_Company__c"
+            formControlName="TKT_Company__c"
+        >
+      </div> 
+      <div *ngIf='fields.biw.readaccess && fields.biw.columnname == "Title__c"'>
+        <label for="email">{{fields.biw.labelname}}</label>
+          <input type="text" class="form-control" [id]="fields.biw.columnname"
+            [required]='fields.biw.required'
+            [readonly]='!fields.biw.updateaccess'
+            [value]='basic.TKT_Job_Title__c'
+            name="TKT_Job_Title__c"
+            formControlName="TKT_Job_Title__c"
+        >
+      </div> -->
+      <div *ngIf='basic_set[8].biw.readaccess' class="col-md-6">
+        <label for="email">{{basic_set[8].biw.labelname}}</label>
+        <input type="text" class="form-control" id="mobile__c" [required]='basic_set[8].biw.required' [readonly]='!basic_set[8].biw.updateaccess'
+          [value]='basic.Mobile__c' name="Mobile__c" formControlName="Mobile__c">
+      </div>
+      <div *ngIf='basic_set[10].biw.readaccess' class="col-md-6">
+          <label for="email">{{basic_set[10].biw.labelname}}</label>
+          <input type="text" class="form-control" id="mobile__c" [required]='basic_set[10].biw.required' [readonly]='!basic_set[10].biw.updateaccess'
+            [value]='basic.Home_Phone__c' name="Mobile__c" formControlName="Mobile__c">
+        </div>
+      <div *ngIf='basic_set[12].biw.readaccess' class="col-md-6">
+        <label for="email">{{basic_set[12].biw.labelname}}</label>
+        <input type="text" class="form-control" id="gender__c" [required]='basic_set[12].biw.required' [readonly]='!basic_set[12].biw.updateaccess'
+          [value]='basic.Gender__c' name="Gender__c" formControlName="Gender__c">
+      </div>
+      <!--<div *ngIf='fields.biw.readaccess && fields.biw.columnname == "Work_Phone__c"'>
+          <label for="email">{{fields.biw.labelname}}</label>
+          <input type="text" class="form-control" [id]="fields.biw.columnname"
+              [required]='fields.biw.required'
+              [readonly]='!fields.biw.updateaccess'
+              [value]='basic.Work_Phone__c'
+              name="Work_Phone__c"
+              formControlName="Work_Phone__c"
+          >
+      </div>
+      <div *ngIf='fields.biw.readaccess && fields.biw.columnname == "Home_Phone__c"'>
+        <label for="email">{{fields.biw.labelname}}</label>
+        <input type="text" class="form-control" [id]="fields.biw.columnname"
+          [required]='fields.biw.required'
+          [readonly]='!fields.biw.updateaccess'
+          [value]='basic.Home_Phone__c'
+          name="Home_Phone__c"
+          formControlName="Home_Phone__c"
+        >
+      </div> -->
+      <div *ngIf='basic_set[13].biw.readaccess' class="col-md-6">
+        <label for="email">{{basic_set[13].biw.labelname}}</label>
+        <input type="date" class="form-control" id="dob__c" [required]='basic_set[13].biw.required' [readonly]='!basic_set[13].biw.updateaccess'
+          [value]='basic.DOB__c' name="DOB__c" formControlName="DOB__c">
+      </div>
+      <div *ngIf='basic_set[11].biw.readaccess' class="col-md-6">
+        <label for="email">{{basic_set[11].biw.labelname}}</label>
+        <input type="text" class="form-control" id="age__c" [required]='basic_set[11].biw.required' [readonly]='!basic_set[11].biw.updateaccess'
+          [value]='basic.Age__c' name="Age__c" formControlName="Age__c">
+      </div>
+      <!-- <div *ngIf='fields.biw.readaccess && fields.biw.columnname == "Custom_Barcode__c"'>
+        <label for="email">{{fields.biw.labelname}}</label>
+        <input type="text" class="form-control" [id]="fields.biw.columnname"
+          [required]='fields.biw.required'
+          [readonly]='!fields.biw.updateaccess'
+          [value]='basic.Custom_Barcode__c'
+          name="Custom_Barcode__c"
+          formControlName="Custom_Barcode__c"
+        >
+      </div> -->
+      <!-- </div> -->
+      <div class="work-info-title col-md-12">
+        Work Information
+      </div>
+      <div *ngIf='basic_set[6].biw.readaccess' class="col-md-4">
+        <label for="email">{{basic_set[6].biw.labelname}}</label>
+        <input type="text" class="form-control" id="tkt-company" [required]='basic_set[6].biw.required' [readonly]='!basic_set[6].biw.updateaccess'
+          [value]='basic.TKT_Company__c' name="name" formControlName="TKT_Company__c">
+      </div>
+      <div *ngIf='basic_set[7].biw.readaccess' class="col-md-4">
+        <label for="email">{{basic_set[7].biw.labelname}}</label>
+        <input type="text" class="form-control" id="tkt-job" [required]='basic_set[7].biw.required' [readonly]='!basic_set[7].biw.updateaccess'
+          [value]='basic.TKT_Job_Title__c' name="tkt-job" formControlName="TKT_Job_Title__c">
+      </div>
+      <div *ngIf='basic_set[9].biw.readaccess' class="col-md-4">
+        <label for="email">{{basic_set[9].biw.labelname}}</label>
+        <input type="text" class="form-control" id="dob__c" [required]='basic_set[9].biw.required' [readonly]='!basic_set[9].biw.updateaccess'
+          [value]='basic.Work_Phone__c' name="DOB__c" formControlName="Work_Phone__c">
+      </div>
+      <div class="col-md-3 col-md-offset-8 action-section">
+        <button type="submit" class="btn btn-cancel" (click)="onCancel">Cancel</button>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+      </div>
+    </form>
+  </div>

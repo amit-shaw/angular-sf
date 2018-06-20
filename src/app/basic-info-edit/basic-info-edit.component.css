@@ -183,3 +183,16 @@
     margin-left: -6px;
     
 }
+/*#prefix,#suffix{
+    width:100%;
+    height:34px;
+} */
+.action-section{
+    padding:15px;
+}
+.btn-cancel{
+    margin-right:20px; 
+}
+.btn{
+    font-weight: bold;
+}

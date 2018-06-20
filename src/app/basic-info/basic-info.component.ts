@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import { BasicInfoEditComponent } from '../basic-info-edit/basic-info-edit.component';
 import { WorkAddressEditComponent } from '../work-address-edit/work-address-edit.component';
+import { SalesforceService } from '../../service/salesforce.service';
+import { GetdataService } from '../getdata.service';
+import { CompanyContactComponent } from '../company-contact/company-contact.component';
 
 @Component({
   selector: 'app-basic-info',
@@ -9,8 +12,11 @@ import { WorkAddressEditComponent } from '../work-address-edit/work-address-edit
   styleUrls: ['./basic-info.component.css']
 })
 export class BasicInfoComponent implements OnInit {
- // editcomponent:string;
-  constructor(public dialog: MatDialog) {}
+
+  //basic_info_data:any[];
+  constructor(public dialog: MatDialog,private sfService: SalesforceService,private getdataService:GetdataService) {
+  }
+  
   openDialog() {
     
     const dialogRef = this.dialog.open(BasicInfoEditComponent, {
@@ -32,9 +38,26 @@ export class BasicInfoComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+  openCompanyContact(){
+    const dialogRef = this.dialog.open(CompanyContactComponent, {
+      height: 'auto'
+      //width:'500px'
+    });
 
-  ngOnInit() {
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
+  basic:any[];
+  basic_set:any[];
+  //temp:any[];
+  ngOnInit() {
+    this.getdataService.getData();
+    this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
+    this.getdataService.getSettingsData();
+    this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
+  }
+
   url = '../../assets/profile-placeholder.png';
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
@@ -49,5 +72,4 @@ export class BasicInfoComponent implements OnInit {
       }
     }
   }
-
 }

@@ -1,13 +1,23 @@
-<div class="container project-info-edit-section">
-  <form #formRef="ngForm">
-    <div *ngFor="let word2 of words2; let in=index" class="col-sm-3">
-        <div class="form-group">
-          <input type="text" [(ngModel)]="words2[in].value" name="name{{in}}" class="form-control" #name="ngModel" required />
-          <!--<p [hidden]="words2[in].value">Field is required</p>
-          {{formRef.form.name1}}-->
-        </div>
-        <br />
-    </div>
-    <button [disabled]="!formRef.form.valid" (click)="add()">Add input</button>
-  </form>
+<div class="container">
+  <div class="row">
+    <form>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let projects of data; let in=index;let l=last;let f=first;" [expanded]="f">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{projects.pname}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <i *ngIf="l" class="fa fa-plus" aria-hidden="true" (click)="add()"></i>
+              <i *ngIf="!f" class="fa fa-trash-o" aria-hidden="true" (click)="delete(in)"></i>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="form-group col-md-6" *ngFor="let projectfields of projects.keys">
+            <label for="project-name">{{projectfields.label}}</label>
+            <input type="text" class="form-control" placeholder="First name">
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </div>
 </div>
