@@ -1,49 +1,151 @@
 <div class="container work-edit-section">
-  <div class="row">
-      <div class="col-md-12 work-pop-bg">
-          <div class="work-prof-popup">
-              <div class="col-md-4 col-sm-10 col-xs-10 col-lg-4">
-                  <h2 class="title">Work Address</h2>
-              </div>
-              <div class="col-md-6 col-lg-6 offset-md-6 offset-lg-6"></div>
-              <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-                  <i aria-hidden="true" class="fa fa-pencil edit-icon"></i>
-              </div>
-              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                  <hr class="lne" />
-              </div>
-              <div class="form-group col-md-5">
-                  <label for="email">Work Address1 :</label>
-                  <input class="form-control" type="text">
-              </div>
-              <div class="form-group col-md-5">
-                  <label for="email">Work Address2 :</label>
-                  <input class="form-control" type="text">
-              </div>
-              <div class="col-md-2 offset-md-2"></div>
-              <div class="form-group col-md-5">
-                  <label for="email">City :</label>
-                  <input class="form-control" type="text">
-              </div>
-              <div class="form-group col-md-5">
-                  <label for="email">Country:</label>
-                  <input class="form-control" type="text">
-              </div>
-              <div class="col-md-2 offset-md-2"></div>
-              <div class="form-group col-md-5">
-                  <label for="email">State :</label>
-                  <input class="form-control" type="text">
-              </div>
-              <div class="form-group col-md-5">
-                  <label for="email">Zip Code:</label>
-                  <input class="form-control" type="text">
-              </div>
-          </div>
-          <div class="col-md-12 text-right work-pop-save">
-              <button type="button" class="btn btn-primary sv-btn">Save</button>
-          </div>
-      </div>
-
-  </div>
+    <div class="row work-pop-bg">
+        <div class="col-md-12 address-edit-header">
+            Address Information
+        </div>
+        <form (ngSubmit)="onSubmit()" #addressForm="ngForm" [formGroup]="addressEdit" ngNativeValidate>
+            <div class="col-md-12">
+                <div class="work-prof-popup col-md-12">
+                    <div class="address-section-type">{{address[0]?.biw.labelname}}</div>
+                    <div class="col-md-12">
+                        <label for="label">{{address[0]?.biw.labelname}} 1
+                            <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="address_1" [required]='address[0]?.biw.required' [readonly]="address[0]?.biw.updateaccess =='false'"
+                            name="address_Name__c" formControlName="W$Address1__c">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="label">{{address[0]?.biw.labelname}} 2</label>
+                        <input type="text" class="form-control" id="address_2" [readonly]="address[0]?.biw.updateaccess =='false'"
+                            name="address_Name__c" formControlName="W$Address2__c">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="label">City
+                            <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="city_1" [required]='address[0].biw.required' [readonly]="address[1].biw.updateaccess =='false'"
+                            name="address_Name__c" formControlName="W$City__c">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email">Country
+                            <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
+                        </label>
+                        <select id="country" class="form-control" (change)="onSelect($event,'work')"  formControlName="W$Country__c">
+                            <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}}>{{country.Long_Name__c}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="label">State
+                            <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
+                        </label>
+                        <select id="country" class="form-control" formControlName="W$State__c">
+                            <option *ngFor="let state_work of state_work" value={{state_work.Id}} id={{state_work.Name}}>{{state_work.Long_Name__c}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="label">Zip Code
+                                <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="city_1" [required]='address[0]?.biw.required' [readonly]="address[0]?.biw.updateaccess =='false'"
+                            name="address_Name__c" formControlName="W$ZipCode__c">
+                    </div>
+                </div>
+                <div class="work-prof-popup col-md-12">
+                        <div class="address-section-type">{{address[2]?.biw.labelname}}</div>
+                        <div class="col-md-12">
+                            <label for="label">{{address[2]?.biw.labelname}} 1
+                                <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="address_1" [required]='address[2]?.biw.required' [readonly]="address[2]?.biw.updateaccess =='false'"
+                                name="address_Name__c" formControlName="H$Address1__c">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="label">{{address[2]?.biw.labelname}} 2</label>
+                            <input type="text" class="form-control" id="address_2" [readonly]="address[2]?.biw.updateaccess =='false'"
+                                name="address_Name__c" formControlName="H$Address2__c">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="label">City
+                                <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="city_1" [required]='address[2].biw.required' [readonly]="address[2].biw.updateaccess =='false'"
+                                name="address_Name__c" formControlName="H$City__c">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Country
+                                <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
+                            </label>
+                            <select id="country" class="form-control" (change)="onSelect($event,'home')" formControlName="H$Country__c">
+                                <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}}>{{country.Long_Name__c}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="label">State
+                                <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
+                            </label>
+                            <select id="country" class="form-control" formControlName="H$State__c">
+                                <option *ngFor="let state_home of state_home" value={{state_home.Id}}>{{state_home.Long_Name__c}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="label">Zip Code
+                                    <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="city_1" [required]='address[2]?.biw.required' [readonly]="address[2]?.biw.updateaccess =='false'"
+                                name="address_Name__c" formControlName="H$ZipCode__c">
+                        </div>
+                    </div>
+                    <div class="work-prof-popup col-md-12">
+                            <div class="address-section-type">{{address[1]?.biw.labelname}}</div>
+                            <div class="col-md-12">
+                                <label for="label">{{address[1]?.biw.labelname}} 1
+                                    <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="address_1" [required]='address[1]?.biw.required' [readonly]="address[1]?.biw.updateaccess =='false'"
+                                    name="address_Name__c" formControlName="B$Address1__c">
+                            </div>
+                            <div class="col-md-12">
+                                <label for="label">{{address[1]?.biw.labelname}} 2</label>
+                                <input type="text" class="form-control" id="address_2" [readonly]="address[1]?.biw.updateaccess =='false'"
+                                    name="address_Name__c" formControlName="B$Address2__c">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="label">City
+                                    <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="city_1" [required]='address[1].biw.required' [readonly]="address[1].biw.updateaccess =='false'"
+                                    name="address_Name__c" formControlName="B$City__c">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email">Country
+                                    <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
+                                </label>
+                                <select id="country" class="form-control" (change)="onSelect($event,'billing')" formControlName="B$Country__c">
+                                    <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}}>{{country.Long_Name__c}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="label">State
+                                    <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
+                                </label>
+                                <select id="country" class="form-control" formControlName="B$State__c">
+                                    <option *ngFor="let state_billing of state_billing" value={{state_billing.Id}}>{{state_billing.Long_Name__c}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="label">Zip Code
+                                        <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="city_1" [required]='address[1]?.biw.required' [readonly]="address[1]?.biw.updateaccess =='false'"
+                                    name="address_Name__c" formControlName="B$ZipCode__c">
+                            </div>
+                        </div>
+                <div class="col-md-3 col-md-offset-9 action-section">
+                    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+                    <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 </div>

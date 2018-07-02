@@ -45,12 +45,13 @@ export class SalesforceService {
       config || { buffer: false, escape: false }
     );
   }
-  public callRemoteUpdateForBasic(methodName:string,params:any,resolve, reject, config?: any){
+  public callRemoteUpdateForBasic(methodName:string,params:any,params2:any,resolve, reject, config?: any){
     console.log("Called this");
     console.log(params);
     Visualforce.remoting.Manager.invokeAction(
      methodName,
      params,
+     params2,
      function (result, event) {
         if (event.status) {     
             resolve(result);
@@ -59,6 +60,19 @@ export class SalesforceService {
         }
       },
       config || { buffer: false, escape: false }
+    );
+  }
+  public getCountry(methodName:string,resolve, reject, config?: any){
+    Visualforce.remoting.Manager.invokeAction(
+      methodName,
+      function (result, event) {
+        if (event.status) {     
+          resolve(result);
+        } else {
+          reject(result);
+        }
+      },
+    config || { buffer: false, escape: false }
     );
   }
 }

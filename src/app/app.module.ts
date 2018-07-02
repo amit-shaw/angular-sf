@@ -24,6 +24,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { SalesforceService } from './../service/salesforce.service';
 import { GetdataService } from './getdata.service';
 import { CompanyContactComponent } from './company-contact/company-contact.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { SocailMediaEditComponent } from './socail-media-edit/socail-media-edit.component';
 
 
 @NgModule({
@@ -39,6 +41,9 @@ import { CompanyContactComponent } from './company-contact/company-contact.compo
     WorkAddressEditComponent,
     ProjectInfoEditComponent,
     PrintProfileComponent,
+    CompanyContactComponent,
+    EditProfileComponent,
+    SocailMediaEditComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,7 @@ import { CompanyContactComponent } from './company-contact/company-contact.compo
   ],
   providers: [SalesforceService,GetdataService],
   bootstrap: [AppComponent],
-  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent,CompanyContactComponent]
+  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent,CompanyContactComponent,SocailMediaEditComponent]
 
 })
 

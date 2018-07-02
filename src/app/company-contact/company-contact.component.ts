@@ -3,6 +3,7 @@ import { GetdataService } from '../getdata.service';
 import { NgForm } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialog,MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
+import { BasicData } from '../basic-info-edit/basicData';
 
 @Component({
   selector: 'app-company-contact',
@@ -16,7 +17,7 @@ export class CompanyContactComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.companyContactEdit = this.createFormGroup();
      }
-  basic:any[];
+  basic:BasicData[];
   basic_set:any[];
   createFormGroup() {
     return new FormGroup({       
@@ -28,9 +29,9 @@ export class CompanyContactComponent implements OnInit {
      });
   }
   ngOnInit() {
-    this.getdataService.basic_cast.subscribe(basic => {this.basic = basic;});
+    //this.getdataService.basic_cast.subscribe(basic => {this.basic = basic;});
    // this.dataval = this.basic;
-    this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
+   // this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
   }
 
 }

@@ -5,6 +5,9 @@ import { WorkAddressEditComponent } from '../work-address-edit/work-address-edit
 import { SalesforceService } from '../../service/salesforce.service';
 import { GetdataService } from '../getdata.service';
 import { CompanyContactComponent } from '../company-contact/company-contact.component';
+import { BasicData } from '../basic-info-edit/basicData';
+import { SocailMediaEditComponent } from '../socail-media-edit/socail-media-edit.component';
+import { Country } from '../country';
 
 @Component({
   selector: 'app-basic-info',
@@ -28,9 +31,19 @@ export class BasicInfoComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+  openDialogSocial(){
+    const dialogRef = this.dialog.open(SocailMediaEditComponent, {
+      height: 'auto'
+      //width:'500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
   openDialogWorkAddress(){
     const dialogRef = this.dialog.open(WorkAddressEditComponent, {
-      height: '400px'
+      height: '500px'
       //width:'500px'
     });
 
@@ -48,14 +61,17 @@ export class BasicInfoComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-  basic:any[];
+  basic:BasicData;
   basic_set:any[];
   //temp:any[];
   ngOnInit() {
     this.getdataService.getData();
+    
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
-    this.getdataService.getSettingsData();
+    //this.getdataService.getSettingsData();
+    //console.log(this.basic);
     this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
+    
   }
 
   url = '../../assets/profile-placeholder.png';

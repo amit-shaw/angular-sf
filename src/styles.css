@@ -7,3 +7,10 @@
 .mat-expansion-panel-content.mat-expanded{
     overflow: auto !important;
 }
+.mat-slide-toggle-content{
+    color: #337ab7 !important;
+  }
+  span.select2-container{
+    position:fixed !important;
+    z-index:9999 !important;
+}

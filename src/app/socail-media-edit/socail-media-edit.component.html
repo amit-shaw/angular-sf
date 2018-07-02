@@ -1,0 +1,87 @@
+<div class="container social-media-edit">
+  <div class="row">
+    <div class="col-md-12 social-profile-header">
+      Social Profile Information
+    </div>
+    <div class="col-md-12 padding-left-right-40">
+      <div class="social-icns-basic">
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-twitter"></a>
+        <a href="#" class="">
+          <img class="icon-insta" src="http://eventdex.com/wp-content/themes/eventdex/assets/images/youtube-icons-ev.png">
+        </a>
+        <a href="#" class="">
+          <img class="icon-insta" src="http://eventdex.com/wp-content/themes/eventdex/assets/images/instaimg.png">
+        </a>
+      </div>
+    </div>
+    <form (ngSubmit)="onSubmit()" #socailMedia="ngForm" [formGroup]="socailEdit" ngNativeValidate>
+    <div *ngIf='speaker[3].biw.readaccess' class="col-md-12 padding-left-right-40">
+      <label for="label">{{speaker[3].biw.labelname}}
+        <span *ngIf="speaker[3].biw.required =='true' " class="required">*</span>
+      </label>
+      <input type="text" class="form-control" id="facebook__c" [required]='speaker[3].biw.required' [readonly]="speaker[3].biw.updateaccess == 'false'"
+        name="FaceBookId__c" formControlName="FaceBookId__c">
+    </div>
+    <div *ngIf='speaker[4].biw.readaccess' class="col-md-12 padding-left-right-40">
+      <label for="label">{{speaker[4].biw.labelname}}
+        <span *ngIf="speaker[4].biw.required =='true' " class="required">*</span>
+      </label>
+      <input type="text" class="form-control" id="linkedin__c" [required]='speaker[4].biw.required' [readonly]="speaker[4].biw.updateaccess == 'false'"
+        name="LinkedInId__c" formControlName="LinkedInId__c">
+    </div>
+    <div *ngIf='speaker[5].biw.readaccess' class="col-md-12 padding-left-right-40">
+      <label for="label">{{speaker[5].biw.labelname}}
+        <span *ngIf="speaker[5].biw.required =='true' " class="required">*</span>
+      </label>
+      <input type="text" class="form-control" id="twitter__c" [required]='speaker[5].biw.required' [readonly]="speaker[5].biw.updateaccess == 'false'"
+        name="TwitterId__c" formControlName="TwitterId__c">
+    </div>
+    <div *ngIf='speaker[8].biw.readaccess' class="col-md-12 padding-left-right-40">
+      <label for="label">{{speaker[8].biw.labelname}}
+        <span *ngIf="speaker[8].biw.required =='true' " class="required">*</span>
+      </label>
+      <input type="text" class="form-control" id="video__c" [required]='speaker[8].biw.required' [readonly]="speaker[8].biw.updateaccess == 'false'"
+        name="Video__c" formControlName="Video__c">
+    </div>
+    <div *ngIf='speaker[13].biw.readaccess' class="col-md-12 padding-left-right-40">
+      <label for="label">{{speaker[13].biw.labelname}}
+        <span *ngIf="speaker[13].biw.required =='true' " class="required">*</span>
+      </label>
+      <input type="text" class="form-control" id="instagram__c" [required]='speaker[13].biw.required' [readonly]="speaker[13].biw.updateaccess == 'false'"
+        name="Instagram__c" formControlName="Instagram__c">
+    </div>
+    <div class="col-md-12 padding-left-right-40" *ngIf="speaker[0].biw.readaccess == 'false'">
+      <label for="label">{{speaker[0].biw.labelname}}
+        <span *ngIf="speaker[0].biw.required =='true' " class="required">*</span>
+      </label>
+     <!-- <div class="file-upload">
+        <div class="file-select">
+          <div class="file-select-button" id="fileName">Choose File</div>
+          <div class="file-select-name" id="noFile">No file chosen...</div> 
+          <input type="file" name="chooseFile" id="chooseFile" multiple (change)="onChange($event, showFileNames)">  
+        </div>
+      </div>-->
+      <div class="mutiple-file-upload">
+        <input type="text" class="file-name-display">
+        <input type="file" class="choose-file" multiple (change)="onChange($event, showFileNames)" />
+      </div>
+      <span *ngFor="let doc of doc; let i = index">
+        {{doc.name}} <span (click)="deleteDoc(i)" class="delete-doc">X</span>
+      </span>
+    </div>
+   <!-- <hr class="socail-show-seprator">
+    <div class="work-info-title col-md-12">Social Networks</div>
+    <div class="social-media-show col-md-8">
+      <span style="font-weight: bold;">On </span><mat-slide-toggle color="primary">
+        If enabled, your social profiles would be visible to viewers
+      </mat-slide-toggle>
+    </div> -->
+    <div class="col-md-3 col-md-offset-1 action-section"> 
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+        <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+      </div>
+  </form>
+  </div>
+</div>
