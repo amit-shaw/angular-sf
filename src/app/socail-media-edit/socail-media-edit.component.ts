@@ -23,6 +23,9 @@ export class SocailMediaEditComponent implements OnInit {
     speaker:any[];
     doc:any[]= [];
     socailEdit: FormGroup;
+    error_text:string='';
+    status:boolean=false;
+    attchment:any[];
   ngOnInit() {
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
     this.socailEdit = this.createFormGroup();
@@ -30,22 +33,32 @@ export class SocailMediaEditComponent implements OnInit {
     //this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
     //this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
     this.getdataService.speaker.subscribe(speaker => this.speaker = speaker);
+    this.getdataService.attchment.subscribe(attchment =>this.attchment = attchment);
+    //this.doc = this.attchment;
   }
   createFormGroup() {
     return new FormGroup({         
-      FaceBookId__c:new FormControl(this.basic.FaceBookId__c),
+      FaceBookId__c:new FormControl(this.defaultVal(this.basic.FaceBookId__c)),
       LinkedInId__c:new FormControl(this.basic.LinkedInId__c),
       TwitterId__c:new FormControl(this.basic.TwitterId__c),
       Instagram__c:new FormControl(this.basic.Instagram__c),
       Video__c:new FormControl(this.basic.Video__c),
      });
   }
+  defaultVal(val){
+    console.log("Formvalue: "+val);
+    if(this.basic.FaceBookId__c == '' || this.basic.FaceBookId__c == undefined){
+      return 'http://www.facebook.com';
+    }else{
+      return val;
+    }
+  }
   onSubmit(){
     console.log(this.socailEdit.value);
     //console.log("Value"+this.basic_set.find(basic_set => basic_set == 'First_Name__c'));
     //console.log(this.basic_set);
     if (this.socailEdit.valid) {
-    this.getdataService.updateSepcificData(this.socailEdit.value,'');
+    this.getdataService.updateSepcificData(this.socailEdit.value,'','');
     this.dialogRef.close();
     }
     //console.log(data.value);
@@ -56,9 +69,19 @@ export class SocailMediaEditComponent implements OnInit {
   }
   onChange(event, input: any) {
 
-    //let files = [].slice.call(event.target.files);
-    //input.value = files.map(f => f.name).join(', ');
-    if (event.target.files && event.target.files[0]) {
+    console.log(event);
+    if(event.target.files[0].type != 'application/pdf' || event.target.files[0].type != 'application/vnd.ms-excel'
+     ||event.target.files[0].type != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+     || event.target.files[0].type != 'application/vnd.openxmlformats-officedocument.presentationml.presentation'){
+      this.status = true;
+      this.error_text ='Please select the PDF,XLS,DOC and PPT files only';
+    }else if(event.target.files[0].size > 5*1024*1024){
+      this.status = true;
+      this.error_text = 'Please select the file less then 5MB';
+    }
+    else{
+      this.status = false;
+     if(event.target.files && event.target.files[0]) {
       var reader:any
       reader = new FileReader();
       let name = event.target.files[0].name;
@@ -67,14 +90,17 @@ export class SocailMediaEditComponent implements OnInit {
       
       reader.onload = (event) => { // called once readAsDataURL is completed
        // this.url = event.currentTarget.result;
-       console.log(event);
-       this.doc.push({'name':name,'data_url':event.currentTarget.result});
-       console.log(this.doc);
+      // console.log(event);
+       this.doc.push({'Name':name,'Id':event.currentTarget.result});
+       //console.log(this.doc);
       }
     }
+    }
   }
-  deleteDoc(pos){
+  deleteDoc(pos,id){
+    if(confirm("Are you sure to delete ")) {
     this.doc.splice(pos, 1);
+    }
   }
 
 }

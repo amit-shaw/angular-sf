@@ -130,20 +130,39 @@ font-size: 25px;
     height: 28px;
     padding: 14px;
   }
-  .choose-file{
-    width: 10%;
-    float: right;
-    font-size: 22px;
+  .uploaded-file-details{
+    background: #80808059;
+    padding: 2px 10px 4px 8px;
+  }
+  .uploaded-files{
     position: relative;
-    right: 45px;
+    top: 7px;
+  }
+  .choose-file{
+    width: 100%;
+    background: white;
+    color: black;
+    font-size: 17px;
   }
   .delete-doc{
-      cursor: pointer;
+    cursor: pointer;
+    background: white;
+    border-radius: 50%;
+    padding: 4px;
+    position: relative;
+    top: -6px;
+    left: -8px;
+    color: red;
   }
-  /* file upload*/
-  .file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
-.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
-.file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
-  .file-upload.active .file-select .file-select-button{background:#3fa46a;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
-.file-upload .file-select input[type=file]{z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;top:0;left:0;opacity:0;filter:alpha(opacity=0);}
-.file-select-button{float:right;}
+  .file-uplaod-sec label{
+    width:100%;
+  }
+  .file-uplaod-sec label span.help-text{
+    float: right;
+    font-size: 11px;
+    font-weight: 100;
+    padding-top: 5px;
+  }
+  .error-text{
+    color:red;
+  }

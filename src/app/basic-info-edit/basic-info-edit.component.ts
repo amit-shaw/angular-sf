@@ -50,6 +50,8 @@ export class BasicInfoEditComponent implements OnInit {
       Suffix__c:new FormControl(this.basic.Suffix__c),
       verify_Email__c:new FormControl(this.basic.Email__c),
       DBA__c:new FormControl(this.basic.DBA__c),
+      FaxNumber__c:new FormControl(this.basic.FaxNumber__c),
+      Company_Website_URL__c:new FormControl(this.basic.Company_Website_URL__c),
      });
   }
       
@@ -77,9 +79,9 @@ export class BasicInfoEditComponent implements OnInit {
       console.log("sending image");
       if(this.url != '/servlet/servlet.FileDownload?file='+this.basic.User_Pic__c){
         let img = this.url.split(',')[1];
-        this.getdataService.updateSepcificData(this.basicEdit.value,img);
+        this.getdataService.updateSepcificData(this.basicEdit.value,img,'');
       }else{
-        this.getdataService.updateSepcificData(this.basicEdit.value,'');
+        this.getdataService.updateSepcificData(this.basicEdit.value,'','');
       }
       this.dialogRef.close();
     }

@@ -1,42 +1,54 @@
-.naics-code-header-hr{
-    margin-top: 2px;
-    padding: 0;
-    height: 1px;
-    background: #808080eb;
-}
-.naics-code-val{
-    background: #8080804d;
-    width: fit-content;
-    border-radius: 6px;
-    padding: 4px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #000000a1;
-}
-.margin-bittom-1{
-    margin-bottom: 1%;
-}
-.naics-code-header{
-    font-size: 20px;
-    font-weight: bold;
-    color: #627396;
-}
-.naics-code-edit-iocn{
-    font-size: 27px;
-    color: #627396;
-    font-weight: bold;
-}
-.naics-code-edit-iocn button{
-    background: transparent;
-    border: none;
-}
-.naice-main{
-    background: #fdfbfb;
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    margin-top: 12px;
+/*
+Start here **/
 
+.basic-views-in-adrs {
+    padding: 0;
+    background: #fdfbfb;
+    -webkit-box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    margin-bottom: 27px;
 }
-.edit-icon{
-    margin-left: 29px;
+.adrs-pencil {
+    float: right;
+    margin: 36px;
+    font-size: 22px;
+    color: #44619c;
+    cursor: pointer;
 }
+.adrs-info {
+    padding: 39px 0px 0px 39px;
+}
+.work-in-head {
+    color: #44619c;
+}
+.basic-view-pghead-adrs {
+    padding: 8px 0px 8px 43px;
+    background: #d6d5d569;
+    font-size: 23px;
+    font-weight: bold;
+    color: #676767;
+    margin-top: 0px;
+    width:88%;
+}
+.basic-naics {
+    list-style: none;
+    margin-top: 23px;
+}
+.basic-naics li span {
+    background: #E6E7E8;
+    padding: 8px;
+    border-radius: 2px;
+    line-height: 36px;
+    margin: 5px 0px 5px 0px;
+}
+/* Commodities block */
+.commodities_data{
+    padding: 0px 0px 8px 0px;
+} 
+.comm-title{
+    font-weight: bold;
+}
+.commo-view{
+    padding: 20px 0px 20px 82px;
+}
+

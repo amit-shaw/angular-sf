@@ -110,6 +110,20 @@
         <input type="text" class="form-control" id="dob__c" [required]='basic_set[9].biw.required' [readonly]='!basic_set[9].biw.updateaccess'
           name="DOB__c" formControlName="Work_Phone__c">
       </div>
+      <div *ngIf='work_set[6].biw.readaccess' class="col-md-6">
+        <label for="email">{{work_set[6].biw.labelname}}
+          <span *ngIf="work_set[6].biw.required =='true'" class="required">*</span>
+        </label>
+        <input type="text" class="form-control" id="website-url__c" [required]='work_set[6].biw.required' [readonly]='!work_set[6].biw.updateaccess'
+          name="website-url" formControlName="Company_Website_URL__c">
+      </div>
+      <div *ngIf='work_set[22].biw.readaccess' class="col-md-6">
+        <label for="email">{{work_set[22].biw.labelname}}
+          <span *ngIf="work_set[22].biw.required =='true'" class="required">*</span>
+        </label>
+        <input type="text" class="form-control" id="fax--c" [required]='work_set[22].biw.required' [readonly]='!work_set[22].biw.updateaccess'
+          name="fax-number" formControlName="FaxNumber__c">
+      </div>
       <div *ngIf='basic_set[13].biw.readaccess' class="col-md-4">
         <label for="email">{{basic_set[13].biw.labelname}}
           <span *ngIf="basic_set[13].biw.required =='true'" class="required">*</span>

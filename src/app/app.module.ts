@@ -26,6 +26,13 @@ import { GetdataService } from './getdata.service';
 import { CompanyContactComponent } from './company-contact/company-contact.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SocailMediaEditComponent } from './socail-media-edit/socail-media-edit.component';
+import { MatSnackBarModule } from '@angular/material';
+import { DiversityEditComponent } from './diversity-edit/diversity-edit.component';
+import { CommoditiesComponent } from './commodities/commodities.component';
+import { CompanyContactEditComponent } from './company-contact-edit/company-contact-edit.component';
+//import {disableDeprecatedForms, provideForms} from '@angular/forms';
+
+//import { LinkFormat } from './link-format';
 
 
 @NgModule({
@@ -43,7 +50,11 @@ import { SocailMediaEditComponent } from './socail-media-edit/socail-media-edit.
     PrintProfileComponent,
     CompanyContactComponent,
     EditProfileComponent,
-    SocailMediaEditComponent
+    SocailMediaEditComponent,
+    DiversityEditComponent,
+    CommoditiesComponent,
+    CompanyContactEditComponent,
+   // LinkFormat
   ],
   imports: [
     BrowserModule,
@@ -54,11 +65,17 @@ import { SocailMediaEditComponent } from './socail-media-edit/socail-media-edit.
     Select2Module,
     AngularFontAwesomeModule,
     MatDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule,
   ],
   providers: [SalesforceService,GetdataService],
   bootstrap: [AppComponent],
-  entryComponents: [NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,WorkAddressEditComponent,CompanyContactComponent,SocailMediaEditComponent]
+  entryComponents: [
+    NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,
+    WorkAddressEditComponent,CompanyContactComponent,
+    SocailMediaEditComponent,DiversityEditComponent,
+    CommoditiesComponent,CompanyContactEditComponent
+  ]
 
 })
 

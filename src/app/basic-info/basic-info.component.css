@@ -96,9 +96,7 @@
     
 }
 .basic-views-in .social-icns-basic {
-	position: absolute;
-	width: 326px;
-	margin: 40px 0px 0 -31px;
+	margin: 30px 0px 10px 43px;
 }
 .basic-views-in .social-icns-basic .fa {
 	padding: 7px;
@@ -286,4 +284,26 @@
 .basic-profile-picmobi {
 	float: none !important;
 }
+}
+/*  Attachemnets styles */
+.attach-header{
+	border: 1px solid grey;
+    padding: 1px 0px 1px 62px;
+    font-size: 15px;
+    color: red;
+}
+ul.attachement-list{
+	padding: 0;
+	max-height: 125px;
+    overflow-y: auto;
+}
+.attachement-list li{
+	list-style: none !important;
+	color: white;
+    text-align: center;
+	background: #5771a3;
+	border-bottom: 1px solid #ffffff5e;
+}   
+.attachement-list li a{
+	color:white !important;
 }

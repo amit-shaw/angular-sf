@@ -1,34 +1,71 @@
-<div class="container naics-code-view-sec">
-  <div class="row">
-  <div class="naice-main">
-  <div class="naics-code-header row">
-    <div class="col-md-4">
-      <span class="naics-icon"></span>
-      <span class="naics-tile">NAICS Codes</span>
-      <hr class="naics-code-header-hr">
+<div class="container basic-views-in-adrs" *ngIf="naics_set[0]?.biw.readaccess == 'true'">
+  <div class="row"> 
+    <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialog()"></i>
+    <div class="col-md-6 adrs-info">
+      <div class="basic-view-pghead-adrs work-in-head">{{naics_set[0]?.biw.groupname}}</div>
+      <ul class="basic-naics 1" *ngIf="naics !== undefined || naics != ''">
+        <li *ngFor="let naics of naics">
+          <span>{{ naics?.BLN_ListLookUp__r.List_Code__c +' - ' + naics?.BLN_ListLookUp__r.List_Description__c}}</span>
+        </li>
+      </ul>
+      <ul class="basic-naics 2" *ngIf="naics === undefined || naics == ''">
+        <li>
+          <span>No {{naics_set[0]?.biw.labelname}} selected ..</span>
+        </li>
+      </ul>
     </div>
-    <div class="naics-code-edit-iocn col-md-1 col-md-offset-7">
-      <i aria-hidden="true" class="fa fa-pencil edit-icon" (click)="openDialog()"></i>
-    </div>
-  </div>
-  
-  <div class="naics-code-data row">
-    <div class="col-md-12 margin-bittom-1">
-      <span class="naics-code-val">111110 - Soyabean Farming</span>
-    </div>
-    <div class="col-md-12 margin-bittom-1">
-      <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-    </div>
-    <div class="col-md-12 margin-bittom-1">
-      <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-    </div>
-    <div class="col-md-12 margin-bittom-1">
-      <span class="naics-code-val">111140 - Wheat Farming</span>
-    </div>
-    <div class="col-md-12 margin-bittom-1">
-      <span class="naics-code-val">111150 - Rice Farming</span>
-    </div>
+    <div class="col-md-6 col-md-offset-6"> </div>
   </div>
 </div>
+<!-- Diversity information section for view -->
+<div class="container basic-views-in-adrs" *ngIf="settings['Diversity Type Information'][0]?.biw.readaccess == 'true'">
+  <div class="row"> 
+    <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialogDiversity()"></i>
+    <div class="col-md-6 adrs-info">
+      <div class="basic-view-pghead-adrs work-in-head">{{settings['Diversity Type Information'][0]?.biw.groupname}}</div>
+      <ul class="basic-naics 1" *ngIf="diversity_val !== undefined || diversity_val != ''">
+        <li *ngFor="let diversity_val of diversity_val">
+          <span>{{ diversity_val?.BLN_ListLookUp__r.List_Description__c }}</span>
+        </li>
+      </ul>
+      <ul class="basic-naics 2" *ngIf="diversity_val === undefined || diversity_val == ''">
+        <li>
+          <span>No {{settings['Diversity Type Information'][0]?.biw.labelname}} selected ..</span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6 col-md-offset-6"> </div>
+  </div>
 </div>
+<!-- Commodities information section -->
+<div class="container basic-views-in-adrs" *ngIf="settings['Commodities Information'][0]?.biw.readaccess == 'true'">
+  <div class="row"> 
+    <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialogCommonities()"></i>
+    <div class="col-md-6 adrs-info">
+      <div class="basic-view-pghead-adrs work-in-head">{{settings['Commodities Information'][0]?.biw.groupname}}</div>
+    </div>
+    <div class="col-md-11 commo-view">
+      <div class="commodities_data" *ngIf="commodities != undefined && commodities !='' else noCommData">
+        <span class="comm-title">{{settings['Commodities Information'][0]?.biw.labelname}} : </span>
+        <span *ngFor="let commodities of commodities;let index = index;let last = last;" class="comm-value">
+          {{commodities.BLN_ListLookUp__r.List_Description__c}}
+          <span *ngIf="!last">,</span>
+        </span>
+      </div>
+      <ng-template #noCommData>
+        <div class="no-data">No {{settings['Commodities Information'][0]?.biw.labelname}} selected ..</div>
+      </ng-template>
+      <div class="sub-commodities_data" *ngIf="sub_commodities != undefined && sub_commodities != '' else noSubCommData">
+        <span class="comm-title">{{settings['Commodities Information'][1]?.biw.labelname}} : </span>
+        <span *ngFor="let sub_commodities of sub_commodities;let index=index;let last=last;" class="comm-value">
+          {{sub_commodities.BLN_ListLookUp__r.List_Description__c}}
+          <span *ngIf="!last">,</span>
+        </span>
+      </div>
+      <ng-template #noSubCommData>
+        <div class="no-data">No {{settings['Commodities Information'][1]?.biw.labelname}} selected ..</div>
+      </ng-template>
+    </div>
+    <div class="col-md-6 col-md-offset-6"> </div>
+  </div>
 </div>

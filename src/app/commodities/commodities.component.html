@@ -1,15 +1,25 @@
 <div class="container naics-code-edit-section">
   <div class="row">
       <div class="col-md-12 naics-header">
-        {{naics_set[0]?.biw.groupname}}
+        {{settings['Commodities Information'][0]?.biw.groupname}}
         </div>
         <div class="col-md-12 niacs-code-selector">
-            <select2 [data]="naics_data"
+          <div><label>{{settings['Commodities Information'][0]?.biw.labelname}}</label></div>
+            <select2 [data]="comm_all"
             [options]="options"
             [width]="650"
             [value]="def"
             (valueChanged)="changed($event)">
             </select2>
+          </div>
+          <div class="col-md-12 sub-comm-selector">
+             <div><label>{{settings['Commodities Information'][1]?.biw.labelname}}</label></div>
+              <select2 [data]="sub_def"
+              [options]="options"
+              [width]="650"
+              [value]="sub_com_def"
+              (valueChanged)="changed1($event)">
+              </select2>
           </div>
           <div class="col-md-3 col-md-offset-9 action-section"> 
               <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>

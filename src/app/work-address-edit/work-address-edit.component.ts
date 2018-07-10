@@ -36,18 +36,26 @@ export class WorkAddressEditComponent implements OnInit {
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
     console.log(this.state);
     this.addressEdit = this.createFormGroup();
-    this.addressEdit.controls['W$Country__c'].setValue(this.basic.Work_Address__r.Country__c, {onlySelf: true});
+    this.addressEdit.controls['W$Country__c'].setValue(this.setNullVal(this.basic.Work_Address__r.Country__c), {onlySelf: true});
     this.addressEdit.controls['H$Country__c'].setValue(this.basic.Home_Address__r.Country__c, {onlySelf: true});
     this.addressEdit.controls['B$Country__c'].setValue(this.basic.Billing_Address__r.Country__c, {onlySelf: true});
     let st = this.country.filter((item)=>item.Id == this.basic.Work_Address__r.Country__c);
     this.state_work = this.state.filter((item)=>item.COUNTRY_CODE__c == st[0].Name);
-    this.addressEdit.controls['W$State__c'].setValue(this.basic.Work_Address__r.State__c, {onlySelf: true});
+    this.addressEdit.controls['W$State__c'].setValue(this.setNullVal(this.basic.Work_Address__r.State__c), {onlySelf: true});
     st = this.country.filter((item)=>item.Id == this.basic.Home_Address__r.Country__c);
     this.state_home = this.state.filter((item)=>item.COUNTRY_CODE__c == st[0].Name);
     this.addressEdit.controls['H$State__c'].setValue(this.basic.Home_Address__r.State__c, {onlySelf: true});
     st = this.country.filter((item)=>item.Id == this.basic.Billing_Address__r.Country__c);
     this.state_billing = this.state.filter((item)=>item.COUNTRY_CODE__c == st[0].Name);
     this.addressEdit.controls['B$State__c'].setValue(this.basic.Billing_Address__r.State__c, {onlySelf: true});
+  }
+  setNullVal(def_val){
+    console.log(def_val);
+    if(def_val !== undefined && def_val != null && def_val !=''){
+      return def_val;
+    }else{
+      return '';
+    }
   }
   onSelect(countryid,type){
     //this.getdataService.state_cast.subscribe(state => this.state = state);
@@ -57,7 +65,7 @@ export class WorkAddressEditComponent implements OnInit {
     }else if(type=='home'){
       this.state_home = this.state.filter((item)=>item.COUNTRY_CODE__c == temp[0].Name);
     }else{
-      this.state_billing = this.state.filter((item)=>item.COUNTRY_CODE__c == temp[0].Name);
+     this.state_billing = this.state.filter((item)=>item.COUNTRY_CODE__c == temp[0].Name);
     }
     //console.log(this.state.filter((item)=>item.COUNTRY_CODE__c == ));
     //let temp = this.country.filter((item)=>item.Name == '113');
@@ -67,24 +75,24 @@ export class WorkAddressEditComponent implements OnInit {
     console.log(this.basic.Home_Address__r.Address1__c);
     //this.home = this.basic.Home_Address__r;
     return new FormGroup({       
-      W$Address1__c: new FormControl(this.basic.Work_Address__r.Address1__c),  
-      W$Address2__c :new FormControl(this.basic.Work_Address__r.Address2__c),
-      W$City__c:new FormControl(this.basic.Work_Address__r.City__c),
+      W$Address1__c: new FormControl(this.setNullVal(this.basic.Work_Address__r.Address1__c)),  
+      W$Address2__c :new FormControl(this.setNullVal(this.basic.Work_Address__r.Address2__c)),
+      W$City__c:new FormControl(this.setNullVal(this.basic.Work_Address__r.City__c)),
       W$Country__c:new FormControl(),
       W$State__c:new FormControl(),
-      W$ZipCode__c:new FormControl(this.basic.Work_Address__r.ZipCode__c),
-      H$Address1__c: new FormControl(this.basic.Home_Address__r.Address1__c),  
-      H$Address2__c :new FormControl(this.basic.Home_Address__r.Address2__c),
-      H$City__c:new FormControl(this.basic.Home_Address__r.City__c),
+      W$ZipCode__c:new FormControl(this.setNullVal(this.basic.Work_Address__r.ZipCode__c)),
+      H$Address1__c: new FormControl(this.setNullVal(this.basic.Home_Address__r.Address1__c)),  
+      H$Address2__c :new FormControl(this.setNullVal(this.basic.Home_Address__r.Address2__c)),
+      H$City__c:new FormControl(this.setNullVal(this.basic.Home_Address__r.City__c)),
       H$Country__c:new FormControl(),
       H$State__c:new FormControl(),
-      H$ZipCode__c:new FormControl(this.basic.Home_Address__r.ZipCode__c),
-      B$Address1__c: new FormControl(this.basic.Billing_Address__r.Address1__c),  
-      B$Address2__c :new FormControl(this.basic.Billing_Address__r.Address2__c),
-      B$City__c:new FormControl(this.basic.Billing_Address__r.City__c),
+      H$ZipCode__c:new FormControl(this.setNullVal(this.basic.Home_Address__r.ZipCode__c)),
+      B$Address1__c: new FormControl(this.setNullVal(this.basic.Billing_Address__r.Address1__c)),  
+      B$Address2__c :new FormControl(this.setNullVal(this.basic.Billing_Address__r.Address2__c)),
+      B$City__c:new FormControl(this.setNullVal(this.basic.Billing_Address__r.City__c)),
       B$Country__c:new FormControl(),
       B$State__c:new FormControl(),
-      B$ZipCode__c:new FormControl(this.basic.Billing_Address__r.ZipCode__c),
+      B$ZipCode__c:new FormControl(this.setNullVal(this.basic.Billing_Address__r.ZipCode__c)),
      });
      
   }

@@ -33,7 +33,7 @@ export class BasicInfoComponent implements OnInit {
   }
   openDialogSocial(){
     const dialogRef = this.dialog.open(SocailMediaEditComponent, {
-      height: 'auto'
+      height: '500px'
       //width:'500px'
     });
 
@@ -63,15 +63,22 @@ export class BasicInfoComponent implements OnInit {
   }
   basic:BasicData;
   basic_set:any[];
+  speaker:any[];
+  attchment:any[];
+  work_set:any[];
   //temp:any[];
   ngOnInit() {
     this.getdataService.getData();
     
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
+    this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
+
     //this.getdataService.getSettingsData();
     //console.log(this.basic);
     this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
-    
+    this.getdataService.speaker.subscribe(speaker => this.speaker = speaker);
+    this.getdataService.attchment.subscribe(attchment =>this.attchment = attchment);
+    console.log(this.attchment);
   }
 
   url = '../../assets/profile-placeholder.png';
