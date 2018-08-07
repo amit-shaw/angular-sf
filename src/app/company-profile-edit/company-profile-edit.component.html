@@ -1,82 +1,40 @@
-<div class="container company-profile-edit-section">
+<div class="container company-contact-edit-section">
     <div class="row">
-        <div class="col-md-12 compny-pop-bg">
-            <div class="compny-prof-popup">
-                <div class="col-md-4 col-sm-10 col-xs-10 col-lg-4">
-                    <h2 class="title">Company Profile</h2>
-                </div>
-                <div class="col-md-6 col-lg-6 offset-md-6 offset-lg-6"></div>
-                <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-                    <i aria-hidden="true" class="fa fa-pencil edit-icon"></i>
-                </div>
-                <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-                    <hr class="lne" />
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="email">Company Overview :</label>
-                    <textarea class="form-control"></textarea>
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="email">Commodities :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="email">Product/Service Keywords :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="col-md-2 offset-md-2"></div>
-                <div class="form-group col-md-5">
-                    <label for="email">DBA :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="email">Geographical Region :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="col-md-2 offset-md-2"></div>
-                <div class="form-group col-md-5">
-                    <label for="email">Ethnicity :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="email">Business Structure :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="col-md-2 offset-md-2"></div>
-                <div class="form-group col-md-5">
-                    <label for="email">Company Manufactures Country :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="email">Company Outside Facilities :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="col-md-2 offset-md-2"></div>
-                <div class="form-group col-md-5">
-                    <label for="email">Company Manufactures Country :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="email">Company Outside Facilities :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="col-md-2 offset-md-2"></div>
-                <div class="form-group col-md-5">
-                    <label for="email">Years in Business :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="form-group col-md-5">
-                    <label for="email">Diversity Type :</label>
-                    <input class="form-control" type="email">
-                </div>
-                <div class="col-md-2 offset-md-2"></div>
-            </div>
-            <div class="col-md-12 text-right cmpny-pop-save">
-                <button type="button" class="btn btn-primary sv-btn">Save</button>
-            </div>
+      <div class="col-md-12 header-title">
+        Company Capabilities
+      </div>
+      <form (ngSubmit)="onSubmit()" #companyEditForm="ngForm" [formGroup]="companyEdit" ngNativeValidate>
+        <div *ngIf="work_set[9].biw.readaccess == 'true'" class="col-md-12 form-group">
+          <label for="label">{{work_set[9]?.biw.labelname}}
+            <span *ngIf="work_set[9].biw.required =='true'" class="required">*</span>
+          </label>
+          <simple-tiny formControlName="Company_Description__c" *ngIf="work_set[9].biw.updateaccess =='true'"></simple-tiny>
+          <p [innerHTML]="basic.Company_Description__c" class="readonly-text" *ngIf="work_set[9].biw.updateaccess == 'false'"></p>
+         <!-- <textarea class="form-control" id="est-date" [required]="work_set[9].biw.required" [readonly]="!work_set[9].biw.updateaccess"
+            name="ref-1" formControlName="References1__c"></textarea> -->
         </div>
-
+        <div *ngIf="work_set[10].biw.readaccess == 'true'" class="col-md-12 form-group">
+          <label for="label">{{work_set[10]?.biw.labelname}}
+            <span *ngIf="work_set[10].biw.required =='true'" class="required">*</span>
+          </label>
+          <simple-tiny formControlName="Keywords__c"></simple-tiny>
+          <p [innerHTML]="basic.Keywords__c" class="readonly-text" *ngIf="work_set[10].biw.updateaccess =='false'"></p>
+         <!-- <textarea class="form-control" id="key-word" [readonly]="!work_set[26].biw.updateaccess"
+            name="s"></textarea> -->
+        </div>
+        <div *ngIf="work_set[11].biw.readaccess == 'true'" class="col-md-12 form-group">
+          <label for="label">{{work_set[11]?.biw.labelname}}
+            <span *ngIf="work_set[27].biw.required =='true'" class="required">*</span>
+          </label>
+          <simple-tiny formControlName="Exceptional_Keywords__c" *ngIf="work_set[11].biw.updateaccess =='true'"></simple-tiny>
+          <p [innerHTML]="basic.Exceptional_Keywords__c" class="readonly-text" *ngIf="work_set[11].biw.updateaccess =='false'"></p>
+         <!-- <textarea class="form-control" id="est-date" [required]="work_set[27].biw.required" [readonly]="!work_set[27].biw.updateaccess"
+            name="ref-2" formControlName="References2__c"></textarea> -->
+        </div>
+        <div class="col-md-3 col-md-offset-9 action-section">
+          <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
+          <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+        </div>
+      </form>
     </div>
-
-</div>
+  </div>

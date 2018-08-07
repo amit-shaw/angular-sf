@@ -1,4 +1,5 @@
 import { AddressData } from "../work-address-edit/address-data";
+import { ProjectData, projectList } from "../project-info/project-data";
 
 export interface BasicData{
     First_Name__c: string, 
@@ -50,5 +51,6 @@ export interface BasicData{
     Tax_Id__c:string,
     Year_in_business__c:string,
     Secondary_email__c:string,
-    
+    Biography__c:string,
+   // BLN_Projects__r:projectList,
   }

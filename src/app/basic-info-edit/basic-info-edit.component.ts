@@ -32,6 +32,8 @@ export class BasicInfoEditComponent implements OnInit {
   dataval:BasicData;
   work_set:any[];
   url:any;
+  speaker:any[];
+  logourl:any;
   createFormGroup() {
     return new FormGroup({       
       First_Name__c: new FormControl(this.basic.First_Name__c),  
@@ -52,6 +54,7 @@ export class BasicInfoEditComponent implements OnInit {
       DBA__c:new FormControl(this.basic.DBA__c),
       FaxNumber__c:new FormControl(this.basic.FaxNumber__c),
       Company_Website_URL__c:new FormControl(this.basic.Company_Website_URL__c),
+      Biography__c:new FormControl(this.basic.Biography__c),
      });
   }
       
@@ -67,7 +70,19 @@ export class BasicInfoEditComponent implements OnInit {
     //this.getdataService.getSettingsData();
     this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
     this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
+    this.getdataService.speaker.subscribe(speaker => this.speaker = speaker);
     this.url = '/servlet/servlet.FileDownload?file='+this.basic.User_Pic__c;
+    this.logourl ='/servlet/servlet.FileDownload?file='+this.basic.Company_Logo__c;
+   /* if(this.basic.User_Pic__c != null && this.basic.User_Pic__c != undefined){
+      this.url = '/servlet/servlet.FileDownload?file='+this.basic.User_Pic__c;
+    }else{
+      this.url = './profile-placeholder.jpg';
+    }
+    if(this.basic.Company_Logo__c != '' && this.basic.Company_Logo__c != undefined){
+      this.logourl ='/servlet/servlet.FileDownload?file='+this.basic.Company_Logo__c;
+    }else{
+      this.logourl = './company.png';
+    }*/
     //console.log("basic Values");
     //console.log(this.basic);
   }
@@ -77,7 +92,15 @@ export class BasicInfoEditComponent implements OnInit {
     //console.log(this.basic_set);
     if (this.basicEdit.valid) {
       console.log("sending image");
-      if(this.url != '/servlet/servlet.FileDownload?file='+this.basic.User_Pic__c){
+      if(this.url != '/servlet/servlet.FileDownload?file='+this.basic.User_Pic__c && this.logourl != '/servlet/servlet.FileDownload?file='+this.basic.Company_Logo__c){
+        let img = this.url.split(',')[1];
+        let logo = this.logourl.split(',')[1];
+        this.getdataService.updateSepcificData(this.basicEdit.value,img,logo);
+      }else if(this.logourl != '/servlet/servlet.FileDownload?file='+this.basic.Company_Logo__c){
+        let logo = this.logourl.split(',')[1];
+        this.getdataService.updateSepcificData(this.basicEdit.value,'',logo);
+      }
+      else if(this.url != '/servlet/servlet.FileDownload?file='+this.basic.User_Pic__c){
         let img = this.url.split(',')[1];
         this.getdataService.updateSepcificData(this.basicEdit.value,img,'');
       }else{
@@ -103,5 +126,24 @@ export class BasicInfoEditComponent implements OnInit {
         console.log(this.url);
       }
     }
+  }
+  onSelectLogoFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader:any
+      reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.logourl = event.currentTarget.result;
+        //console.log(this.logourl);
+      }
+    }
+  }
+  emailChanged(changed_email){
+    if(this.basic.Email__c != changed_email){
+      console.log("Email changed ....");
+    }
+    console.log(changed_email);
   }
 }

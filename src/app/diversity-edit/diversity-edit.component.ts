@@ -43,7 +43,7 @@ export class DiversityEditComponent implements OnInit {
         }
         
     }
-    console.log(this.def);
+   // console.log(this.def);
     this.options = {
       multiple: true
     }
@@ -67,5 +67,8 @@ export class DiversityEditComponent implements OnInit {
     this.snackBar.open(this.settings['Diversity Type Information'][0].biw.labelname+" updated successfully..",'', {
       duration: 2000,
     });
+  }
+  onCancel(){
+    this.dialogRef.close();
   }
 }

@@ -11,7 +11,8 @@
     color: #337ab7 !important;
   }
   span.select2-container{
-    position:fixed !important;
+ /*   position:fixed !important; */
+    min-height: 34px !important;
     z-index:9999 !important;
 }
 .select2-container--default .select2-selection--multiple{
@@ -19,4 +20,24 @@
 }
 .select2-container--default.select2-container--focus .select2-selection--multiple{
     border: 1px solid #80808085 !important;
+}
+.mat-expansion-panel-content .border-bottom:last-child{
+    margin-bottom: 10px !important;
+    border-bottom: 1px solid #80808040 !important;
+}
+.mat-expansion-panel-header-description {
+    flex-grow: .01 !important;
+}
+.mat-content{
+    background: #edecec !important;
+    margin-right: 10px !important;
+}
+.mat-expansion-panel-header-title{
+    padding: 10px !important;
+}
+.mce-menu{
+    position:fixed !important;
+}
+.mce-floatpanel {
+    position: fixed !important;
 }

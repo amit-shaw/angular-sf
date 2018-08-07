@@ -52,3 +52,12 @@
 .padding-0{
     padding: 0 !important;
 }
+.ref-sec{
+    border: 1px solid #8080802e;
+    float: left;
+    border-radius: 5px;
+    padding-top: 6px;
+}
+.margin-top-5{
+    margin-top: 5px;
+}

@@ -6,6 +6,8 @@ import { Country } from './country';
 import { State } from './state';
 import {AddressData} from './work-address-edit/address-data';
 import { ServiceData } from './company-contact-edit/service-data';
+import { ProjectData } from './project-info/project-data';
+import { RegQuestionData } from './registration-question/registration-data';
 
 @Injectable()
 export class GetdataService {
@@ -14,7 +16,7 @@ export class GetdataService {
   //public basic = new BehaviorSubject<any[]>([]);
   public basic = new BehaviorSubject<BasicData>({First_Name__c:'',Last_Name__c:'',Prefix__c:'',Suffix__c:'',Custom_Barcode__c:'',Email__c:'',
    verify_Email__c:'',Age__c:'',DOB__c:'',Gender__c:'',Home_Phone__c:'',Work_Phone__c:'',Mobile__c:'',TKT_Company__c:''
-   ,TKT_Job_Title__c:'',DBA__c:'',Company_Logo__c:'',User_Pic__c:'',FaceBookId__c:'',
+   ,TKT_Job_Title__c:'',DBA__c:'',Company_Logo__c:'',User_Pic__c:'',FaceBookId__c:'',Biography__c:'',
    LinkedInId__c:'',
    TwitterId__c:'',
    Instagram__c:'',
@@ -59,6 +61,7 @@ export class GetdataService {
    References1__c:'',References2__c:'',
    ScopeOfWork1__c:'',Tax_Id__c:'',
    Year_in_business__c:'',Secondary_email__c:'',
+  
 });
   basic_cast = this.basic.asObservable();
   public basic_set = new BehaviorSubject<any[]>([]);
@@ -78,6 +81,12 @@ export class GetdataService {
   naics_cast = this.naics.asObservable();
   naics_data = new BehaviorSubject<any[]>([]);
   naics_data_cast = this.naics_data.asObservable();
+  investment = new BehaviorSubject<any[]>([]);
+  investment_cast = this.investment.asObservable();
+  sector = new BehaviorSubject<any[]>([]);
+  sector_cast = this.sector.asObservable();
+  sub_sector = new BehaviorSubject<any[]>([]);
+  sub_sector_cast = this.sub_sector.asObservable();
   naics_set = new BehaviorSubject<any[]>([]);
   naics_set_cast = this.naics_set.asObservable();
   attchment = new BehaviorSubject<any[]>([]);
@@ -106,6 +115,15 @@ export class GetdataService {
   ethinicity_cast = this.ethinicity.asObservable();
   bsnstr = new BehaviorSubject<ServiceData>({BLN_ListLookUp__c:'',Id:''});
   bsnstr_cast = this.bsnstr.asObservable();
+  project = new BehaviorSubject<ProjectData[]>([]);
+  project_cast = this.project.asObservable();
+  question = new BehaviorSubject<any[]>([]);
+  question_cast = this.question.asObservable();
+  reg_ques = new BehaviorSubject<RegQuestionData[]>([]);
+  reg_ques_cast = this.reg_ques.asObservable();
+  event_ques = new BehaviorSubject<RegQuestionData[]>([]);
+  event_ques_cast = this.event_ques.asObservable();
+  test:RegQuestionData[];
   constructor(private sfService: SalesforceService) { }
   //temp:any[];
   getData(){
@@ -121,6 +139,8 @@ export class GetdataService {
   }
   updatePersonalInfo(newData){
     this.basic.next(newData);
+    //console.log("Upadted ");
+    //console.log(this.basic);
   }
   naicsCodeUpdate(naicsdata){
     this.naics.next(naicsdata);
@@ -195,6 +215,13 @@ export class GetdataService {
     this.georeason.next(this.all['geogregion']);
     this.ethinicity.next(this.all['ethnicity']);
     this.bsnstr.next(this.all['busnstruct']);
+    this.project.next(this.all['tktProf']['BLN_Projects__r']['records']);
+    this.question.next(this.all['UserAnswer']);
+    if(this.all['UserAnswer'] != '' && this.all['UserAnswer'] !== undefined){
+      this.getTicketLevelQuestion();
+      this.getEventLevelQuestion();
+    }
+    //console.log(this.all['tktProf']['BLN_Projects__r']['records']);
   }
   public successCallback1 = (response) => {
     this.allSettings = JSON.parse(response);
@@ -327,5 +354,74 @@ export class GetdataService {
     console.log(res);
     this.commodities.next(res['commodities']);
     this.sub_commodities.next(res['subcommodities']);
+  }
+  /** getting Investment  formats data */
+  getInvestementFormatData(){
+    this.sfService.getCodes('BLN_MM_ViewAdminProfileCon.getCustomCode','interested format(s) of cooperation'
+    ,this.interestedFormats, this.failedCallback);
+  }
+  interestedFormats = (response) => {
+    let data = JSON.parse(response);
+    let val1 = [];
+    console.log(data)
+    for(let key in data){
+      val1.push({'id':data[key]['List_Description__c'],'text':data[key]['List_Description__c']});
+    }
+    //console.log(this.val);
+    this.investment.next(val1);
+  }
+  getSectorData(){
+    this.sfService.getCodes('BLN_MM_ViewAdminProfileCon.getCustomCode','sectors'
+    ,this.sectorSucss, this.failedCallback);
+  }
+  sectorSucss = (response) => {
+    let data = JSON.parse(response);
+    let val1 = [];
+    //console.log(data)
+    for(let key in data){
+      val1.push({'id':data[key]['List_Description__c'],'text':data[key]['List_Description__c'],'list':data[key]['Id']});
+    }
+  //  console.log("secor value");
+    this.sector.next(val1);
+  //  console.log(val1);
+  }
+  getSubSectorData(){
+    this.sfService.getCodes('BLN_MM_ViewAdminProfileCon.getCustomCode','sub sectors'
+    ,this.subSectorSucss, this.failedCallback);
+  }
+  subSectorSucss = (response) => {
+    let data = JSON.parse(response);
+    let val1 = [];
+    //console.log(data)
+    for(let key in data){
+      val1.push({'id':data[key]['List_Description__c'],'text':data[key]['List_Description__c'],'list':data[key]['Parent_List_Value__c']});
+    }
+  //  console.log("sub secor value");
+    this.sub_sector.next(val1);
+   // console.log(val1);
+  }
+  getTicketLevelQuestion(){
+    this.sfService.callRemote('BLN_MM_ViewAdminProfileCon.editTicketLevelSurveyQuestions',
+    this.successTicketData, this.failedCallback);
+  }
+  successTicketData = (response) =>{
+    console.log("Ticket level questins : ");
+    //console.log(JSON.parse(response));
+    let data = JSON.parse(response);
+    data = data['UserAnswer']; 
+    this.reg_ques.next(data);
+    console.log(this.reg_ques);
+   // console.log(this.test);
+  }
+  getEventLevelQuestion(){
+    this.sfService.callRemote('BLN_MM_ViewAdminProfileCon.editEventLevelSurveyQuestions',
+    this.successEventData, this.failedCallback);
+  }
+  successEventData = (response) =>{
+    console.log("Event level questins : ");
+    let data = JSON.parse(response);
+    data = data['UserAnswer'];
+    this.event_ques.next(data);
+    console.log(JSON.parse(response));
   }
 }

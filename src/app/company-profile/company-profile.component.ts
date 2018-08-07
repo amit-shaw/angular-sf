@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import { CompanyProfileEditComponent } from '../company-profile-edit/company-profile-edit.component';
+import { GetdataService } from '../getdata.service';
+import { BasicData } from '../basic-info-edit/basicData';
+import { SafeHtmlPipe } from '../safe-html';
+/*import { DomSanitizer } from '@angular/platform-browser'
 
-
-
-declare var $ :any;
+//declare var $ :any;
+@Pipe({ name: 'safeHtml'})
+export class SafeHtmlPipe implements PipeTransform  {
+  constructor(private sanitized: DomSanitizer) {}
+  transform(value) {
+    return this.sanitized.bypassSecurityTrustHtml(value);
+  }
+} */
 
 @Component({
   selector: 'app-company-profile',
@@ -13,7 +22,9 @@ declare var $ :any;
 })
 export class CompanyProfileComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,private getdataService:GetdataService) {}
+  basic:BasicData;
+  work_set:any[];
   openDialog() {
     const dialogRef = this.dialog.open(CompanyProfileEditComponent, {
       height: '500px'
@@ -26,7 +37,9 @@ export class CompanyProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
+    this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
+    //console.log(this.basic.Exceptional_Keywords__c);
   }
 
 }

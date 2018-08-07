@@ -9,7 +9,13 @@
       <div class="col-md-6" style="height: 100px;">
         <div class="rec"></div>
         <div class="rec-1"></div>
-        <div class="logo-img"><img src="https://www.eventdex.com/wp-content/themes/eventdex/assets/images/eventdex-logo-dark.png"/></div>
+        <div class="logo-img">
+          <span class="glyphicon glyphicon-pencil logo-upload-pencil">
+            <input type='file' (change)="onSelectLogoFile($event)" class="file-input-hide">
+          </span>
+          <img [src]="logourl" class="logo-pic" *ngIf="logourl != '/servlet/servlet.FileDownload?file=undefined'">
+          <p class="no-company-logo" *ngIf="logourl == '/servlet/servlet.FileDownload?file=undefined'">Upload company logo</p>
+        </div>
         <div class="rec-2"></div>
         <div class="rec-3"></div>
       </div>
@@ -18,7 +24,8 @@
           <span class="glyphicon glyphicon-pencil image-upload-pencil">
             <input type='file' (change)="onSelectFile($event)" class="file-input-hide">
           </span>
-          <img [src]="url" class="profile-pic">
+          <img [src]="url" class="profile-pic" *ngIf="url != '/servlet/servlet.FileDownload?file=undefined'">
+          <i class="fa fa-user-circle-o no-profile-pic" aria-hidden="true" *ngIf="url == '/servlet/servlet.FileDownload?file=undefined'"></i>
         </div>
       </div>
     </div>
@@ -80,7 +87,7 @@
           <span *ngIf="basic_set[3].biw.required == 'true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="Email__c" [required]='basic_set[3].biw.required' [readonly]="basic_set[3].biw.updateaccess =='false'"
-          name="Email__c" formControlName="Email__c">
+          name="Email__c" formControlName="Email__c" (blur)="emailChanged($event.target.value)">
       </div>
       <div *ngIf='basic_set[4].biw.readaccess' class="col-md-6">
         <label for="label">{{work_set[29].biw.labelname}}
@@ -152,8 +159,14 @@
         <input type="text" class="form-control" id="custom-barcode" [required]='basic_set[14].biw.required' [readonly]='!basic_set[14].biw.updateaccess'
           name="Custom_Barcode__c" formControlName="Custom_Barcode__c">
       </div>
+      <div *ngIf='speaker[7].biw.readaccess' class="col-md-12">
+          <label for="email">{{speaker[7].biw.labelname}}
+            <span *ngIf="speaker[7].biw.required == 'true'" class="required">*</span>
+          </label>
+          <simple-tiny formControlName="Biography__c"></simple-tiny>
+        </div>
       <div class="col-md-3 col-md-offset-9 action-section"> 
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
         <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
       </div>
 

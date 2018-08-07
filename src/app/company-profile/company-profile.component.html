@@ -1,205 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 backg-shdw">
-      <div class="company-prof">
-      <div class="company-prof-header col-md-4 col-sm-10 col-xs-10 col-lg-4">Company Profile
-      <hr class="company-header-hr">
-    </div>
-    <div class="col-md-6 col-lg-6 offset-md-6 offset-lg-6"></div>
-    <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-      
-        <i aria-hidden="true" class="fa fa-pencil edit-icon" (click)="openDialog()"></i>
-      
-  </div>
-    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12  margin-0">
-      <p class="field-title">About</p>
-      <p class="field-descr">Eventdex is a cloud based platform offering integrated solutions catering to many of the different aspects of the event life-cycle
-        including online/onsite registration, badge printing, check-ins, lead retrieval, attendee event details and match making saving
-        Event Organizers value, is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-        specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-        recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<div class="container basic-views-in-adrs">
+    <div class="row">
+        <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialog()"></i>
+        <div class="col-md-6 adrs-info">
+            <div class="basic-view-pghead-adrs work-in-head">Company Capabilities </div>
         </div>
-      <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-          <div>
-              <p class="field-title" id="c">Commodities</p>
-              <div class="naics-code-data row">
-                <div class="p-3"> 
-                <span class="naics-code-val">111110 - Soyabean Farming</span>
-                <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                <span class="naics-code-val">111140 - Wheat Farming</span>
-                <span class="naics-code-val">111150 - Rice Farming</span>
-                 
-                </div> 
-                </div>
-            </div>
-          
-            </div>  
-      <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-          <div>
-              <p class="field-title" id="c">Product/Service Keywords:</p>
-              <div class="naics-code-data row">
-                  <div class="p-3"> 
-                      <span class="naics-code-val">111110 - Soyabean Farming</span>
-                      <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                      <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                      <span class="naics-code-val">111140 - Wheat Farming</span>
-                      <span class="naics-code-val">111150 - Rice Farming</span>
-                       
-                      </div>
-                </div>
-            </div>
-       
-         </div>
-      <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-            <div>
-                <p class="field-title" id="c">DBA :</p>
-                <div class="naics-code-data row">
-                    <div class="p-3"> 
-                        <span class="naics-code-val">111110 - Soyabean Farming</span>
-                        <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                        <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                        <span class="naics-code-val">111140 - Wheat Farming</span>
-                        <span class="naics-code-val">111150 - Rice Farming</span>
-                         
-                        </div>
-                  </div>
-              </div>
-         
-        </div>
-        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-            <div>
-                <p class="field-title" id="c">Geographical Region :</p>
-                <div class="naics-code-data row">
-                    <div class="p-3"> 
-                        <span class="naics-code-val">111110 - Soyabean Farming</span>
-                        <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                        <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                        <span class="naics-code-val">111140 - Wheat Farming</span>
-                        <span class="naics-code-val">111150 - Rice Farming</span>
-                         
-                        </div>
-                  </div>
-              </div>
-         
-           </div>
-
-           <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-              <div>
-                  <p class="field-title" id="c">Ethnicity :</p>
-                  <div class="naics-code-data row">
-                      <div class="p-3"> 
-                          <span class="naics-code-val">111110 - Soyabean Farming</span>
-                          <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                          <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                          <span class="naics-code-val">111140 - Wheat Farming</span>
-                          <span class="naics-code-val">111150 - Rice Farming</span>
-                           
-                          </div>
+        <div class="col-md-6 col-md-offset-6"> </div>
+        <div class="container tbl-brdr-pdng">
+            <div class="row">
+                <div class="col-md-12 padding-0 ref-sec" *ngIf="work_set[9]?.biw.readaccess =='true' && basic.Company_Description__c !== undefined && basic.Company_Description__c != ''">
+                    <div class="col-sm-12">
+                        <p  class="font-bold">{{work_set[9]?.biw.labelname}} : </p>
+                    </div>
+                    <div class="col-sm-12">
+                        <p [innerHTML]="basic.Company_Description__c | safeHTML"></p>
                     </div>
                 </div>
-           
-             </div>
-             <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-                <div>
-                    <p class="field-title" id="c">Business Structure :</p>
-                    <div class="naics-code-data row">
-                        <div class="p-3"> 
-                            <span class="naics-code-val">111110 - Soyabean Farming</span>
-                            <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                            <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                            <span class="naics-code-val">111140 - Wheat Farming</span>
-                            <span class="naics-code-val">111150 - Rice Farming</span>
-                             
-                            </div>
-                      </div>
-                  </div>
-             
-               </div>
-
-               <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-                  <div>
-                      <p class="field-title" id="c">Company Manufactures Country :</p>
-                      <div class="naics-code-data row">
-                          <div class="p-3"> 
-                              <span class="naics-code-val">111110 - Soyabean Farming</span>
-                              <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                              <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                              <span class="naics-code-val">111140 - Wheat Farming</span>
-                              <span class="naics-code-val">111150 - Rice Farming</span>
-                               
-                              </div>
-                        </div>
+                <div class="col-md-12 padding-0 ref-sec margin-top-5" *ngIf="work_set[10]?.biw.readaccess =='true' && basic.Keywords__c !== undefined && basic.Keywords__c !=''">
+                    <div class="col-sm-12">
+                        <p  class="font-bold">{{work_set[10]?.biw.labelname}} : </p>
                     </div>
-               
-                 </div>
-                 <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-                    <div>
-                        <p class="field-title" id="c">Company Outside Facilities :</p>
-                        <div class="naics-code-data row">
-                            <div class="p-3"> 
-                                <span class="naics-code-val">111110 - Soyabean Farming</span>
-                                <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                                <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                                <span class="naics-code-val">111140 - Wheat Farming</span>
-                                <span class="naics-code-val">111150 - Rice Farming</span>
-                                 
-                                </div>
-                          </div>
-                      </div>
-                 
-                   </div>
-                   <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-                      <div>
-                          <p class="field-title" id="c">Years in Business :</p>
-                          <div class="naics-code-data row">
-                              <div class="p-3"> 
-                                  <span class="naics-code-val">111110 - Soyabean Farming</span>
-                                  <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                                  <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                                  <span class="naics-code-val">111140 - Wheat Farming</span>
-                                  <span class="naics-code-val">111150 - Rice Farming</span>
-                                   
-                                  </div>
-                            </div>
-                        </div>
-                   
-                     </div>
-                     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 margin-0">
-                        <div>
-                            <p class="field-title" id="c">Diversity Type :</p>
-                            <div class="naics-code-data row">
-                                <div class="p-3"> 
-                                    <span class="naics-code-val">111110 - Soyabean Farming</span>
-                                    <span class="naics-code-val">111120 - Oilseed(Except Soyabean) Farming</span>
-                                    <span class="naics-code-val">111130 - Dry Pea and Bean Farming</span>
-                                    <span class="naics-code-val">111140 - Wheat Farming</span>
-                                    <span class="naics-code-val">111150 - Rice Farming</span>
-                                     
-                                    </div>
-                              </div>
-                          </div>
-                     
-                       </div>                                                                                
-         <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-            <div><hr class="lne"/></div>
-          <div class="text-center">
-            <p class="show-more-comp">Show more</p>
-              <p><span class="glyphicon glyphicon-chevron-down down-arrow"></span></p>
-          </div>
-          
+                    <div class="col-sm-12">
+                        <p [innerHTML]="basic.Keywords__c"></p>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-0 ref-sec margin-top-5" *ngIf="work_set[11]?.biw.readaccess =='true' && basic.Exceptional_Keywords__c !== undefined && basic.Exceptional_Keywords__c != ''">
+                    <div class="col-sm-12">
+                        <p class="font-bold">{{work_set[11]?.biw.labelname}} : </p>
+                    </div>
+                    <div class="col-sm-12">
+                        <p [innerHTML]="basic.Exceptional_Keywords__c"></p>
+                    </div>
+                </div>
+            </div>
         </div>
-       </div>
     </div>
-    
-   
-  </div>
 </div>
-
-
-
-
-
- 

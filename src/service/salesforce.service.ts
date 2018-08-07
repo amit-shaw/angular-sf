@@ -135,4 +135,36 @@ export class SalesforceService {
     config || { buffer: false, escape: false }
     );
   }
+  public updateProject(methodName:string,pdata:any,resolve, reject, config?: any){
+    Visualforce.remoting.Manager.invokeAction(
+      methodName,
+      pdata,
+   //   field,
+      function (result, event) {
+        if (event.status) {     
+          resolve(result);
+        } else {
+          reject(result);
+        }
+      },
+    config || { buffer: false, escape: false }
+    );
+
+  }
+  public updateRegistration(methodName:string,data:any,resolve, reject, config?: any){
+    Visualforce.remoting.Manager.invokeAction(
+      methodName,
+      data,
+   //   field,
+      function (result, event) {
+        if (event.status) {     
+          resolve(result);
+        } else {
+          reject(result);
+        }
+      },
+    config || { buffer: false, escape: false }
+    );
+
+  }
 }

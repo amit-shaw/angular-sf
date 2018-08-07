@@ -30,9 +30,14 @@ import { MatSnackBarModule } from '@angular/material';
 import { DiversityEditComponent } from './diversity-edit/diversity-edit.component';
 import { CommoditiesComponent } from './commodities/commodities.component';
 import { CompanyContactEditComponent } from './company-contact-edit/company-contact-edit.component';
+import { ProjectInfoComponent } from './project-info/project-info.component';
+import { CustomerRefComponent } from './customer-ref/customer-ref.component';
+import { SimpleTinyComponent } from './tinymce.component';
+
 //import {disableDeprecatedForms, provideForms} from '@angular/forms';
 
 //import { LinkFormat } from './link-format';
+import { SafeHtmlPipe } from './safe-html';
 
 
 @NgModule({
@@ -54,6 +59,11 @@ import { CompanyContactEditComponent } from './company-contact-edit/company-cont
     DiversityEditComponent,
     CommoditiesComponent,
     CompanyContactEditComponent,
+    ProjectInfoComponent,
+    CustomerRefComponent,
+    SimpleTinyComponent,
+    SafeHtmlPipe,
+    RegistrationQuestionEditComponent,
    // LinkFormat
   ],
   imports: [
@@ -74,7 +84,9 @@ import { CompanyContactEditComponent } from './company-contact-edit/company-cont
     NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,
     WorkAddressEditComponent,CompanyContactComponent,
     SocailMediaEditComponent,DiversityEditComponent,
-    CommoditiesComponent,CompanyContactEditComponent
+    CommoditiesComponent,CompanyContactEditComponent,
+    ProjectInfoEditComponent,CustomerRefComponent,
+    RegistrationQuestionEditComponent
   ]
 
 })

@@ -1,0 +1,202 @@
+<div class="container project-info-block">
+  <div class="row header-section">
+   <!-- <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openCompanyEditDialog('')"></i> -->
+    <div class="col-md-6 adrs-info">
+      <div class="basic-view-pghead-adrs work-in-head">{{settings['Project Information'][0]?.biw.groupname}} </div>
+    </div>
+    <div class="col-md-1 col-md-offset-5" style="padding: 30px;"> 
+      <span class="add-project" (click)="openCompanyEditDialog('')">+
+          <span class="tooltiptext">Add new project</span>
+      </span>
+    </div>
+    <div class="container tbl-brdr-pdng">
+      <div class="row">
+          <mat-accordion [multi]="multi"> 
+        <mat-expansion-panel class="project-list col-md-12 padding-0" *ngFor="let project of project;let i=index" [expanded]='true'>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                   {{ i + 1 +'. '}}{{project.Project_Name__c}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    <i class="fa fa-trash-o project-pencil" aria-hidden="true" (click)="deleteProject(project.Id)"></i>
+                  <i aria-hidden="true" class="glyphicon glyphicon-pencil project-pencil" (click)="openCompanyEditDialog(i)"></i>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="col-sm-2 col-sm-offset-10">
+             <!--   <i aria-hidden="true" class="glyphicon glyphicon-pencil project-pencil" (click)="openCompanyEditDialog(i)"></i> -->
+              </div>
+          <!--<div class="project-title col-md-12">Project {{ i + 1}}</div> -->
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][16]?.biw.readaccess =='true'">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][16]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{project.Project_Name__c}}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][17]?.biw.readaccess =='true'">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][17]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{project.Project_Name_2__c}}</p>
+            </div>
+          </div>
+          
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][0]?.biw.readaccess =='true' && project.Capital_Required__c != ''">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][0]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{project.Capital_Required__c}}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][1]?.biw.readaccess =='true' && project.Financing_Structure__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][1]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Financing_Structure__c }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][2]?.biw.readaccess =='true' && project.Interested_formats_of_cooperation__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][2]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Interested_formats_of_cooperation__c }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][3]?.biw.readaccess =='true' && project.Investment_Round__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][3]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Investment_Round__c }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][4]?.biw.readaccess =='true' && project.Project_Custom_Currency__c !='' && project.Project_Custom_Currency__c != '0'">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][4]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Project_Custom_Currency__c }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][5]?.biw.readaccess =='true' && project.Project_Custom_Date_time__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][5]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{project.Project_Custom_Date_time__c | date:'MM-dd-yyyy'}}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][6]?.biw.readaccess =='true'">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][6]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>Multi select picklist</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][7]?.biw.readaccess =='true' && project.Project_Custom_Number_1__c !='' && project.Project_Custom_Number_1__c != '0'">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][7]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Project_Custom_Number_1__c }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][8]?.biw.readaccess =='true' && project.Project_Custom_Number_2__c != '' && project.Project_Custom_Number_2__c != '0'">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][8]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Project_Custom_Number_2__c }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][9]?.biw.readaccess =='true' && project.Project_Custom_Picklist__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][9]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Project_Custom_Picklist__c }}</p>
+            </div>
+          </div>
+          
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][11]?.biw.readaccess =='true' && project.Project_Custom_Text__c !=undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][11]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{project.Project_Custom_Text__c}}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][12]?.biw.readaccess =='true' && project.Project_Custom_Text_2__c !=undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][12]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{project.Project_Custom_Text_2__c}}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][15]?.biw.readaccess =='true' && project.Project_Location__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][15]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Project_Location__c }}</p>
+            </div>
+          </div> 
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][18]?.biw.readaccess =='true' && project.Sectors__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][18]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Sectors__c }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][19]?.biw.readaccess =='true' && project.Sub_Sectors__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][19]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p>{{ project.Sub_Sectors__c }}</p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][13]?.biw.readaccess =='true' && project.Project_Description__c !='<p><br></p>' && project.Project_Description__c !=undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][13]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p [innerHTML]="project.Project_Description__c"></p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][14]?.biw.readaccess =='true' && project.Project_Description_2__c != '<p><br></p>' && project.Project_Description_2__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][14]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p [innerHTML]="project.Project_Description_2__c"></p>
+            </div>
+          </div>
+          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][10]?.biw.readaccess =='true' && project.Project_Custom_Rich_Text_Area__c !='<p><br></p>' && project.Project_Custom_Rich_Text_Area__c !== undefined">
+            <div class="col-md-4 font-bold">
+              <p>{{settings['Project Information'][10]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-md-8">
+              <p [innerHTML]="project.Project_Custom_Rich_Text_Area__c"></p>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        </mat-accordion>
+        <div class="col-md-12">
+          <a (click)="openCompanyEditDialog('')" style="cursor: default">
+            Add another project +
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

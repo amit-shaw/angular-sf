@@ -1,85 +1,96 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 registration-que-popup">
-       <div class="col-md-10 col-sm-10 col-xs-10 col-lg-10">
-          <div class="col-md-12 reg-title">
-              Registration Question
+<div class="container registration-edit-section">
+    <div class="row">
+        <div class="col-md-12 header-title">
+            Registration Question
+        </div>
+        <form (ngSubmit)="onSubmit()" id="regForm" #registrationEditForm="ngForm" ngNativeValidate>
+            <div class="col-md-12 ticket-level-question">
+                <div class="col-md-12 question-level-title">
+                    <span>Ticket Level Registration Questions</span>
+                </div>
+                <div class="col-md-12 form-group" *ngFor="let reg_ques of reg_ques">
+                    <label for="text">{{ reg_ques.itq.Question__r.Question_Text__c }}</label>
+                    <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Single Selection'" class="col-md-12">
+                        <span *ngFor="let opt of reg_ques.optionList" class="radio-button">
+                            <label>
+                                <input type="radio" [(ngModel)]="reg_ques.SelectedAnswer" value="{{opt.Id}}" name="radiogroup" [checked]="reg_ques.SelectedAnswer == opt.Id" />{{ opt.Answer_Text__c }}
+                            </label>
+                        </span>
+                    </span>
+                    <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Scale'" class="col-md-12">
+                            <span *ngFor="let opt of reg_ques.optionList" class="radio-button">
+                                <label>
+                                    <div><input type="radio" [(ngModel)]="reg_ques.SelectedAnswer" value="{{opt.Id}}" name="{{opt.Id}}" [checked]="reg_ques.SelectedAnswer == opt.Id" /></div>
+                                    <div>{{ opt.Answer_Text__c }}</div>
+                                </label>
+                            </span>
+                        </span>
+                    <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Text'" class="col-md-12">
+                        <input type="text" class="form-control" value="{{reg_ques.SelectedAnswer}}" [(ngModel)]="reg_ques.SelectedAnswer" name="{{reg_ques.itq.Id}}">
+                    </span>
+                    <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Paragraph text'" class="col-md-12">
+                        <textarea class="form-control" id="answer-text" [(ngModel)]="reg_ques.SelectedAnswer " name="reg_ques.itq.Id">{{ reg_ques.SelectedAnswer}}</textarea>
+                    </span>
+                    <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Choose from a list'">
+                        <select id="answer-drop" class="form-control" [(ngModel)]="reg_ques.SelectedAnswer" name="drop">
+                            <option *ngFor="let opt of reg_ques.optionList" value={{opt.Id}}>{{ opt.Answer_Text__c }}</option>
+                        </select>
+                    </span>
+                    <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Checkboxes'" class="col-md-12">
+                        <span *ngFor="let opt of reg_ques.optionList" class="radio-button">
+                            <label>
+                                <input type="checkbox" value="{{opt.Id}}" name="{{opt.BLN_Question__c}}" />{{ opt.Answer_Text__c }}
+                            </label>
+                        </span>
+                    </span>
+                </div>
             </div>
-       </div>
-       <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-          <i aria-hidden="true" class="fa fa-pencil edit-icon"></i>
-       </div>
-       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <hr class="lne"/>
-       </div>
-       <div>
-
-          <div class="col-md-12"><p class="que">Ticket Level Registration Questions</p>
-          <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div>
-                    
-                      <div>
-                          <div class="form-group col-md-11">
-                              <p> Do you have any suggestions for improving our products/ services? :</p>
-                              <textarea class="form-control"></textarea>
-                          </div>
-                          <div class="col-md-12">
-                             <p><span> Select the roundtable you are interested in attending :</span><span class="msg">You can choose maximum 3 answers</span></p>
-                              <div class="col-md-4 reg-que-list-sty">
-                                  <ul class="reg-rqu-list">
-                                      <li>PNC (10am - 11am)&nbsp;<input type="radio" name="question"/></li>
-                                      <li>Exelon (11am - 12 noon)&nbsp;<input type="radio" name="question"/></li>
-                                      <li>Dupont (1pm - 2pm)&nbsp;<input type="radio" name="question"/></li>
-                                      <li>Peco (3pm - 4pm)&nbsp;<input type="radio" name="question"/></li>
-                                      <li>Pepco (4pm - 5pm)&nbsp;<input type="radio" name="question"/></li>
-  
-  
-                                    </ul>
-                              </div>
-                              <div class="col-md-8 offset-md-7">
-                               
-                              </div>
-                          </div>
-                      </div>
+            <div class="col-md-12 event-level-question">
+                <div class="col-md-12 question-level-title">
+                    <span>Event Level Registration Questions</span>
+                </div>
+                <div class="col-md-12" *ngFor="let event_ques of event_ques;let index=index">
+                    <div [ngClass]="{'display-none': event_ques.itq.Question__r.BLN_Parent_Answer__c !='' && event_ques.itq.Question__r.BLN_Parent_Answer__c != undefined && event_ques.SelectedAnswer == ''}" id="{{event_ques.itq.Question__r.BLN_Parent_Answer__c}}">
+                    <label for="text">{{ event_ques.itq.Question__r.Question_Text__c }}</label>
+                    <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Single Selection' && event_ques.itq.Question__r.BLN_Parent_Answer__c != '' && event_ques.itq.Question__r.BLN_Parent_Answer__c != undefined  " class="col-md-12">
+                        <span *ngFor="let opt of event_ques.optionList" class="radio-button">
+                            <label>
+                                <input type="radio" [(ngModel)]="event_ques.SelectedAnswer" value="{{opt.Id}}" name="{{opt.BLN_Question__c}}" [checked]="event_ques.SelectedAnswer == opt.Id" />{{ opt.Answer_Text__c }}
+                            </label>
+                        </span>
+                    </span>
+                    <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Single Selection' && event_ques.itq.Question__r.BLN_Parent_Answer__c == undefined  " class="col-md-12">
+                            <span *ngFor="let opt of event_ques.optionList" class="radio-button">
+                                <label>
+                                    <input type="radio" id="chk-{{opt.Id}}" [(ngModel)]="event_ques.SelectedAnswer" value="{{opt.Id}}" name="{{opt.BLN_Question__c}}" [checked]="event_ques.SelectedAnswer == opt.Id" (click)="updateChild(opt.Id)" />{{ opt.Answer_Text__c }}
+                                </label>
+                            </span>
+                        </span>
+                    <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Text'" class="col-md-12">
+                        <input type="text" class="form-control" value="{{event_ques.SelectedAnswer}}">
+                    </span>
+                    <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Paragraph text'" class="col-md-12">
+                        <textarea class="form-control" id="answer-text">{{event_ques.SelectedAnswer}}</textarea>
+                    </span>
+                    <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Choose from a list'">
+                        <select id="answer-drop" class="form-control" [(ngModel)]="event_ques.SelectedAnswer" name="drop">
+                            <option *ngFor="let opt of event_ques.optionList" value={{opt.Id}}>{{ opt.Answer_Text__c }}</option>
+                        </select>
+                    </span>
+                    <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Checkboxes'" class="col-md-12">
+                        <span *ngFor="let opt of event_ques.optionList;let i=index" class="radio-button col-md-12 padding-0">
+                            <label>
+                                <input [(ngModel)]="event_ques.SelectedAnswerCheck[i]" type="checkbox" value="{{opt.Id}}" name="{{opt.Id}}" (change)="onChange('event',index,opt.Id,$event.target.checked)"/>{{ opt.Answer_Text__c }}
+                            </label>
+                        </span>
+                    </span>
                     </div>
                 </div>
-                
             </div>
-
-          </div>
-          </div>
-          
-          <div class="col-md-12"><p class="que">Event Level Registration Questions</p>
-            <div class="container">
-              <div class="row">
-                  <div class="col-md-12">
-                      <div>
-                      
-                        <div>
-                            <div class="form-group col-md-11">
-                                <p> What were your greatest take-aways from the event? :</p>
-                                <textarea class="form-control"></textarea>
-                            </div>
-                            </div>
-                            <div>
-                                <div class="form-group col-md-11">
-                                    <p>How would you rate your overall satisfaction with Event? :</p>
-                                    <textarea class="form-control"></textarea>
-                                </div>
-                                </div>
-                      </div>
-                      
-                  </div>
-                  
-              </div>
-              <button class="btn btn-primary sv-que-btn " name="save" type="button">Save</button>
+            <div class="col-md-3 col-md-offset-9 action-section">
+                <button type="button" class="btn btn-primary" (click)="onSubmit(registrationEditForm)">Save</button>
+                <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
             </div>
-           
-            </div> 
-       </div>
-      
+        </form>
     </div>
-  </div>
 </div>

@@ -62,4 +62,7 @@ export class NaicsCodeEditComponent implements OnInit {
       duration: 2000,
     });
   }
+  onCancel(){
+    this.dialogRef.close();
+  }
 }

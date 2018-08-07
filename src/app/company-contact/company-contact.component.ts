@@ -7,6 +7,7 @@ import { BasicData } from '../basic-info-edit/basicData';
 import { CompanyProfileEditComponent } from '../company-profile-edit/company-profile-edit.component';
 import { CompanyContactEditComponent } from '../company-contact-edit/company-contact-edit.component';
 import { ServiceData } from '../company-contact-edit/service-data';
+import { CustomerRefComponent } from '../customer-ref/customer-ref.component';
 
 @Component({
   selector: 'app-company-contact',
@@ -15,29 +16,20 @@ import { ServiceData } from '../company-contact-edit/service-data';
 })
 export class CompanyContactComponent implements OnInit {
   companyContactEdit: FormGroup;
-  constructor(public dialog: MatDialog,private getdataService:GetdataService,
-    ) {
-      this.companyContactEdit = this.createFormGroup();
+  constructor(public dialog: MatDialog,private getdataService:GetdataService,) {
      }
   basic:BasicData;
  // basic_set:any[];
   settings:any[];
+  work_set:any[];
   ethinicity:ServiceData;
   revenue:ServiceData;
   no_of_emp:ServiceData;
   georeason:ServiceData;
   bsnstr:ServiceData;
-  createFormGroup() {
-    return new FormGroup({       
-      Work_Phone__c:new FormControl(),
-      TKT_Job_Title__c:new FormControl(),
-      TKT_Company__c:new FormControl(),
-      Prefix__c:new FormControl(),
-      Suffix__c:new FormControl(),
-     });
-  }
   ngOnInit() {
     this.getdataService.settings.subscribe(settings => this.settings = settings);
+    this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
     this.getdataService.ethinicity.subscribe(ethinicity => this.ethinicity = ethinicity);
     this.getdataService.no_of_emp.subscribe(no_of_emp => this.no_of_emp = no_of_emp);
@@ -51,6 +43,16 @@ export class CompanyContactComponent implements OnInit {
   openCompanyEditDialog(){
     const dialogRef = this.dialog.open(CompanyContactEditComponent, {
       height: '500px'
+      //width:'500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     // console.log(`Dialog result: ${result}`);
+    });
+  }
+  openCustomerRefEditDialog(){
+    const dialogRef = this.dialog.open(CustomerRefComponent, {
+      height: '440px'
       //width:'500px'
     });
 

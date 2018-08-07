@@ -307,3 +307,17 @@ ul.attachement-list{
 .attachement-list li a{
 	color:white !important;
 }
+.no-profile-pic{
+	color: white;
+    font-size: 129px;
+    position: relative;
+    top: 55px;
+    box-shadow: 0 7px 19px rgba(0, 0, 0, 0.25);
+    border-radius: 62px;
+}
+.no-company-logo{
+	font-size: 24px;
+    font-weight: bold;
+    color: #5c75a5;
+    transform: rotate(-25deg);
+}

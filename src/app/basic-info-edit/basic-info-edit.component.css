@@ -140,7 +140,7 @@
     width: 272px;
     position: relative;
     top: -40px;
-    padding: 56px;
+    padding: 30px;
     background: #FAFAFA;
     z-index: 1;
 }
@@ -227,4 +227,31 @@
     color: white;
     padding: 1%;
     cursor: pointer;
+  }
+  .logo-pic{
+    width: 134px;
+    height: 104px;
+  }
+  .logo-upload-pencil{
+    position: absolute;
+    top: 13%;
+    left: 68%;
+    border: none;
+    color: #5c76a6;
+    z-index: 9999;
+  }
+  .no-profile-pic{
+    font-size: 131px;
+    position: relative;
+    top: 37px;
+    color: white;
+    box-shadow: 0 7px 19px rgba(0, 0, 0, 0.25);
+    border-radius: 64px;
+  }
+  .no-company-logo{
+    font-size: 27px;
+    font-weight: bold;
+    padding: 9px;
+    color: #5c75a5;
+    transform: rotate(-17deg);
   }

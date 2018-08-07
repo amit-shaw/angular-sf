@@ -1,170 +1,630 @@
-<div class="container print-prf">
+<div class="col-xs-12 print-profile">
+  <a href="javascript:window.print();"><i class="fa fa-print" aria-hidden="true"></i></a>
+</div>
+<div class="container-fluid print-prf" id="profile-print">
   <div class="row">
-    <div class="col-md-12 border-btm">
-    <div class="col-md-8">
-     <div class="col-md-2 print-profle-dp">
-         <div>
-           <div>
-             DP
-           </div>
-         </div>
-     </div>
-     <div class="col-md-7">
-         <div class="print-profle-id">
-           <h3>Durga Mikkilineni</h3>
-           <h4>Co-Founder I Eventdex, LLC.</h4>
-           <h5>+1 (732) 333-1901</h5>
-         </div>
-     </div>
-     <div class="col-md-3 print-profle-bar">
-            <div>
-              Bar code
-            </div>
-     </div>
-    </div> 
-    <div class="col-md-4 print-prf-logo">
-      <img src="https://www.eventdex.com/wp-content/themes/eventdex/assets/images/eventdex-logo-dark.png" />
-    </div>
-    
-    </div>
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-8 print-prf-head">
-         <div class="print-profile-compny">
-          Company Contact Information
-         </div>
-        </div>
-        <div class="col-md-4 offset-md-4"></div>
-        <div class="col-md-8">
-          <div class="print-profile-info">
-           <ul>
-            <li><label>Email:</label><span> durga@eventdex.com</span></li> 
-            <li><label>MatchMaking Email:</label><span>  durga@globalnest.com</span></li>
-            <li> <label>Work Phone Number:</label><span> +1 (732) 333-1901</span></li>
-            <li><label>Work Address:</label><span> 281 Route 79 N, Suite 208 Morganville, NY 07751</span></li>
-
-            
-           </ul>        
-               
-              
-                              
-          </div>
-         </div>
-         
+    <div class="col-xs-12 border-btm">
+      <div class="col-xs-2 user-profile-pic">
+        <img src="/servlet/servlet.FileDownload?file={{basic.User_Pic__c}}" class="profile-pic" *ngIf="basic.User_Pic__c != undefined">
       </div>
-     
+      <div class="col-xs-5">
+        <div class="print-profle-id">
+          <h3>
+            <span *ngIf="basic.Prefix__c != undefined && basic.Prefix__c != ''">{{basic.Prefix__c}}</span>
+            <span *ngIf="basic.First_Name__c != undefined && basic.First_Name__c !=''">{{basic.First_Name__c}}</span>
+            <span *ngIf="basic.Last_Name__c != undefined && basic.Last_Name__c !=''">{{ basic.Last_Name__c }}</span>
+            <span *ngIf="basic.Suffix__c != undefined && basic.Suffix__c !=''">{{ basic.Suffix__c }}</span>
+          </h3>
+          <h4>
+            <span *ngIf="basic.TKT_Job_Title__c != undefined && basic.TKT_Job_Title__c !=''"> {{basic.TKT_Job_Title__c +" | "}}</span>
+            <span *ngIf="basic.TKT_Company__c != undefined && basic.TKT_Company__c != ''">{{basic.TKT_Company__c}}</span>
+          </h4>
+          <h5 *ngIf="basic.Work_Phone__c != undefined && basic.Work_Phone__c !=''">{{ basic.Work_Phone__c }}</h5>
+        </div>
+      </div>
+      <div class="col-xs-2 print-profle-bar">
+
+      </div>
+      <div class="col-xs-3 print-prf-logo" *ngIf="basic.Company_Logo__c !== undefined && basic.Company_Logo__c !=''">
+        <img src="/servlet/servlet.FileDownload?file={{basic.Company_Logo__c}}" />
+      </div>
     </div>
-    <div class="col-md-12 print-prf-sec">
-      <div class="col-md-8 print-profile-compny">
-        <div>
-          Company Profile
-        </div>
-       </div>
-       <div class="col-md-4 offset-md-4"></div>
-       <div class="col-md-12 print-prf-compny"> 
-          <p>
-            Eventdex is a cloud based platform offering integrated solutions catering to many of the different aspects of the event life-cycle
-including online/onsite registration, badge printing, check-ins, lead retrieval, attendee event details and match making saving
-Event Organizers value, is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled 
-          </p>
-          <p>
-            <label>Commodities</label>
-          </p>
-          <p>
-            Accounting, Advertising, Aerospace, Architectural Design, Artistic Development
-          </p>
-          <p>
-            <label>Product/Service Keywords</label>
-          </p>
-          <p>
-            Event Ticketing, Online Registration, Attendee Check-in, Badge Design, MatchMaking, Onsite Attendee Management
-
-          </p>
-       </div>
-       <div class="col-md-8 print-profile-compny print-prf-head">
-        <div class="print-prf-head-sub">
-          NAICS Codes
-        </div>
-       </div>
-       <div class="col-md-4 offset-md-4"></div>
-       <div class="col-md-12">
-          <div class="print-profle-naics">
-                 <ul>
-                   <li>111110 - Soybean Farming</li>
-                   <li>111120 - Oilseed (except Soybean) Farming</li>
-                   <li>111130 - Dry Pea and Bean Farming</li>
-                   <li>111140 - Wheat Farming</li>
-                   <li>111160 - Rice Farming</li>
-                   <li>111191 - Oilseed and Grain Combination Farming</li>
-                   <li>111199 - All Other Grain Farming</li>
-                   <li>111219 - Other Vegetable (except Potato) and Melon Farming</li>
-                   <li>111310 - Orange Groves</li>
-                   <li>423620 - Household Appliances, Electric Housewares, and Consumer Electronics Merchant Wholesalers
-                  </li>
-                   <li>926150 - Regulation, Licensing, and Inspection of Miscellaneous Commercial Sectors</li>
-                  <li>927110 - Space Research and Technology</li>
-                  <li>928110 - National Security</li>
-                 </ul>
-
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text"> Basic Information</span>
+      </div>
+      <div class="col-xs-12 print-profile-info">
+        <ul class="basic-view-pg">
+          <!--<li class="basic-basic-name">{{basic.Prefix__c}} {{basic.First_Name__c}} {{basic.Last_Name__c}} {{basic.Suffix__c}}</li> -->
+          <li *ngIf="basic.Email__c!='' && basic.Email__c != undefined">
+            <strong>{{basic_set[3]?.biw.labelname}}:</strong> {{basic.Email__c}}</li>
+          <li *ngIf="basic.Secondary_email__c != undefined && basic.Secondary_email__c !=''">
+            <strong>{{work_set[29]?.biw.labelname}}:</strong> {{basic.Secondary_email__c}}</li>
+          <li *ngIf="basic.Company_Website_URL__c != undefined && basic.Company_Website_URL__c !=''">
+            <i class="fa fa-link" aria-hidden="true"></i>
+            <strong>{{work_set[6]?.biw.labelname}}:</strong> {{basic.Company_Website_URL__c}}</li>
+          <li *ngIf="basic_set[8]?.biw.readaccess == 'true'">
+            <i class="fa fa-mobile fa-mbl-ic" aria-hidden="true"></i>
+            <strong>{{basic_set[8].biw.labelname}}:</strong> {{basic.Mobile__c}}</li>
+          <li *ngIf="basic_set[9]?.biw.readaccess == 'true'">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <strong>{{basic_set[9].biw.labelname}}:</strong> {{basic.Work_Phone__c}}</li>
+          <li *ngIf="basic_set[10]?.biw.readaccess == 'true'">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <strong>{{basic_set[10].biw.labelname}}:</strong> {{basic.Home_Phone__c}}</li>
+          <li *ngIf="work_set[22]?.biw.readaccess == 'true'">
+            <i class="fa fa-fax" aria-hidden="true"></i>
+            <strong>{{work_set[22].biw.labelname}}:</strong> {{basic.FaxNumber__c}}</li>
+          <li>
+            <strong>{{basic_set[11]?.biw.labelname}}:</strong> {{basic?.Age__c}} |
+            <strong>{{basic_set[13]?.biw.labelname}}:</strong> {{basic?.DOB__c}} |
+            <strong>{{basic_set[12]?.biw.labelname}}:</strong> {{basic.Gender__c}}</li>
+          <li>
+            <strong>Biography :</strong>
+            <p [innerHTML]="basic.Biography__c"></p>
+          </li>
+        </ul>
+        <ul class="basic-view-pg">
+          <li><strong>{{speaker[3]?.biw.labelname}} : </strong>{{basic.FaceBookId__c}}</li>
+          <li><strong>{{speaker[4]?.biw.labelname}} : </strong>{{basic.LinkedInId__c}}</li>
+          <li><strong>{{speaker[5]?.biw.labelname}} : </strong>{{basic.TwitterId__c}}</li>
+          <li><strong>{{speaker[8]?.biw.labelname}} : </strong>{{basic.Video__c}}</li>
+          <li><strong>{{speaker[13]?.biw.labelname}} : </strong>{{basic.Instagram__c}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text"> Address Information</span>
+      </div>
+      <div class="col-xs-12 print-profile-info">
+        <ul class="basic-address">
+          <li>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <strong>Home:</strong>
+            <span *ngIf="basic?.Home_Address__r.Address1__c !='' && basic?.Home_Address__r.Address1__c !='null'">
+              {{basic?.Home_Address__r.Address1__c + ','}}
+            </span>
+            <span *ngIf="basic?.Home_Address__r.Address2__c !=''">
+              {{basic?.Home_Address__r.Address2__c +','}}
+            </span>
+            <span *ngIf="basic?.Home_Address__r.City__c !=''">
+              {{basic?.Home_Address__r.City__c + ','}}
+            </span>
+            <span *ngIf="basic.Home_Address__r.State__r?.Long_Name__c !=''">
+              {{basic.Home_Address__r.State__r?.Long_Name__c+','}}
+            </span>
+            <span *ngIf="basic.Home_Address__r.Country__r?.Long_Name__c !=''">
+              {{basic.Home_Address__r.Country__r?.Long_Name__c+','}}
+            </span>
+            <span *ngIf="basic?.Home_Address__r.ZipCode__c !=''">
+              {{basic?.Home_Address__r.ZipCode__c}}
+            </span>
+          </li>
+          <li *ngIf="basic?.Work_Address__r !== undefined">
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <strong>Work:</strong>
+            <span *ngIf="basic?.Work_Address__r.Address1__c !='null' && basic?.Work_Address__r.Address1__c !==  undefined">
+              {{basic?.Work_Address__r.Address1__c + ','}}
+            </span>
+            <span *ngIf="basic?.Work_Address__r.Address2__c !='null' && basic?.Work_Address__r.Address2__c !== undefined">
+              {{basic?.Work_Address__r.Address2__c +','}}
+            </span>
+            <span *ngIf="basic?.Work_Address__r.City__c !='null' && basic?.Work_Address__r.City__c !=''">
+              {{basic?.Work_Address__r.City__c + ','}}
+            </span>
+            <span *ngIf="basic.Work_Address__r.State__r?.Long_Name__c !='' && basic.Work_Address__r.State__r?.Long_Name__c !='null'">
+              {{basic.Work_Address__r.State__r?.Long_Name__c+','}}
+            </span>
+            <span *ngIf="basic.Work_Address__r.Country__r?.Long_Name__c !='' && basic?.Work_Address__r.Country__r?.Long_Name__c !='null'">
+              {{basic.Work_Address__r.Country__r?.Long_Name__c +','}}
+            </span>
+            <span *ngIf="basic?.Work_Address__r.ZipCode__c !='' && basic?.Work_Address__r.ZipCode__c !='null'">
+              {{basic?.Work_Address__r.ZipCode__c}}
+            </span>
+          </li>
+          <li>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <strong>Billing:</strong>
+            <span *ngIf="basic?.Billing_Address__r.Address1__c !='null' && basic?.Billing_Address__r.Address1__c !=''">
+              {{basic?.Billing_Address__r.Address1__c + ','}}
+            </span>
+            <span *ngIf="basic?.Billing_Address__r.Address2__c !=null && basic?.Billing_Address__r.Address2__c !=''">
+              {{basic?.Billing_Address__r.Address2__c +','}}
+            </span>
+            <span *ngIf="basic?.Billing_Address__r.City__c !='null' && basic?.Billing_Address__r.City__c !=''">
+              {{basic?.Billing_Address__r.City__c + ','}}
+            </span>
+            <span *ngIf="basic.Billing_Address__r.State__r?.Long_Name__c !=null && basic?.Billing_Address__r.State__r?.Long_Name__c !=''">
+              {{basic.Billing_Address__r.State__r?.Long_Name__c +','}}
+            </span>
+            <span *ngIf="basic.Billing_Address__r.Country__r?.Long_Name__c !='null' && basic?.Billing_Address__r.Country__r?.Long_Name__c !=''">
+              {{basic.Billing_Address__r.Country__r?.Long_Name__c +','}}
+            </span>
+            <span *ngIf="basic?.Billing_Address__r.ZipCode__c !='null' && basic?.Billing_Address__r.ZipCode__c !='null' !=''">
+              {{basic?.Billing_Address__r.ZipCode__c}}
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text"> Work Information</span>
+      </div>
+      <div class="col-xs-12 work-info-details">
+        <div class="row">
+          <div class="col-xs-6 padding-0" *ngIf="work_set[0]?.biw.readaccess =='true' && basic.Primary_Business_Category__c !== undefined ">
+            <div class="col-sm-6 col-sm-6 col-sm-6 col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[0]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd">
+              <p>{{basic.Primary_Business_Category__c}}</p>
+            </div>
           </div>
-       </div>
-       <div class="col-md-8 print-profile-compny print-prf-head">
-        <div class="print-prf-head-sub">
-          Additional Company Information
-
-        </div>
-       </div>
-       <div class="col-md-4 offset-md-4"></div>
-       <div class="col-md-12 print-prf-tbl">
-        <table class="table table-bordered">
-         
-          <tbody>
-            <tr>
-              <td><label>Business Revenue:</label></td>
-              <td>100k-500k</td>
-              <td><label>Business Tax ID:</label></td>
-              <td>20-2344444</td>
-            </tr>
-            <tr>
-              <td><label>No. of Employees:</label></td>
-              <td>Below 50</td>
-              <td><label>Website URL:</label></td>
-              <td>https://www.eventdex.com/</td>
-            </tr>
-            <tr>
-              <td><label>Diversity Type:</label></td>
-              <td>MINORITY OWNED BUSINESS ENTERPRISE</td>
-              <td><label>Business Structure:</label></td>
-              <td>Limited Liability</td>
-            </tr>
-          </tbody>
-        </table>
-       </div>
-       <div class="col-md-8 print-profile-compny print-prf-head">
-        <div class="print-prf-head-sub">
-          Additional Company Information
-
-        </div>
-       </div>
-       <div class="col-md-4 offset-md-4"></div>
-       <div class="col-md-12 print-prf-additinl">
-         <ul>
-            <li><label>What were your greatest take-aways from the event?</label></li>
-            <li>Food was great but I could not take away</li>
-            <li><label>How would you rate your overall satisfaction with Event?</label></li>
-            <li>Excellent</li>
-            <li><label>Do you have any suggestions for improving our products/ services?</label></li>
-            <li>Use AI</li>
-            <li><label>Select the roundtable you are interested in attending</label></li>
-            <li>PNC (10am - 11am)<br/>
-              Exelon (11am - 12 noon)
-            </li>
-         </ul>
-
-       </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[1]?.biw.readaccess =='true' && basic.Secondary_Business_Category__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[1]?.biw.labelname}} </p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{basic.Secondary_Business_Category__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[2]?.biw.readaccess =='true' && no_of_emp.BLN_ListLookUp__r?.List_Description__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[2]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd">
+              <p>{{ no_of_emp.BLN_ListLookUp__r?.List_Description__c }}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[3]?.biw.readaccess =='true' && basic.Established_Date__c !== undefined">
+            <div class="col-sm-6 col-sm-6 col-sm-6 col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[3]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd">
+              <p>{{basic.Established_Date__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[4]?.biw.readaccess =='true' && revenue.BLN_ListLookUp__r?.List_Description__c !==undefined ">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[4]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{ revenue.BLN_ListLookUp__r?.List_Description__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[5]?.biw.readaccess =='true' && basic.Tax_Id__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[5]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd">
+              <p>{{basic.Tax_Id__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[7]?.biw.readaccess =='true' && basic.Duns_Number__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[7]?.biw.labelname}} </p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{basic.Duns_Number__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[8]?.biw.readaccess =='true' && basic.Blog_URL__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[8]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd">
+              <p>{{basic.Blog_URL__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[15]?.biw.readaccess =='true' && basic.BBB_Number__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[15]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{basic.BBB_Number__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[16]?.biw.readaccess =='true' && basic.GSA_Schedule__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[16]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd">
+              <p>{{basic.GSA_Schedule__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[17]?.biw.readaccess =='true' && georeason.BLN_ListLookUp__r?.List_Description__c !== undefined">
+            <div class="col-sm-6 col-sm-6 col-sm-6 col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[17]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd">
+              <p>{{ georeason.BLN_ListLookUp__r?.List_Description__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[18]?.biw.readaccess =='true' && ethinicity.BLN_ListLookUp__r?.List_Description__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[18]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{ ethinicity.BLN_ListLookUp__r?.List_Description__c }}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[19]?.biw.readaccess =='true' && bsnstr.BLN_ListLookUp__r?.List_Description__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[19]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{ bsnstr.BLN_ListLookUp__r?.List_Description__c}}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[20]?.biw.readaccess =='true' && basic.CageCode__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[20]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{ basic.CageCode__c }}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[21]?.biw.readaccess =='true' && basic.distribution_Country__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[21]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{ basic.distribution_Country__c }}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[23]?.biw.readaccess =='true' && basic.Manufactures_Country__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[23]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{ basic.Manufactures_Country__c }}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[24]?.biw.readaccess =='true' && basic.Outside_Facilities__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[24]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{ basic.Outside_Facilities__c }}</p>
+            </div>
+          </div>
+          <div class="col-xs-6 padding-0" *ngIf="work_set[31]?.biw.readaccess =='true' && basic.Year_in_business__c !== undefined">
+            <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+              <p>{{work_set[31]?.biw.labelname}}</p>
+            </div>
+            <div class="col-sm-6 tbl-brdrd ">
+              <p>{{ basic.Year_in_business__c }}</p>
+            </div>
+          </div>
+        </div>  
+      </div>
     </div>
-    
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text">Customer Reference</span>
+      </div>
+      <div class="col-xs-12 customer-ref-details">
+        <div class="ref-sec">
+          <div class="col-xs-12 padding-0" *ngIf="work_set[25]?.biw.readaccess =='true' && basic.References1__c !== undefined">
+            <div class="col-sm-2">
+              <p>{{work_set[25]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-sm-10">
+              <p>{{ basic.References1__c }}</p>
+            </div>
+          </div>
+          <div class="col-xs-12 padding-0" *ngIf="work_set[26]?.biw.readaccess =='true' && basic.ScopeOfWork1__c !== undefined">
+            <div class="col-sm-2">
+              <p>{{work_set[26]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-sm-10">
+              <p>{{ basic.ScopeOfWork1__c }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="ref-sec margin-top-5">
+          <div class="col-xs-12 padding-0" *ngIf="work_set[27]?.biw.readaccess =='true' && basic.References2__c !== undefined">
+            <div class="col-sm-2">
+              <p>{{work_set[27]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-sm-10">
+              <p>{{ basic.References2__c }}</p>
+            </div>
+          </div>
+          <div class="col-xs-12 padding-0" *ngIf="work_set[28]?.biw.readaccess =='true' && basic.ScopeOfWork2__c !== undefined">
+            <div class="col-sm-2">
+              <p>{{work_set[28]?.biw.labelname}} : </p>
+            </div>
+            <div class="col-sm-10">
+              <p>{{basic.ScopeOfWork2__c}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text">{{naics_set[0]?.biw.groupname}}</span>
+      </div>
+      <div class="col-xs-12 naics-data">
+        <ul class="basic-naics 1" *ngIf="naics !== undefined || naics != ''">
+          <li *ngFor="let naics of naics">
+            <span>{{ naics?.BLN_ListLookUp__r.List_Code__c +' - ' + naics?.BLN_ListLookUp__r.List_Description__c}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text">{{settings['Diversity Type Information'][0]?.biw.groupname}}</span>
+      </div>
+      <div class="col-xs-12 diversity-data">
+        <ul class="basic-naics 1" *ngIf="diversity_val !== undefined || diversity_val != ''">
+          <li *ngFor="let diversity_val of diversity_val">
+            <span>{{ diversity_val?.BLN_ListLookUp__r.List_Description__c }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text">{{settings['Commodities Information'][0]?.biw.groupname}}</span>
+      </div>
+      <div class="col-xs-12 comm-data-view">
+        <span class="comm-title">{{settings['Commodities Information'][0]?.biw.labelname}} : </span>
+        <span *ngFor="let commodities of commodities;let index = index;let last = last;" class="comm-value">
+          {{commodities.BLN_ListLookUp__r.List_Description__c}}
+          <span *ngIf="!last">,</span>
+        </span>
+      </div>
+      <div class="col-xs-12 sub-comm-data-view">
+        <span class="comm-title">{{settings['Commodities Information'][1]?.biw.labelname}} : </span>
+        <span *ngFor="let sub_commodities of sub_commodities;let index=index;let last=last;" class="comm-value">
+          {{sub_commodities.BLN_ListLookUp__r.List_Description__c}}
+          <span *ngIf="!last">,</span>
+        </span>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text">{{settings['Project Information'][0]?.biw.groupname}}</span>
+      </div>
+      <div class="col-xs-12 project-data" *ngFor="let project of project;let i=index">
+        <div class="col-xs-12">{{ i + 1 +'. Project'}}</div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][16]?.biw.readaccess =='true'">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][16]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{project.Project_Name__c}}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][17]?.biw.readaccess =='true'">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][17]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{project.Project_Name_2__c}}</p>
+          </div>
+        </div>
+
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][0]?.biw.readaccess =='true' && project.Capital_Required__c != ''">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][0]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{project.Capital_Required__c}}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][1]?.biw.readaccess =='true' && project.Financing_Structure__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][1]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Financing_Structure__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][2]?.biw.readaccess =='true' && project.Interested_formats_of_cooperation__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][2]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Interested_formats_of_cooperation__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][3]?.biw.readaccess =='true' && project.Investment_Round__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][3]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Investment_Round__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][4]?.biw.readaccess =='true' && project.Project_Custom_Currency__c !='' && project.Project_Custom_Currency__c != '0'">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][4]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Project_Custom_Currency__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][5]?.biw.readaccess =='true' && project.Project_Custom_Date_time__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][5]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{project.Project_Custom_Date_time__c | date:'MM-dd-yyyy'}}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][6]?.biw.readaccess =='true'">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][6]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>Multi select picklist</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][7]?.biw.readaccess =='true' && project.Project_Custom_Number_1__c !='' && project.Project_Custom_Number_1__c != '0'">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][7]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Project_Custom_Number_1__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][8]?.biw.readaccess =='true' && project.Project_Custom_Number_2__c != '' && project.Project_Custom_Number_2__c != '0'">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][8]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Project_Custom_Number_2__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][9]?.biw.readaccess =='true' && project.Project_Custom_Picklist__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][9]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Project_Custom_Picklist__c }}</p>
+          </div>
+        </div>
+
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][11]?.biw.readaccess =='true' && project.Project_Custom_Text__c !=undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][11]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{project.Project_Custom_Text__c}}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][12]?.biw.readaccess =='true' && project.Project_Custom_Text_2__c !=undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][12]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{project.Project_Custom_Text_2__c}}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][15]?.biw.readaccess =='true' && project.Project_Location__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][15]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Project_Location__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][18]?.biw.readaccess =='true' && project.Sectors__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][18]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Sectors__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][19]?.biw.readaccess =='true' && project.Sub_Sectors__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][19]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p>{{ project.Sub_Sectors__c }}</p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][13]?.biw.readaccess =='true' && project.Project_Description__c !='<p><br></p>' && project.Project_Description__c !=undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][13]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p [innerHTML]="project.Project_Description__c"></p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][14]?.biw.readaccess =='true' && project.Project_Description_2__c != '<p><br></p>' && project.Project_Description_2__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][14]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p [innerHTML]="project.Project_Description_2__c"></p>
+          </div>
+        </div>
+        <div class="col-xs-12 padding-0 border-bottom" *ngIf="settings['Project Information'][10]?.biw.readaccess =='true' && project.Project_Custom_Rich_Text_Area__c !='<p><br></p>' && project.Project_Custom_Rich_Text_Area__c !== undefined">
+          <div class="col-xs-4 font-bold">
+            <p>{{settings['Project Information'][10]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-xs-8">
+            <p [innerHTML]="project.Project_Custom_Rich_Text_Area__c"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-0">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text">Registration Question</span>
+      </div>
+      <div class="col-xs-12 registration-view">
+          <div class="col-xs-12" *ngFor="let reg_ques of reg_ques">
+              <div class="item-question">{{ reg_ques.itq.Question__r.Question_Text__c }}</div>
+              <div class="iten-answer">
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Text'" class="answer-data">
+                      {{ reg_ques.SelectedAnswer }}
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Paragraph text'" class="answer-data">
+                      {{ reg_ques.SelectedAnswer }}
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Single Selection'">
+                      <span *ngFor="let opt of reg_ques.optionList">
+                          <span *ngIf="reg_ques.SelectedAnswer == opt.Id" class="answer-data">{{opt.Answer_Text__c}}</span>
+                      </span>
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Choose from a list'">
+                      <span *ngFor="let opt of reg_ques.optionList">
+                          <span class="answer-data" *ngIf="reg_ques.SelectedAnswer == opt.Id">{{ opt.Answer_Text__c }}</span>
+                      </span>
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Checkboxes'">
+                      <span *ngFor="let opt of reg_ques.optionList">
+                          <span *ngFor="let opt1 of reg_ques.SelectedAnswerCheck">
+                              <span class="answer-data" *ngIf="opt.Id == opt1">{{ opt.Answer_Text__c }}</span>
+                          </span>
+                      </span>
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Scale'">
+                      <span *ngFor="let opt of reg_ques.optionList">
+                              <span class="answer-data" *ngIf="reg_ques.SelectedAnswer == opt.Id">{{ opt.Answer_Text__c }}</span>
+                      </span>
+                  </span>
+              </div>
+          </div>
+          <div class="col-xs-12" *ngFor="let reg_ques of event_ques">
+              <div class="item-question">{{ reg_ques.itq.Question__r.Question_Text__c }}</div>
+              <div class="iten-answer">
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Text'" class="answer-data">
+                      {{ reg_ques.SelectedAnswer }}
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Paragraph text'" class="answer-data">
+                      {{ reg_ques.SelectedAnswer }}
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Single Selection'">
+                      <span *ngFor="let opt of reg_ques.optionList">
+                          <span *ngIf="reg_ques.SelectedAnswer == opt.Id" class="answer-data">{{opt.Answer_Text__c}}</span>
+                      </span>
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Choose from a list'">
+                      <span *ngFor="let opt of reg_ques.optionList">
+                          <span class="answer-data" *ngIf="reg_ques.SelectedAnswer == opt.Id">{{ opt.Answer_Text__c }}</span>
+                      </span>
+                  </span>
+                  <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Checkboxes'">
+                      <span *ngFor="let opt of reg_ques.optionList">
+                          <span *ngFor="let opt1 of reg_ques.SelectedAnswerCheck">
+                              <span class="answer-data" *ngIf="opt.Id == opt1">{{ opt.Answer_Text__c }}</span>
+                          </span>
+                      </span>
+                  </span>
+              </div>
+          </div>
+      </div>
+    </div>
   </div>
- 
+
 </div>

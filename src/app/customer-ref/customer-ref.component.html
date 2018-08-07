@@ -1,0 +1,41 @@
+<div class="container company-contact-edit-section">
+  <div class="row">
+    <div class="col-md-12 header-title">
+      Customer Reference 
+    </div>
+    <form (ngSubmit)="onSubmit()" #customerRefForm="ngForm" [formGroup]="customerRefEdit" ngNativeValidate>
+      <div *ngIf="work_set[25].biw.readaccess == 'true'" class="col-md-12">
+        <label for="label">{{work_set[25]?.biw.labelname}}
+          <span *ngIf="work_set[25].biw.required =='true'" class="required">*</span>
+        </label>
+        <textarea class="form-control" id="est-date" [required]="work_set[25].biw.required" [readonly]="!work_set[25].biw.updateaccess"
+          name="ref-1" formControlName="References1__c"></textarea>
+      </div>
+      <div *ngIf="work_set[26].biw.readaccess == 'true'" class="col-md-12">
+        <label for="label">{{work_set[26]?.biw.labelname}}
+          <span *ngIf="work_set[26].biw.required =='true'" class="required">*</span>
+        </label>
+        <textarea class="form-control" id="est-date" [required]="work_set[26].biw.required" [readonly]="!work_set[26].biw.updateaccess"
+          name="scope-1" formControlName="ScopeOfWork1__c"></textarea>
+      </div>
+      <div *ngIf="work_set[27].biw.readaccess == 'true'" class="col-md-12">
+        <label for="label">{{work_set[27]?.biw.labelname}}
+          <span *ngIf="work_set[27].biw.required =='true'" class="required">*</span>
+        </label>
+        <textarea class="form-control" id="est-date" [required]="work_set[27].biw.required" [readonly]="!work_set[27].biw.updateaccess"
+          name="ref-2" formControlName="References2__c"></textarea>
+      </div>
+      <div *ngIf="work_set[28].biw.readaccess == 'true'" class="col-md-12">
+        <label for="label">{{work_set[28]?.biw.labelname}}
+          <span *ngIf="work_set[28].biw.required =='true'" class="required">*</span>
+        </label>
+        <textarea class="form-control" id="est-date" [required]="work_set[28].biw.required" [readonly]="!work_set[28].biw.updateaccess"
+          name="scope-2" formControlName="ScopeOfWork2__c"></textarea>
+      </div>
+      <div class="col-md-3 col-md-offset-9 action-section">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
+        <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

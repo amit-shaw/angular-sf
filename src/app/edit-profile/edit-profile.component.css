@@ -1,0 +1,6 @@
+.basic-prnt{
+    float: right;
+    position: relative;
+    left: -100px;
+    top: 15px;
+}

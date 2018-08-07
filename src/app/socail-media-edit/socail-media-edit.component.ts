@@ -29,20 +29,16 @@ export class SocailMediaEditComponent implements OnInit {
   ngOnInit() {
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
     this.socailEdit = this.createFormGroup();
-    //this.basicEdit = this.createFormGroup();
-    //this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
-    //this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
     this.getdataService.speaker.subscribe(speaker => this.speaker = speaker);
     this.getdataService.attchment.subscribe(attchment =>this.attchment = attchment);
-    //this.doc = this.attchment;
   }
   createFormGroup() {
     return new FormGroup({         
       FaceBookId__c:new FormControl(this.defaultVal(this.basic.FaceBookId__c)),
-      LinkedInId__c:new FormControl(this.basic.LinkedInId__c),
-      TwitterId__c:new FormControl(this.basic.TwitterId__c),
-      Instagram__c:new FormControl(this.basic.Instagram__c),
-      Video__c:new FormControl(this.basic.Video__c),
+      LinkedInId__c:new FormControl(this.basic.LinkedInId__c || ''),
+      TwitterId__c:new FormControl(this.basic.TwitterId__c || ''),
+      Instagram__c:new FormControl(this.basic.Instagram__c || ''),
+      Video__c:new FormControl(this.basic.Video__c || ''),
      });
   }
   defaultVal(val){
@@ -58,8 +54,13 @@ export class SocailMediaEditComponent implements OnInit {
     //console.log("Value"+this.basic_set.find(basic_set => basic_set == 'First_Name__c'));
     //console.log(this.basic_set);
     if (this.socailEdit.valid) {
-    this.getdataService.updateSepcificData(this.socailEdit.value,'','');
-    this.dialogRef.close();
+     /* for(let key in this.socailEdit.value){
+        if( ){
+
+        }
+      }*/
+      this.getdataService.updateSepcificData(this.socailEdit.value,'','');
+      this.dialogRef.close();
     }
     //console.log(data.value);
   }

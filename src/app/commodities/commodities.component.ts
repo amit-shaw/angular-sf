@@ -62,8 +62,8 @@ export class CommoditiesComponent implements OnInit {
     if(this.def != null){
     this.current = this.def.join('-');
     let val = this.def;
-    console.log(this.sub_comm_all);
-    console.log(val);
+    //console.log(this.sub_comm_all);
+    //console.log(val);
     for(let k=0;k<val.length;k++){
      // if(val != undefined && val != null){
         let d = this.sub_comm_all.filter((item)=>item.pId == val[k]);
@@ -73,7 +73,7 @@ export class CommoditiesComponent implements OnInit {
         }
       //}
     }
-    console.log(this.sub_def);
+   // console.log(this.sub_def);
     //console.log(this.current);
     }
   }
@@ -83,7 +83,7 @@ export class CommoditiesComponent implements OnInit {
     }else{
       this.selected_sub = data.value.join('-');
     }
-    console.log(this.selected_sub);
+    //console.log(this.selected_sub);
   }
   changed(data: {value: string[]}) {
     if( data.value == null){
@@ -104,17 +104,20 @@ export class CommoditiesComponent implements OnInit {
          }
         //}
       }
-      console.log(sel);
+     // console.log(sel);
       this.current = data.value.join('-');
     }
     console.log(this.current);
   }
   onSubmit(){
-    console.log("Called saving");
+    //console.log("Called saving");
     this.getdataService.updateCommditiesData(this.current,this.selected_sub);
     this.dialogRef.close();
     this.snackBar.open(this.settings['Commodities Information'][0].biw.labelname+" updated successfully..",'', {
       duration: 2000,
     });
+  }
+  onCancel(){
+    this.dialogRef.close();
   }
  }

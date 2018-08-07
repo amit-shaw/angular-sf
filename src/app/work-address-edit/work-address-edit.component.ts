@@ -4,7 +4,7 @@ import { Country } from '../country';
 import { State } from '../state';
 import { NgForm } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
-import {MatDialog,MatDialogRef,MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog,MatDialogRef,MAT_DIALOG_DATA,MatSnackBar} from '@angular/material';
 import { BasicData } from '../basic-info-edit/basicData';
 import { AddressData } from './address-data';
 //import { INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic';
@@ -16,7 +16,9 @@ import { AddressData } from './address-data';
 })
 export class WorkAddressEditComponent implements OnInit {
 
-  constructor(private getdataService:GetdataService) { }
+  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private getdataService:GetdataService,
+    public dialogRef: MatDialogRef<WorkAddressEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
   country:Country[];
   state:State[];
   //country_work:Country[];
@@ -103,9 +105,13 @@ export class WorkAddressEditComponent implements OnInit {
     this.getdataService.updateAddressInfo(data);
     console.log(data);
     console.log("Submit here");
+    this.dialogRef.close();
+    this.snackBar.open(this.address[0].biw.groupname+" updated successfully..",'', {
+      duration: 2000,
+    });
   }
   onCancel(){
-
+    this.dialogRef.close();
   }
 
 }

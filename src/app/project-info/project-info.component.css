@@ -1,0 +1,124 @@
+.tbl-brdrd {   
+    border: 1px solid #dddddd;
+    padding: 9px;
+}
+.tbl-brdrd p {margin: 0;}
+.tbl-brdr-pdng{padding: 78px;color: #797979;}
+.tbl-frst-bck{
+   background: #edecec;
+   font-weight: 600;
+}
+.action-section{
+   padding:15px;
+}
+.btn-cancel{
+   margin-right:20px; 
+}
+.btn{
+   font-weight: bold;
+}
+.project-info-block {
+   padding: 0;
+   background: #fdfbfb;
+   -webkit-box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+   margin-bottom: 27px;
+}
+.adrs-pencil {
+   float: right;
+   margin: 36px;
+   font-size: 22px;
+   color: #44619c;
+   cursor: pointer;
+}
+.adrs-info {
+   padding: 39px 39px 10px 39px;
+}
+.work-in-head {
+   color: #44619c;
+}
+.basic-view-pghead-adrs {
+   padding: 8px 0px 8px 43px;
+   background: #d6d5d569;
+   font-size: 23px;
+   font-weight: bold;
+   color: #676767;
+   margin-top: 0px;
+}
+.tbl-frst-bck {
+   background: #edecec;
+   font-weight: 600;
+}
+.padding-0{
+   padding: 0 !important;
+}
+.project-title{
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 17px;
+    position: relative;
+    /* left: -10px; */
+    background: #8080804d;
+    text-align: center;
+    font-weight: bold;
+}
+.border-bottom{
+    border: 1px solid #80808040;
+    border-bottom: 0;
+}
+.font-bold{
+    font-size: 15px;
+    font-weight: bold;
+}
+.mat-expansion-panel:last-child{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #80808040;;
+}
+.project-pencil{
+    padding: 10px;
+    cursor: pointer;
+    float: right;
+    color: #44619c;
+    font-size: 19px;
+}
+.add-project{
+    background: #44619c;
+    font-size: 22px;
+    border-radius: 50%;
+    padding: 2px 8px 1px 7px;
+    color: white;
+}
+.add-project .tooltiptext {
+    visibility: hidden;
+    width: 175px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 74%;
+    left: 12%;
+    margin-left: -60px;
+    opacity: 0;
+    font-size: 17px;
+    transition: opacity 0.3s;
+}
+
+.add-project .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.add-project:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

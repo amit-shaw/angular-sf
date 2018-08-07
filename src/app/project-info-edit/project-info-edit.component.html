@@ -1,23 +1,173 @@
-<div class="container">
-  <div class="row">
-    <form>
-      <mat-accordion>
-        <mat-expansion-panel *ngFor="let projects of data; let in=index;let l=last;let f=first;" [expanded]="f">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{projects.pname}}
-            </mat-panel-title>
-            <mat-panel-description>
-              <i *ngIf="l" class="fa fa-plus" aria-hidden="true" (click)="add()"></i>
-              <i *ngIf="!f" class="fa fa-trash-o" aria-hidden="true" (click)="delete(in)"></i>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="form-group col-md-6" *ngFor="let projectfields of projects.keys">
-            <label for="project-name">{{projectfields.label}}</label>
-            <input type="text" class="form-control" placeholder="First name">
+<div class="container project-info-edit-section">
+    <div class="row">
+      
+        <div class="col-md-12 title">
+          <h4>Project Information</h4>
+        </div>
+        <div class="col-xs-12">
+        <form [formGroup]="myForm" novalidate (ngSubmit)="onSubmit(myForm)">
+          <!--addresses-->
+          <div formArrayName="project">
+            <div *ngFor="let address of myForm?.controls.project.controls; let i=index" class="panel panel-default">
+            <!--  <div class="panel-heading">
+                <span>Project {{i + 1}}</span>
+                <span class="glyphicon glyphicon-remove pull-right" *ngIf="myForm?.controls.project.controls.length > 1" (click)="removeProject(i)"></span>
+              </div> -->
+              <div class="panel-body" [formGroupName]="i">
+                <div class="project-name-det">
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][16]?.biw.readaccess =='true'">
+                  <label for="label">{{settings['Project Information'][16]?.biw.labelname}}</label>
+                  <input type="text" class="form-control" formControlName="Project_Name__c">
+                </div>
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][17]?.biw.readaccess =='true'">
+                  <label>{{settings['Project Information'][17]?.biw.labelname}}</label>
+                  <input type="text" class="form-control" formControlName="Project_Name_2__c">
+                </div>
+              </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][0]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][0]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Capital_Required__c">
+                </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][1]?.biw.readaccess =='true' ">
+                    <label>{{settings['Project Information'][1]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Capital_Required__c">
+                </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][2]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][2]?.biw.labelname}}</label>
+                    <!--<input type="text" class="form-control" formControlName="Interested_formats_of_cooperation__c"> -->
+                    <div class="col-md-12 interested-format-select">
+                      <select2 [data]="investment"
+                      [options]="options"
+                      [width]="455"
+                      [value]="def_interested"
+                      (valueChanged)="changed($event)">
+                      </select2>
+                    </div>
+                </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][3]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][3]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Investment_Round__c">
+                </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][4]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][4]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Project_Custom_Currency__c">
+                </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][5]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][5]?.biw.labelname}}</label>
+                    <input type="date" class="form-control" formControlName="Project_Custom_Date_time__c">
+                </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][7]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][7]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Project_Custom_Number_1__c">
+                </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][8]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][8]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Project_Custom_Number_2__c">
+                </div>
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][9]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][9]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Project_Custom_Picklist__c">
+                </div>
+                
+                <div class="form-group col-xs-6" *ngIf="settings['Project Information'][15]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][15]?.biw.labelname}}</label>
+                    <select id="project-location" class="form-control" formControlName="Project_Location__c">
+                      <option *ngFor="let project_loc of project_loc" value={{project_loc.text}}>{{ project_loc.text }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][18]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][18]?.biw.labelname}}</label>
+              <!--      <input type="text" class="form-control" formControlName="Sectors__c"> -->
+                    <div class="col-md-12 sector-select">
+                      <select2 [data]="sector"
+                      [options]="options"
+                      [width]="970"
+                      [value]="def_sector"
+                      (valueChanged)="changedSector($event)">
+                      </select2>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][19]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][19]?.biw.labelname}}</label>
+                  <!--  <input type="text" class="form-control" formControlName="Sub_Sectors__c"> -->
+                    <div class="col-md-12 sub-sector-select">
+                      <select2 [data]="select_sub_sec"
+                      [options]="options"
+                      [width]="970"
+                      [value]="def_sub_sector"
+                      (valueChanged)="changedSubSec($event)">
+                      </select2>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][11]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][11]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Project_Custom_Text__c">
+                </div>
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][12]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][12]?.biw.labelname}}</label>
+                    <input type="text" class="form-control" formControlName="Project_Custom_Text_2__c">
+                </div>
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][13]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][13]?.biw.labelname}}</label>
+                    <textarea class="form-control" formControlName="Project_Description__c"></textarea>
+                </div>
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][14]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][14]?.biw.labelname}}</label>
+                    <textarea class="form-control" formControlName="Project_Description_2__c"></textarea>
+                </div>
+                <div class="form-group col-xs-12" *ngIf="settings['Project Information'][10]?.biw.readaccess =='true'">
+                    <label>{{settings['Project Information'][10]?.biw.labelname}}</label>
+                    <textarea class="form-control" formControlName="Project_Custom_Rich_Text_Area__c"></textarea>
+                </div>
+              </div>
+            </div>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </form>
+  
+       <!--   <div class="margin-20">
+            <a (click)="addProject()" style="cursor: default">
+              Add another project +
+            </a>
+          </div> -->
+  
+          <div class="col-md-3 col-md-offset-9 action-section"> 
+              <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
+              <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+            </div>
+          <div class="clearfix"></div>
+  
+         <!-- <div class="margin-20">
+            <div>myForm details:-</div>
+            <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+            <pre>form value: <br>{{myForm.value | json}}</pre>
+          </div> -->
+        </form>
+      </div>
+    </div>
   </div>
+<!-- Edit project information 
+<div class="container project-info-edit-section">
+  <div class="row">
+    <div class=" col-md-12 header-title">
+      <div class="title-text">Project information</div>
+    </div>
+    <form>
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let projects of data; let in=index;let l=last;let f=first;" [expanded]="f">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{projects.pname}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  <i *ngIf="!f" class="fa fa-trash-o" aria-hidden="true" (click)="delete(in)"></i>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="form-group col-md-6" *ngFor="let projectfields of projects.keys">
+                <label for="project-name">{{projectfields.label}}</label>
+                <input type="text" class="form-control" placeholder="First name">
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </form>
+  </div> 
 </div>
+-->

@@ -1,9 +1,14 @@
-<app-basic-info></app-basic-info>
-<app-company-contact></app-company-contact>
-<app-naics-code></app-naics-code>
-<app-company-profile></app-company-profile>
+<div class="basic-print-btn" *ngIf="!print">
+    <button type="button" class="btn btn-primary basic-prnt" (click)="printProfile()">Print</button>
+</div>
+<app-basic-info *ngIf="!print"></app-basic-info>
+<app-company-contact *ngIf="!print"></app-company-contact>
+<app-naics-code *ngIf="!print"></app-naics-code>
+<app-project-info *ngIf="!print"></app-project-info>
+<app-company-profile *ngIf="!print"></app-company-profile>
 <!--<app-naics-code-edit></app-naics-code-edit>-->
-<app-registration-question></app-registration-question>
-<app-project-info-edit></app-project-info-edit>
-<!--<app-print-profile></app-print-profile> 
+<app-registration-question *ngIf="!print"></app-registration-question>
+<!--<app-project-info-edit></app-project-info-edit>
+<app-print-profile></app-print-profile> 
 <app-work-address-edit></app-work-address-edit>-->
+<app-print-profile *ngIf="print"></app-print-profile>
