@@ -37,9 +37,10 @@ export class NaicsCodeEditComponent implements OnInit {
         }
         
     }
-    console.log(this.def);
+   // console.log(this.def);
     this.options = {
-      multiple: true
+      multiple: true,
+      placeholder: "Search...",
     }
     if(this.def != null){
     this.current = this.def.join('-');
@@ -52,10 +53,10 @@ export class NaicsCodeEditComponent implements OnInit {
     }else{
       this.current = data.value.join('-');
     }
-    console.log(this.current);
+    //console.log(this.current);
   }
   onSubmit(){
-    console.log("Called saving");
+    //console.log("Called saving");
     this.getdataService.updateNaicsCode(this.current);
     this.dialogRef.close();
     this.snackBar.open(this.naics_set[0].biw.labelname+" updated successfully..",'', {

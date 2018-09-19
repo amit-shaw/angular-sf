@@ -5,13 +5,13 @@
     </div>
     <div class="col-md-12 padding-left-right-40">
       <div class="social-icns-basic">
-        <a href="#" class="fa fa-facebook"></a>
-        <a href="#" class="fa fa-linkedin"></a>
-        <a href="#" class="fa fa-twitter"></a>
-        <a href="#" class="">
+        <a href="javascript:void(0)" class="fa fa-facebook"></a>
+        <a href="javascript:void(0)" class="fa fa-linkedin"></a>
+        <a href="javascript:void(0)" class="fa fa-twitter"></a>
+        <a href="javascript:void(0)" class="">
           <img class="icon-insta" src="http://eventdex.com/wp-content/themes/eventdex/assets/images/youtube-icons-ev.png">
         </a>
-        <a href="#" class="">
+        <a href="javascript:void(0)" class="">
           <img class="icon-insta" src="http://eventdex.com/wp-content/themes/eventdex/assets/images/instaimg.png">
         </a>
       </div>
@@ -55,7 +55,7 @@
     <div class="col-md-12 padding-left-right-40 file-uplaod-sec form-group" *ngIf="speaker[0].biw.readaccess != 'false'">
       <label for="label">{{speaker[0].biw.labelname}}
         <span *ngIf="speaker[0].biw.required =='true' " class="required">*</span>
-        <span class="help-text">(Uplaod only PDF file and file should not more then 5MB.)</span>
+        <span class="help-text">(Upload only PDF file and file should not be more then 5MB.)</span>
       </label>
      <!-- <div class="file-upload">
         <div class="file-select">
@@ -65,12 +65,14 @@
         </div>
       </div>-->
       <div class="mutiple-file-upload">
-        <input type="file" class="choose-file"  (change)="onChange($event, showFileNames)" />
+        <input type="file" class="choose-file"  (change)="onChange($event, showFileNames)" [disabled]="speaker[0].biw.updateaccess == 'false'" />
         <span class="error-text" *ngIf="status">{{error_text}}</span>
       </div>
-      <span *ngFor="let attchment of attchment; let i = index" class="uploaded-files">
-        <span class="uploaded-file-details">{{attchment.Name}}</span> 
-        <span (click)="deleteDoc(i,attchment.Id)" class="delete-doc">X</span>
+      <span *ngFor="let attchment of attchment; let i = index">
+        <span  class="uploaded-files" *ngIf="attchment.Id !=delid">
+          <span class="uploaded-file-details">{{attchment.Name}}</span> 
+          <span (click)="deleteDoc(i,attchment.Id)" class="delete-doc" *ngIf="speaker[0].biw.updateaccess != 'false'">X</span>
+        </span>
       </span>
     </div>
    <!-- <hr class="socail-show-seprator">
@@ -81,7 +83,7 @@
       </mat-slide-toggle>
     </div> -->
     <div class="col-md-3 col-md-offset-9 action-section"> 
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()"  [disabled]="status=='true'">Save</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()"  [disabled]="status=='true'">Save</button>
         <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
       </div>
   </form>

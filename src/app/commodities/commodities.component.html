@@ -9,6 +9,7 @@
             [options]="options"
             [width]="650"
             [value]="def"
+            [disabled] ="settings['Commodities Information'][0]?.biw.updateaccess == 'false'"
             (valueChanged)="changed($event)">
             </select2>
           </div>
@@ -18,10 +19,11 @@
               [options]="options"
               [width]="650"
               [value]="sub_com_def"
+              [disabled] ="settings['Commodities Information'][1]?.biw.updateaccess == 'false'"
               (valueChanged)="changed1($event)">
               </select2>
           </div>
-          <div class="col-md-3 col-md-offset-9 action-section"> 
+          <div class="col-md-5 col-md-offset-7 action-section"> 
               <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
               <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
             </div>

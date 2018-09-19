@@ -45,7 +45,8 @@ export class DiversityEditComponent implements OnInit {
     }
    // console.log(this.def);
     this.options = {
-      multiple: true
+      multiple: true,
+      placeholder: "Search...",
     }
     if(this.def != null){
     this.current = this.def.join('-');

@@ -17,6 +17,7 @@ export class NaicsCodeComponent implements OnInit {
   constructor(public dialog: MatDialog,private sfService: SalesforceService,private getdataService:GetdataService) {}
   openDialog() {
     const dialogRef = this.dialog.open(NaicsCodeEditComponent, {
+      disableClose: true,
       height: '250px',
       width:'700px'
     });
@@ -27,6 +28,7 @@ export class NaicsCodeComponent implements OnInit {
   }
   openDialogDiversity(){
     const dialogRef = this.dialog.open(DiversityEditComponent, {
+      disableClose: true,
       height: '250px',
       width:'700px'
     });
@@ -37,6 +39,7 @@ export class NaicsCodeComponent implements OnInit {
   }
   openDialogCommonities(){
     const dialogRef = this.dialog.open(CommoditiesComponent, {
+      disableClose: true,
       height: '335px',
       width:'700px'
     });

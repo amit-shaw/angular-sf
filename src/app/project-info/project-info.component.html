@@ -1,10 +1,20 @@
-<div class="container project-info-block">
+<div class="container project-info-block" *ngIf="settings['Project Information'][16]?.biw.readaccess =='true' ||
+settings['Project Information'][17]?.biw.readaccess =='true' || settings['Project Information'][0]?.biw.readaccess =='true' ||
+settings['Project Information'][1]?.biw.readaccess =='true' || settings['Project Information'][2]?.biw.readaccess =='true' ||
+settings['Project Information'][3]?.biw.readaccess =='true' || settings['Project Information'][4]?.biw.readaccess =='true' ||
+settings['Project Information'][5]?.biw.readaccess =='true' || settings['Project Information'][6]?.biw.readaccess =='true' ||
+settings['Project Information'][7]?.biw.readaccess =='true' || settings['Project Information'][8]?.biw.readaccess =='true' ||
+settings['Project Information'][9]?.biw.readaccess =='true' || settings['Project Information'][10]?.biw.readaccess =='true' ||
+settings['Project Information'][11]?.biw.readaccess =='true' || settings['Project Information'][12]?.biw.readaccess =='true' ||
+settings['Project Information'][13]?.biw.readaccess =='true' || settings['Project Information'][14]?.biw.readaccess =='true' ||
+settings['Project Information'][15]?.biw.readaccess =='true' || settings['Project Information'][18]?.biw.readaccess =='true' ||
+settings['Project Information'][19]?.biw.readaccess =='true'">
   <div class="row header-section">
    <!-- <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openCompanyEditDialog('')"></i> -->
     <div class="col-md-6 adrs-info">
       <div class="basic-view-pghead-adrs work-in-head">{{settings['Project Information'][0]?.biw.groupname}} </div>
     </div>
-    <div class="col-md-1 col-md-offset-5" style="padding: 30px;"> 
+    <div class="col-md-2 col-md-offset-4" style="padding: 2% 0px 0px 7%;cursor: pointer;"> 
       <span class="add-project" (click)="openCompanyEditDialog('')">+
           <span class="tooltiptext">Add new project</span>
       </span>
@@ -91,14 +101,14 @@
               <p>{{project.Project_Custom_Date_time__c | date:'MM-dd-yyyy'}}</p>
             </div>
           </div>
-          <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][6]?.biw.readaccess =='true'">
+        <!--  <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][6]?.biw.readaccess =='true'">
             <div class="col-md-4 font-bold">
               <p>{{settings['Project Information'][6]?.biw.labelname}} : </p>
             </div>
             <div class="col-md-8">
               <p>Multi select picklist</p>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-12 padding-0 border-bottom" *ngIf="settings['Project Information'][7]?.biw.readaccess =='true' && project.Project_Custom_Number_1__c !='' && project.Project_Custom_Number_1__c != '0'">
             <div class="col-md-4 font-bold">
               <p>{{settings['Project Information'][7]?.biw.labelname}} : </p>

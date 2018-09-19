@@ -4,6 +4,7 @@ import { BasicData } from '../basic-info-edit/basicData';
 import { ServiceData } from '../company-contact-edit/service-data';
 import { ProjectData } from '../project-info/project-data';
 import { RegQuestionData } from '../registration-question/registration-data';
+import { CustomBarcode } from '../basic-info-edit/customBarCode';
 
 @Component({
   selector: 'app-print-profile',
@@ -17,6 +18,7 @@ export class PrintProfileComponent implements OnInit {
   work_set:any[];
   basic_set:any[];
   speaker:any[];
+  custom_barcode:CustomBarcode;
 
   settings:any[];
   ethinicity:ServiceData;
@@ -39,6 +41,7 @@ export class PrintProfileComponent implements OnInit {
     this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
     this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
     this.getdataService.speaker.subscribe(speaker => this.speaker = speaker);
+    this.getdataService.custom_barcode_cast.subscribe(custom_barcode => this.custom_barcode = custom_barcode);
 
     this.getdataService.settings.subscribe(settings => this.settings = settings);
     this.getdataService.ethinicity.subscribe(ethinicity => this.ethinicity = ethinicity);
@@ -57,6 +60,8 @@ export class PrintProfileComponent implements OnInit {
 
     this.getdataService.reg_ques.subscribe(reg_ques => this.reg_ques = reg_ques);
     this.getdataService.event_ques.subscribe(event_ques =>this.event_ques = event_ques);
+    console.log("caming here home address__r");
+    console.log(this.basic.Home_Address__r);
   }
   print(): void {
     //window.prin
@@ -79,5 +84,7 @@ export class PrintProfileComponent implements OnInit {
     popupWin.print();
     popupWin.document.close();
 }
-
+  goBack(){
+    window.location.reload();
+  }
 }

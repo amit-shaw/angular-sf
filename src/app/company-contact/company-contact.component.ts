@@ -28,6 +28,7 @@ export class CompanyContactComponent implements OnInit {
   georeason:ServiceData;
   bsnstr:ServiceData;
   ngOnInit() {
+    this.getdataService.getWorkInfoData();
     this.getdataService.settings.subscribe(settings => this.settings = settings);
     this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
@@ -42,6 +43,7 @@ export class CompanyContactComponent implements OnInit {
   }
   openCompanyEditDialog(){
     const dialogRef = this.dialog.open(CompanyContactEditComponent, {
+      disableClose: true,
       height: '500px'
       //width:'500px'
     });
@@ -52,6 +54,7 @@ export class CompanyContactComponent implements OnInit {
   }
   openCustomerRefEditDialog(){
     const dialogRef = this.dialog.open(CustomerRefComponent, {
+      disableClose: true,
       height: '440px'
       //width:'500px'
     });

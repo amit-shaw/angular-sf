@@ -27,6 +27,7 @@ export class CompanyProfileComponent implements OnInit {
   work_set:any[];
   openDialog() {
     const dialogRef = this.dialog.open(CompanyProfileEditComponent, {
+      disableClose: true,
       height: '500px'
       //width:'500px'
     });

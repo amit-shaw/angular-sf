@@ -8,13 +8,15 @@ import {AddressData} from './work-address-edit/address-data';
 import { ServiceData } from './company-contact-edit/service-data';
 import { ProjectData } from './project-info/project-data';
 import { RegQuestionData } from './registration-question/registration-data';
+import { CustomBarcode } from './basic-info-edit/customBarCode';
 
 @Injectable()
 export class GetdataService {
 
   private all:any[];
+  private tkt:any[];
   //public basic = new BehaviorSubject<any[]>([]);
-  public basic = new BehaviorSubject<BasicData>({First_Name__c:'',Last_Name__c:'',Prefix__c:'',Suffix__c:'',Custom_Barcode__c:'',Email__c:'',
+  public basic = new BehaviorSubject<BasicData>({First_Name__c:'',Last_Name__c:'',Custom_Barcode__c:'',Prefix__c:'',Suffix__c:'',Email__c:'',
    verify_Email__c:'',Age__c:'',DOB__c:'',Gender__c:'',Home_Phone__c:'',Work_Phone__c:'',Mobile__c:'',TKT_Company__c:''
    ,TKT_Job_Title__c:'',DBA__c:'',Company_Logo__c:'',User_Pic__c:'',FaceBookId__c:'',Biography__c:'',
    LinkedInId__c:'',
@@ -123,7 +125,13 @@ export class GetdataService {
   reg_ques_cast = this.reg_ques.asObservable();
   event_ques = new BehaviorSubject<RegQuestionData[]>([]);
   event_ques_cast = this.event_ques.asObservable();
+  custom_barcode = new BehaviorSubject<CustomBarcode>({Id:'',Name:'',Custom_Barcode__c:'',Badge_Label__c:''});
+  custom_barcode_cast = this.custom_barcode.asObservable();
   test:RegQuestionData[];
+  primary_data = new BehaviorSubject<any[]>([]);
+  primary_data_cast = this.naics_data.asObservable();
+  secondry_data = new BehaviorSubject<any[]>([]);
+  secondry_data_cast = this.naics_data.asObservable();
   constructor(private sfService: SalesforceService) { }
   //temp:any[];
   getData(){
@@ -172,24 +180,40 @@ export class GetdataService {
     all_data['Work_Address__r'] = data['Work_Address__r'];
     all_data['Billing_Address__r'] = data['Billing_Address__r'];
     all_data = JSON.stringify(all_data);
-    this.sfService.callRemoteUpdateForBasic('BLN_MM_ViewAdminProfileCon.updateProfileData',all_data,'','',
+    this.sfService.callRemoteUpdateForBasic('BLN_MM_ViewAdminProfileCon.updateProfileData',all_data,'','','','','',
     this.updateData, this.failedCallback);
     //console.log(all_data);
   }
-  updateSepcificData(newData,url,attachment){
-   // console.log(url);
+  updateSepcificData(newData,url,attachment,atatname,logo,ticketdata){
+    console.log(newData);
     for(let key in newData){
       //console.log(key);
       //console.log(typeof newData[key]);
       //if(newData[key] !='' && newData[key] != null){
         console.log("Key "+key+" ->value "+newData[key]);
+        if(key == 'DOB__c'){
+          if(newData[key] == ''){
+            this.all['tktProf'][key] = null;
+          }
+        }
         if(key != 'business_str' && key != 'ethinisity' && key != 'geolocation' && key !='bsns_revnue' && key !='no_of_emp'){
           this.all['tktProf'][key] = newData[key];
         }
+        if(key == 'FaceBookId__c' || key == 'LinkedInId__c' || key == 'TwitterId__c' || key =='Instagram__c'){
+          if(newData[key].substring(0,4) !='http'){
+            if(newData[key] ==''){
+              this.all['tktProf'][key] = newData[key];
+            }
+            else{
+              this.all['tktProf'][key] = 'https://'+newData[key];
+            }
+          }
+        }
+        //console.log(this.all['tktProf']);
       //}
     }
     let temp = JSON.stringify(this.all['tktProf']); 
-    this.sfService.callRemoteUpdateForBasic('BLN_MM_ViewAdminProfileCon.updateProfileData',temp,url,attachment,
+    this.sfService.callRemoteUpdateForBasic('BLN_MM_ViewAdminProfileCon.updateProfileData',temp,url,attachment,atatname,logo,ticketdata,
     this.updateData, this.failedCallback);
     //this.all['tktProf'].Last_Name__c = "Khan";
     //console.log(this.all['tktProf']);
@@ -215,7 +239,11 @@ export class GetdataService {
     this.georeason.next(this.all['geogregion']);
     this.ethinicity.next(this.all['ethnicity']);
     this.bsnstr.next(this.all['busnstruct']);
-    this.project.next(this.all['tktProf']['BLN_Projects__r']['records']);
+    this.custom_barcode.next(this.all['ticket']);
+    this.tkt = this.all['ticket'];
+    if(this.all['tktProf']['BLN_Projects__r'] !== undefined){
+      this.project.next(this.all['tktProf']['BLN_Projects__r']['records']);
+    }
     this.question.next(this.all['UserAnswer']);
     if(this.all['UserAnswer'] != '' && this.all['UserAnswer'] !== undefined){
       this.getTicketLevelQuestion();
@@ -253,12 +281,14 @@ export class GetdataService {
   public updateData = (response) => {
     //console.log(response);
     let res = JSON.parse(response);
+    this.all = JSON.parse(response);
     //console.log("Resposnse data");
     //console.log(res);
     //console.log("Data after save");
     //console.log(this.all['tktProf']);
     this.basic.next(res['tktProf']);
-    
+    this.attachmentUpdate(res['attachments']);
+    $(".Mask").hide();
     //this.naics
   }
 
@@ -286,11 +316,39 @@ export class GetdataService {
   val:any[]=[];
   successCodes = (response) => { 
     let data = JSON.parse(response);
+    this.val = [];
     for(let key in data){
       this.val.push({'id':data[key]['Id'],'text':data[key]['List_Code__c']+' '+data[key]['List_Description__c']});
     }
     //console.log(this.val);
     this.naics_data.next(this.val);
+  }
+  getWorkInfoData(){
+    this.sfService.getBusinessCategory('BLN_MM_ViewAdminProfileCon.getPickValues','Tkt_profile__c','Primary_Business_Category__c'
+    ,this.primaryCode, this.failedCallback);
+    this.sfService.getBusinessCategory('BLN_MM_ViewAdminProfileCon.getPickValues','Tkt_profile__c','Secondary_Business_Category__c'
+    ,this.secondryCode, this.failedCallback);
+  }
+  primaryCode = (response) => {
+    let data1 = JSON.parse(response);
+    let values = [];
+    this.val = [];
+    for (let entry of data1) {
+      this.val.push({'id':entry,'text':entry});
+    }
+    
+    this.primary_data.next(this.val);
+  }
+  secondryCode = (response) => {
+    let data2 = JSON.parse(response);
+    let values = [];
+    this.val = [];
+    for (let entry of data2) {
+      this.val.push({'id':entry,'text':entry});
+    }
+    console.log("secondry value ...");
+    console.log(this.val);
+    this.secondry_data.next(this.val);
   }
   updateDataNaics = (response) => {
     let res = JSON.parse(response);
@@ -423,5 +481,14 @@ export class GetdataService {
     data = data['UserAnswer'];
     this.event_ques.next(data);
     console.log(JSON.parse(response));
+  }
+  updateBarcode(ticket){
+    this.tkt['Custom_Barcode__c'] = ticket;
+    let data = JSON.stringify(this.tkt);
+    this.sfService.getCodesWithouId('BLN_MM_ViewAdminProfileCon.updateTicketData', data
+              , this.successTicket, this.failedCallback);
+  }
+  successTicket = (response) => {
+    console.log(response);
   }
 }

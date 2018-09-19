@@ -41,3 +41,14 @@
 .mce-floatpanel {
     position: fixed !important;
 }
+.d-block{
+    opacity: 1 !important;
+}
+.modal-sm{
+    position: absolute;
+    top: 35%;
+    left: 40%;
+}
+.btn-primary{
+    margin-right: 9%;
+}

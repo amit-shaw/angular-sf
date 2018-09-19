@@ -251,3 +251,15 @@ ul.basic-view-pg{
     background: #c1c1c182;
 }
 }
+.cancel-buuton{
+    background: #7ebdd9;
+    padding: 6px;
+    color: white;
+    border-radius: 3px;
+    position: relative;
+    top: 8px;
+    cursor: pointer;
+}
+.ref-sec{
+    width: 100%;
+}

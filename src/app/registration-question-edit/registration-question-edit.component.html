@@ -37,9 +37,9 @@
                         </select>
                     </span>
                     <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Checkboxes'" class="col-md-12">
-                        <span *ngFor="let opt of reg_ques.optionList" class="radio-button">
+                        <span *ngFor="let opt of reg_ques.optionList;let i=index" class="radio-button">
                             <label>
-                                <input type="checkbox" value="{{opt.Id}}" name="{{opt.BLN_Question__c}}" />{{ opt.Answer_Text__c }}
+                                <input type="checkbox" value="{{opt.Id}}" name="{{opt.Id}}" [(ngModel)]="reg_ques.SelectedAnswerCheck[i]" />{{ opt.Answer_Text__c }}
                             </label>
                         </span>
                     </span>

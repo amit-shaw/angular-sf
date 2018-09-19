@@ -12,7 +12,7 @@ import {MatAccordion} from '@angular/material';
 import { ProjectInfoEditComponent } from '../project-info-edit/project-info-edit.component';
 import { ProjectData } from './project-data';
 import { SalesforceService } from '../../service/salesforce.service';
-
+import { ConfirmationDialogService } from './../confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-project-info',
@@ -22,7 +22,8 @@ import { SalesforceService } from '../../service/salesforce.service';
 export class ProjectInfoComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
   multi = true;
-  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private getdataService:GetdataService,private sfService: SalesforceService) { }
+  constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private getdataService:GetdataService,private sfService: SalesforceService,
+    private confirmationDialogService: ConfirmationDialogService) { }
   settings:any[];
   project_info:any[];
   basic:BasicData;
@@ -42,6 +43,7 @@ export class ProjectInfoComponent implements OnInit {
   openCompanyEditDialog(index){
     console.log("Index value : "+index);
     const dialogRef = this.dialog.open(ProjectInfoEditComponent, {
+      disableClose: true,
       height: '500px',
       //width:'500px'
       data: {
@@ -54,11 +56,22 @@ export class ProjectInfoComponent implements OnInit {
     });
   }
   deleteProject(id){
-    if(window.confirm('Are sure you want to delete this project ?')){
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to delete this project ... ?')
+      .then((confirmed) =>  {
+        if(confirmed){
+          this.sfService.updateProject('BLN_MM_ViewAdminProfileCon.DeleteProjectDetails',id
+          ,this.sucessCall, this.failedCallback);
+           console.log('User confirmed:', confirmed);
+        }else{
+          console.log("Cancel button is clicked");
+        }
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+   /* if(window.confirm('Are sure you want to delete this project ?')){
       console.log("ID : "+id);
       this.sfService.updateProject('BLN_MM_ViewAdminProfileCon.DeleteProjectDetails',id
       ,this.sucessCall, this.failedCallback);
-     }
+    } */
   }
   public getSFResourse = (path: string) => this.sfService.getSFResource;
   private failedCallback = (response) => console.log(response);

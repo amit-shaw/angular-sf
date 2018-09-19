@@ -16,24 +16,38 @@
               <div class="panel-body" [formGroupName]="i">
                 <div class="project-name-det">
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][16]?.biw.readaccess =='true'">
-                  <label for="label">{{settings['Project Information'][16]?.biw.labelname}}</label>
+                  <label for="label">{{settings['Project Information'][16]?.biw.labelname}}
+                    <span *ngIf="settings['Project Information'][16].biw.required == 'true'" class="required">*</span>
+                  </label>
                   <input type="text" class="form-control" formControlName="Project_Name__c">
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][17]?.biw.readaccess =='true'">
-                  <label>{{settings['Project Information'][17]?.biw.labelname}}</label>
+                  <label>{{settings['Project Information'][17]?.biw.labelname}}
+                    <span *ngIf="settings['Project Information'][17]?.biw.required == 'true'" class="required">*</span>
+                  </label>
                   <input type="text" class="form-control" formControlName="Project_Name_2__c">
                 </div>
               </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][0]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][0]?.biw.labelname}}</label>
+                    <label>{{settings['Project Information'][0]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][0]?.biw.required == 'true'" class="required">*</span>
+                    </label>
                     <input type="text" class="form-control" formControlName="Capital_Required__c">
                 </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][1]?.biw.readaccess =='true' ">
-                    <label>{{settings['Project Information'][1]?.biw.labelname}}</label>
-                    <input type="text" class="form-control" formControlName="Capital_Required__c">
+                    <label>{{settings['Project Information'][1]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][1]?.biw.required == 'true'" class="required">*</span>
+                    </label>
+                  <!--  <input type="number" class="form-control" formControlName="Capital_Required__c"> -->
+                    <select id="primary-code" class="form-control" formControlName="Financing_Structure__c">
+                      <option value="" selected disabled>-Select-</option>
+                    <option *ngFor="let fin_str of fin_str" value={{fin_str}} [disabled]="settings['Project Information'][1].biw.updateaccess == 'false'">{{ fin_str }}</option>
+                  </select>
                 </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][2]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][2]?.biw.labelname}}</label>
+                    <label>{{settings['Project Information'][2]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][2]?.biw.required == 'true'" class="required">*</span>
+                    </label>
                     <!--<input type="text" class="form-control" formControlName="Interested_formats_of_cooperation__c"> -->
                     <div class="col-md-12 interested-format-select">
                       <select2 [data]="investment"
@@ -45,38 +59,55 @@
                     </div>
                 </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][3]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][3]?.biw.labelname}}</label>
-                    <input type="text" class="form-control" formControlName="Investment_Round__c">
+                    <label>{{settings['Project Information'][3]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][3]?.biw.required == 'true'" class="required">*</span>
+                    </label>
+                    <input type="number" class="form-control" formControlName="Investment_Round__c">
                 </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][4]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][4]?.biw.labelname}}</label>
-                    <input type="text" class="form-control" formControlName="Project_Custom_Currency__c">
+                    <label>{{settings['Project Information'][4]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][4]?.biw.required == 'true'" class="required">*</span>
+                    </label>
+                    <input type="number" class="form-control" formControlName="Project_Custom_Currency__c">
                 </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][5]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][5]?.biw.labelname}}</label>
-                    <input type="date" class="form-control" formControlName="Project_Custom_Date_time__c">
+                    <label>{{settings['Project Information'][5]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][5]?.biw.required == 'true'" class="required">*</span>
+                    </label>
+                    <input type="date" class="form-control" formControlName="Project_Custom_Date_time__c" max="9999-10-20">
                 </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][7]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][7]?.biw.labelname}}</label>
-                    <input type="text" class="form-control" formControlName="Project_Custom_Number_1__c">
+                    <label>{{settings['Project Information'][7]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][7]?.biw.required == 'true'" class="required">*</span>
+                    </label>
+                    <input type="number" class="form-control" formControlName="Project_Custom_Number_1__c">
                 </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][8]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][8]?.biw.labelname}}</label>
-                    <input type="text" class="form-control" formControlName="Project_Custom_Number_2__c">
+                    <label>{{settings['Project Information'][8]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][8]?.biw.required == 'true'" class="required">*</span>
+                    </label>
+                    <input type="number" class="form-control" formControlName="Project_Custom_Number_2__c">
                 </div>
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][9]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][9]?.biw.labelname}}</label>
-                    <input type="text" class="form-control" formControlName="Project_Custom_Picklist__c">
+                    <label>{{settings['Project Information'][9]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][9]?.biw.required == 'true'" class="required">*</span>
+                    </label>
+                    <input type="number" class="form-control" formControlName="Project_Custom_Picklist__c">
                 </div>
                 
                 <div class="form-group col-xs-6" *ngIf="settings['Project Information'][15]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][15]?.biw.labelname}}</label>
+                    <label>{{settings['Project Information'][15]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][15]?.biw.required == 'true'" class="required">*</span>
+                    </label>
                     <select id="project-location" class="form-control" formControlName="Project_Location__c">
+                      <option value="" selected disabled>-Select-</option>
                       <option *ngFor="let project_loc of project_loc" value={{project_loc.text}}>{{ project_loc.text }}</option>
                     </select>
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][18]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][18]?.biw.labelname}}</label>
+                    <label>{{settings['Project Information'][18]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][18]?.biw.required == 'true'" class="required">*</span>
+                    </label>
               <!--      <input type="text" class="form-control" formControlName="Sectors__c"> -->
                     <div class="col-md-12 sector-select">
                       <select2 [data]="sector"
@@ -88,7 +119,9 @@
                     </div>
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][19]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][19]?.biw.labelname}}</label>
+                    <label>{{settings['Project Information'][19]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][19]?.biw.required == 'true'" class="required">*</span>
+                    </label>
                   <!--  <input type="text" class="form-control" formControlName="Sub_Sectors__c"> -->
                     <div class="col-md-12 sub-sector-select">
                       <select2 [data]="select_sub_sec"
@@ -100,23 +133,44 @@
                     </div>
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][11]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][11]?.biw.labelname}}</label>
+                    <label>{{settings['Project Information'][11]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][11]?.biw.required == 'true'" class="required">*</span>
+                    </label>
                     <input type="text" class="form-control" formControlName="Project_Custom_Text__c">
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][12]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][12]?.biw.labelname}}</label>
+                    <label>{{settings['Project Information'][12]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][12]?.biw.required == 'true'" class="required">*</span>
+                    </label>
                     <input type="text" class="form-control" formControlName="Project_Custom_Text_2__c">
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][13]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][13]?.biw.labelname}}</label>
-                    <textarea class="form-control" formControlName="Project_Description__c"></textarea>
+                    <label>{{settings['Project Information'][13]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][13]?.biw.required == 'true'" class="required">*</span>
+                      <span class="help-text"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <span class="tooltiptext">Text is limited to 1500 characters</span>
+                      </span> 
+                    </label>
+                    <simple-tiny formControlName="Project_Description__c"></simple-tiny>
+                   <!-- <textarea class="form-control" formControlName="Project_Description__c"></textarea> -->
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][14]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][14]?.biw.labelname}}</label>
-                    <textarea class="form-control" formControlName="Project_Description_2__c"></textarea>
+                    <label>{{settings['Project Information'][14]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][14]?.biw.required == 'true'" class="required">*</span>
+                      <span class="help-text"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <span class="tooltiptext">Text is limited to 1500 characters</span>
+                      </span> 
+                    </label>
+                    <simple-tiny formControlName="Project_Description_2__c"></simple-tiny>
+                   <!-- <textarea class="form-control" formControlName="Project_Description_2__c"></textarea> -->
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][10]?.biw.readaccess =='true'">
-                    <label>{{settings['Project Information'][10]?.biw.labelname}}</label>
+                    <label>{{settings['Project Information'][10]?.biw.labelname}}
+                      <span *ngIf="settings['Project Information'][10]?.biw.required == 'true'" class="required">*</span>
+                      <span class="help-text"><i class="fa fa-question-circle" aria-hidden="true"></i>
+                        <span class="tooltiptext">Text is limited to 250 characters</span>
+                      </span>
+                    </label>
                     <textarea class="form-control" formControlName="Project_Custom_Rich_Text_Area__c"></textarea>
                 </div>
               </div>

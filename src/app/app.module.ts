@@ -35,9 +35,12 @@ import { CustomerRefComponent } from './customer-ref/customer-ref.component';
 import { SimpleTinyComponent } from './tinymce.component';
 
 //import {disableDeprecatedForms, provideForms} from '@angular/forms';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 //import { LinkFormat } from './link-format';
 import { SafeHtmlPipe } from './safe-html';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { DisplayTicketsComponent } from './display-tickets/display-tickets.component';
 
 
 @NgModule({
@@ -64,6 +67,8 @@ import { SafeHtmlPipe } from './safe-html';
     SimpleTinyComponent,
     SafeHtmlPipe,
     RegistrationQuestionEditComponent,
+    ConfirmationDialogComponent,
+    DisplayTicketsComponent,
    // LinkFormat
   ],
   imports: [
@@ -77,8 +82,9 @@ import { SafeHtmlPipe } from './safe-html';
     MatDialogModule,
     MatExpansionModule,
     MatSnackBarModule,
+    NgbModule.forRoot(),
   ],
-  providers: [SalesforceService,GetdataService],
+  providers: [SalesforceService,GetdataService,ConfirmationDialogService],
   bootstrap: [AppComponent],
   entryComponents: [
     NaicsCodeEditComponent,CompanyProfileEditComponent,BasicInfoEditComponent,
@@ -86,7 +92,8 @@ import { SafeHtmlPipe } from './safe-html';
     SocailMediaEditComponent,DiversityEditComponent,
     CommoditiesComponent,CompanyContactEditComponent,
     ProjectInfoEditComponent,CustomerRefComponent,
-    RegistrationQuestionEditComponent
+    RegistrationQuestionEditComponent,ConfirmationDialogComponent,
+    DisplayTicketsComponent
   ]
 
 })

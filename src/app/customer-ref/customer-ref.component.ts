@@ -51,7 +51,7 @@ export class CustomerRefComponent implements OnInit {
     // console.log("Saving the data");
      if (this.customerRefEdit.valid) {
        console.log(this.customerRefEdit.value);
-       this.getdataService.updateSepcificData(this.customerRefEdit.value,'','');
+       this.getdataService.updateSepcificData(this.customerRefEdit.value,'','','','','');
        this.dialogRef.close();
        this.snackBar.open("customer reference updated successfully..",'', {
          duration: 2000,

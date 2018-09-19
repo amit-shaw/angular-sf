@@ -23,7 +23,7 @@
                         <label for="label">City
                             <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
                         </label>
-                        <input type="text" class="form-control" id="city_1" [required]='address[0].biw.required' [readonly]="address[1].biw.updateaccess =='false'"
+                        <input type="text" class="form-control" id="city_1" [required]='address[0].biw.required' [readonly]="address[0].biw.updateaccess =='false'"
                             name="address_Name__c" formControlName="W$City__c">
                     </div>
                     <div class="col-md-6">
@@ -31,7 +31,7 @@
                             <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
                         </label>
                         <select id="country" class="form-control" (change)="onSelect($event,'work')"  formControlName="W$Country__c">
-                            <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}}>{{country.Long_Name__c}}</option>
+                            <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}} [disabled]="address[0]?.biw.updateaccess =='false'">{{country.Long_Name__c}}</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -39,7 +39,7 @@
                             <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
                         </label>
                         <select id="country" class="form-control" formControlName="W$State__c">
-                            <option *ngFor="let state_work of state_work" value={{state_work.Id}} id={{state_work.Name}}>{{state_work.Long_Name__c}}</option>
+                            <option *ngFor="let state_work of state_work" value={{state_work.Id}} id={{state_work.Name}} [disabled]="address[0]?.biw.updateaccess =='false'">{{state_work.Long_Name__c}}</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -76,7 +76,7 @@
                                 <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
                             </label>
                             <select id="country" class="form-control" (change)="onSelect($event,'home')" formControlName="H$Country__c">
-                                <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}}>{{country.Long_Name__c}}</option>
+                                <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}} [disabled]="address[2]?.biw.updateaccess =='false'">{{country.Long_Name__c}}</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -84,7 +84,7 @@
                                 <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
                             </label>
                             <select id="country" class="form-control" formControlName="H$State__c">
-                                <option *ngFor="let state_home of state_home" value={{state_home.Id}}>{{state_home.Long_Name__c}}</option>
+                                <option *ngFor="let state_home of state_home" value={{state_home.Id}} [disabled]="address[2]?.biw.updateaccess =='false'">{{state_home.Long_Name__c}}</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -121,7 +121,7 @@
                                     <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
                                 </label>
                                 <select id="country" class="form-control" (change)="onSelect($event,'billing')" formControlName="B$Country__c">
-                                    <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}}>{{country.Long_Name__c}}</option>
+                                    <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}} [disabled]="address[1]?.biw.updateaccess =='false'">{{country.Long_Name__c}}</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -129,7 +129,7 @@
                                     <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
                                 </label>
                                 <select id="country" class="form-control" formControlName="B$State__c">
-                                    <option *ngFor="let state_billing of state_billing" value={{state_billing.Id}}>{{state_billing.Long_Name__c}}</option>
+                                    <option *ngFor="let state_billing of state_billing" value={{state_billing.Id}} [disabled]="address[1]?.biw.updateaccess =='false'">{{state_billing.Long_Name__c}}</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -141,7 +141,7 @@
                             </div>
                         </div>
                 <div class="col-md-3 col-md-offset-9 action-section">
-                    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+                    <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
                     <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
                 </div>
             </div>

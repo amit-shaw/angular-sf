@@ -201,13 +201,13 @@
 .btn{
     font-weight: bold;
 }
-/*.ng-valid[required], .ng-valid.required  {
-    border-left: 5px solid #42A948; 
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948 !important; 
   }
   
   .ng-invalid:not(form)  {
-    border-left: 5px solid #a94442; 
-  }*/
+    border-left: 5px solid #a94442 !important; 
+  }
   span.required{
       color:red;
       font-weight: 900;
@@ -255,3 +255,85 @@
     color: #5c75a5;
     transform: rotate(-17deg);
   }
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  /*  appearance: none;*/
+    margin: 0; 
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 175px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+   /* bottom: 74%;*/
+    left: 12%;
+    margin-left: -60px;
+    opacity: 0;
+   /* font-size: 17px;*/
+    transition: opacity 0.3s;
+}
+.image-help .tooltiptext{
+    margin-left: -81px;
+}
+.help-text:hover .tooltiptext {
+    visibility: visible !important;
+    opacity: 1 !important;   
+}
+.image-help{
+    position: absolute;
+    right: 36px;
+    color: white;
+    top: 16px;
+}
+.logo-help{
+    position: absolute;
+    right: 36px;
+    color: #5d76a6;
+    top: 16px;
+    z-index: 9999999;
+}
+.logo-upload-pencil{
+    position: absolute;
+    top: 13%;
+    left: 68%;
+    border: none;
+    color: #5c76a6;
+    z-index: 9999;
+}
+.delete-logo{
+    position: absolute;
+    top: 70%;
+    left: 68%;
+    border: none;
+    color: #5c76a6;
+    z-index: 9999;
+    cursor: pointer;
+}
+.delete-user-pic{
+    position: absolute;
+    color: white;
+    top: 30%;
+    right: 0;
+    cursor: pointer;
+}
+.readonly-text{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}

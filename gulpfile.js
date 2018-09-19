@@ -9,10 +9,10 @@ var dotenv = require('dotenv');
 dotenv.config();
 
 // define variables from process.env
-const pageName = 'ng4test';//process.env.PAGE_NAME;
+const pageName = 'BLN_MM_ViewAdminProfile';//'BLN_MM_ViewAdminProfile';//process.env.PAGE_NAME;
 //console.log(pageName);
 const apiVersion = '42.0';//process.env.API_VERSION;
-const resources = 'ng4resource';//process.env.RESOURCE_NAME;
+const resources = 'editviewprofile';//process.env.RESOURCE_NAME;
 const baseHref = '/abc';
 const devResources = process.env.DEV_RESOURCES_URL;
 const distPath = process.env.DIST_PATH || 'dist';
@@ -122,8 +122,10 @@ gulp.task('deploy', function () {
   gulp.src('./package/**', { base: "." })
     .pipe(zip('package.zip'))
     .pipe(forceDeploy({
-      username: 'durga@boothleads.com.sharmistha',
-      password: 'sharmistha@123tTT9XO1NdPYdL0bMMuvofexz',
+      username: 'durga@boothleads.com.qa',
+      password: 'Elvis@281QdQ6GsqAOqP3QUwSMbK10Gj6',
+     // username: 'durga@boothleads.com.sharmistha',
+     // password: 'sharmistha@123tTT9XO1NdPYdL0bMMuvofexz',
       loginUrl: 'https://test.salesforce.com'
     }))
 });

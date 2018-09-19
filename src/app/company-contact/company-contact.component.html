@@ -1,4 +1,10 @@
-<div class="container basic-views-in-adrs">
+<div class="container basic-views-in-adrs" *ngIf="work_set[0]?.biw.readaccess =='true' || work_set[1]?.biw.readaccess =='true' ||
+work_set[2]?.biw.readaccess =='true' || work_set[3]?.biw.readaccess =='true' || work_set[4]?.biw.readaccess =='true' ||
+work_set[5]?.biw.readaccess =='true' || work_set[7]?.biw.readaccess =='true' || work_set[8]?.biw.readaccess =='true' ||
+work_set[15]?.biw.readaccess =='true' || work_set[16]?.biw.readaccess =='true' || work_set[17]?.biw.readaccess =='true' ||
+work_set[18]?.biw.readaccess =='true' || work_set[19]?.biw.readaccess =='true' || work_set[20]?.biw.readaccess =='true' ||
+work_set[21]?.biw.readaccess =='true' || work_set[23]?.biw.readaccess =='true' || work_set[24]?.biw.readaccess =='true'||
+work_set[32]?.biw.readaccess =='true'">
   <div class="row">
     <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openCompanyEditDialog()"></i>
     <div class="col-md-6 adrs-info">
@@ -7,23 +13,23 @@
     <div class="col-md-6 col-md-offset-6"> </div>
     <div class="container tbl-brdr-pdng">
       <div class="row">
-        <div class="col-md-6 padding-0" *ngIf="work_set[0]?.biw.readaccess =='true' && basic.Primary_Business_Category__c !== undefined ">
-          <div class="col-sm-6 col-sm-6 col-sm-6 col-sm-6 tbl-brdrd tbl-frst-bck">
+        <div class="col-md-12 padding-0" *ngIf="work_set[0]?.biw.readaccess =='true' && basic.Primary_Business_Category__c !== undefined && basic.Primary_Business_Category__c !=''">
+          <div class="col-sm-3 col-sm-3 col-sm-3 col-sm-3 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[0]?.biw.labelname}}</p>
           </div>
-          <div class="col-sm-6 tbl-brdrd">
+          <div class="col-sm-9 tbl-brdrd">
             <p>{{basic.Primary_Business_Category__c}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[1]?.biw.readaccess =='true' && basic.Secondary_Business_Category__c !== undefined">
-          <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
+        <div class="col-md-12 padding-0" *ngIf="work_set[1]?.biw.readaccess =='true' && basic.Secondary_Business_Category__c !== undefined && basic.Secondary_Business_Category__c !=''">
+          <div class="col-sm-3 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[1]?.biw.labelname}} </p>
           </div>
-          <div class="col-sm-6 tbl-brdrd ">
+          <div class="col-sm-9 tbl-brdrd ">
             <p>{{basic.Secondary_Business_Category__c}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[2]?.biw.readaccess =='true' && no_of_emp.BLN_ListLookUp__r?.List_Description__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[2]?.biw.readaccess =='true' && no_of_emp.BLN_ListLookUp__r?.List_Description__c != null">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[2]?.biw.labelname}}</p>
           </div>
@@ -31,15 +37,15 @@
             <p>{{ no_of_emp.BLN_ListLookUp__r?.List_Description__c }}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[3]?.biw.readaccess =='true' && basic.Established_Date__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[3]?.biw.readaccess =='true' && basic.Established_Date__c !== undefined && basic.Established_Date__c != ''">
           <div class="col-sm-6 col-sm-6 col-sm-6 col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[3]?.biw.labelname}}</p>
           </div>
           <div class="col-sm-6 tbl-brdrd">
-            <p>{{basic.Established_Date__c}}</p>
+            <p>{{basic.Established_Date__c | date: 'MM-dd-yyyy'}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[4]?.biw.readaccess =='true' && revenue.BLN_ListLookUp__r?.List_Description__c !==undefined ">
+        <div class="col-md-6 padding-0" *ngIf="work_set[4]?.biw.readaccess =='true' && revenue.BLN_ListLookUp__r?.List_Description__c != null ">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[4]?.biw.labelname}}</p>
           </div>
@@ -47,7 +53,7 @@
             <p>{{ revenue.BLN_ListLookUp__r?.List_Description__c}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[5]?.biw.readaccess =='true' && basic.Tax_Id__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[5]?.biw.readaccess =='true' && basic.Tax_Id__c !== undefined && basic.Tax_Id__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[5]?.biw.labelname}}</p>
           </div>
@@ -63,7 +69,7 @@
             <p>{{basic.Company_Website_URL__c}}</p>
           </div>
         </div> -->
-        <div class="col-md-6 padding-0" *ngIf="work_set[7]?.biw.readaccess =='true' && basic.Duns_Number__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[7]?.biw.readaccess =='true' && basic.Duns_Number__c !== undefined && basic.Duns_Number__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[7]?.biw.labelname}} </p>
           </div>
@@ -71,7 +77,7 @@
             <p>{{basic.Duns_Number__c}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[8]?.biw.readaccess =='true' && basic.Blog_URL__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[8]?.biw.readaccess =='true' && basic.Blog_URL__c !== undefined && basic.Blog_URL__c != ''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[8]?.biw.labelname}}</p>
           </div>
@@ -111,7 +117,7 @@
             <p>{{basic.DBA__c}}</p>
           </div>
         </div> -->
-        <div class="col-md-6 padding-0" *ngIf="work_set[15]?.biw.readaccess =='true' && basic.BBB_Number__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[15]?.biw.readaccess =='true' && basic.BBB_Number__c !== undefined && basic.BBB_Number__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[15]?.biw.labelname}}</p>
           </div>
@@ -119,7 +125,7 @@
             <p>{{basic.BBB_Number__c}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[16]?.biw.readaccess =='true' && basic.GSA_Schedule__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[16]?.biw.readaccess =='true' && basic.GSA_Schedule__c !== undefined && basic.GSA_Schedule__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[16]?.biw.labelname}}</p>
           </div>
@@ -127,7 +133,7 @@
             <p>{{basic.GSA_Schedule__c}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[17]?.biw.readaccess =='true' && georeason.BLN_ListLookUp__r?.List_Description__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[17]?.biw.readaccess =='true' && georeason.BLN_ListLookUp__r?.List_Description__c != null">
           <div class="col-sm-6 col-sm-6 col-sm-6 col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[17]?.biw.labelname}}</p>
           </div>
@@ -135,7 +141,7 @@
             <p>{{ georeason.BLN_ListLookUp__r?.List_Description__c}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[18]?.biw.readaccess =='true' && ethinicity.BLN_ListLookUp__r?.List_Description__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[18]?.biw.readaccess =='true' && ethinicity.BLN_ListLookUp__r?.List_Description__c != null">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[18]?.biw.labelname}}</p>
           </div>
@@ -143,7 +149,7 @@
             <p>{{ ethinicity.BLN_ListLookUp__r?.List_Description__c }}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[19]?.biw.readaccess =='true' && bsnstr.BLN_ListLookUp__r?.List_Description__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[19]?.biw.readaccess =='true' && bsnstr.BLN_ListLookUp__r?.List_Description__c != null">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[19]?.biw.labelname}}</p>
           </div>
@@ -151,7 +157,7 @@
             <p>{{ bsnstr.BLN_ListLookUp__r?.List_Description__c}}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[20]?.biw.readaccess =='true' && basic.CageCode__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[20]?.biw.readaccess =='true' && basic.CageCode__c !== undefined && basic.CageCode__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[20]?.biw.labelname}}</p>
           </div>
@@ -159,7 +165,7 @@
             <p>{{ basic.CageCode__c }}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[21]?.biw.readaccess =='true' && basic.distribution_Country__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[21]?.biw.readaccess =='true' && basic.distribution_Country__c !== undefined && basic.distribution_Country__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[21]?.biw.labelname}}</p>
           </div>
@@ -175,7 +181,7 @@
             <p>{{basic.FaxNumber__c}}</p>
           </div>
         </div> -->
-        <div class="col-md-6 padding-0" *ngIf="work_set[23]?.biw.readaccess =='true' && basic.Manufactures_Country__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[23]?.biw.readaccess =='true' && basic.Manufactures_Country__c !== undefined && basic.Manufactures_Country__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[23]?.biw.labelname}}</p>
           </div>
@@ -183,7 +189,7 @@
             <p>{{ basic.Manufactures_Country__c }}</p>
           </div>
         </div>
-        <div class="col-md-6 padding-0" *ngIf="work_set[24]?.biw.readaccess =='true' && basic.Outside_Facilities__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[24]?.biw.readaccess =='true' && basic.Outside_Facilities__c !== undefined && basic.Outside_Facilities__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[24]?.biw.labelname}}</p>
           </div>
@@ -239,7 +245,7 @@
             <p>&nbsp;</p>
           </div>
         </div> -->
-        <div class="col-md-6 padding-0" *ngIf="work_set[31]?.biw.readaccess =='true' && basic.Year_in_business__c !== undefined">
+        <div class="col-md-6 padding-0" *ngIf="work_set[31]?.biw.readaccess =='true' && basic.Year_in_business__c !== undefined && basic.Year_in_business__c !=''">
           <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
             <p>{{work_set[31]?.biw.labelname}}</p>
           </div>
@@ -261,7 +267,8 @@
   </div>
 </div>
 <!-- Reference block -->
-<div class="container basic-views-in-adrs">
+<div class="container basic-views-in-adrs" *ngIf="work_set[25].biw.readaccess == 'true' || work_set[26].biw.readaccess == 'true' 
+|| work_set[27].biw.readaccess == 'true' || work_set[28].biw.readaccess == 'true'">
   <div class="row">
     <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openCustomerRefEditDialog()"></i>
     <div class="col-md-6 adrs-info">
@@ -270,7 +277,7 @@
     <div class="col-md-6 col-md-offset-6"> </div>
     <div class="container tbl-brdr-pdng">
       <div class="row">
-        <div class="ref-sec">
+        <div class="ref-sec" *ngIf="basic.References1__c !== undefined || basic.ScopeOfWork1__c !== undefined">
         <div class="col-md-12 padding-0" *ngIf="work_set[25]?.biw.readaccess =='true' && basic.References1__c !== undefined">
           <div class="col-sm-2">
             <p>{{work_set[25]?.biw.labelname}} : </p>
@@ -288,7 +295,7 @@
           </div>
         </div>
       </div>
-      <div class="ref-sec margin-top-5">
+      <div class="ref-sec margin-top-5" *ngIf="basic.References2__c !== undefined || basic.ScopeOfWork2__c !== undefined">
         <div class="col-md-12 padding-0" *ngIf="work_set[27]?.biw.readaccess =='true' && basic.References2__c !== undefined">
           <div class="col-sm-2">
             <p>{{work_set[27]?.biw.labelname}} : </p>

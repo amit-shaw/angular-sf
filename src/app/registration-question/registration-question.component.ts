@@ -28,6 +28,7 @@ export class RegistrationQuestionComponent implements OnInit {
   }
   openDialog() {
     const dialogRef = this.dialog.open(RegistrationQuestionEditComponent, {
+      disableClose: true,
       height: '450px'
       //width:'500px'
     });

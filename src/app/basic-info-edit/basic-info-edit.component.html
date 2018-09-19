@@ -1,17 +1,23 @@
 <div class="container basic-info-edit">
   <div class="row basic-info-title">
     Basic Information
-    <span class="close-popup" (click)="onCancel()">X</span>
+   <!-- <span class="close-popup" (click)="onCancel()">X</span> -->
   </div>
   <form (ngSubmit)="onSubmit()" #personalInfoForm="ngForm" [formGroup]="basicEdit" ngNativeValidate>
 
     <div class="basic-info-header row">
-      <div class="col-md-6" style="height: 100px;">
+      <div class="col-md-6 col-sm-6 col-xs-6" style="height: 100px;" *ngIf='speaker[2].biw.readaccess == "true"'>
         <div class="rec"></div>
         <div class="rec-1"></div>
         <div class="logo-img">
-          <span class="glyphicon glyphicon-pencil logo-upload-pencil">
+            <span class="help-text logo-help"><i aria-hidden="true" class="fa fa-question-circle"></i>
+              <span class="tooltiptext">Upload image with less than 5MB</span>
+            </span>
+          <span class="glyphicon glyphicon-pencil logo-upload-pencil" *ngIf='speaker[2].biw.updateaccess == "true"'>
             <input type='file' (change)="onSelectLogoFile($event)" class="file-input-hide">
+          </span>
+          <span class="delete-logo" *ngIf="logourl != '/servlet/servlet.FileDownload?file=undefined' && speaker[2].biw.updateaccess =='true'" (click)="deleteLogo()">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
           </span>
           <img [src]="logourl" class="logo-pic" *ngIf="logourl != '/servlet/servlet.FileDownload?file=undefined'">
           <p class="no-company-logo" *ngIf="logourl == '/servlet/servlet.FileDownload?file=undefined'">Upload company logo</p>
@@ -19,9 +25,15 @@
         <div class="rec-2"></div>
         <div class="rec-3"></div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-sm-6 col-xs-6" *ngIf='speaker[1].biw.readaccess == "true"'>
         <div class="col-xs-4 col-xs-offset-7">
-          <span class="glyphicon glyphicon-pencil image-upload-pencil">
+            <span class="help-text image-help"><i aria-hidden="true" class="fa fa-question-circle"></i>
+              <span class="tooltiptext">Upload image with less than 5MB</span>
+            </span>
+            <span class="delete-user-pic" *ngIf="url != '/servlet/servlet.FileDownload?file=undefined' && speaker[1].biw.updateaccess == 'true'" (click)="deleteUserPic()">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </span>
+          <span class="glyphicon glyphicon-pencil image-upload-pencil" *ngIf='speaker[1].biw.updateaccess == "true"'>
             <input type='file' (change)="onSelectFile($event)" class="file-input-hide">
           </span>
           <img [src]="url" class="profile-pic" *ngIf="url != '/servlet/servlet.FileDownload?file=undefined'">
@@ -31,141 +43,152 @@
     </div>
     <div class="basic-info-edit-section row">
       <!--<div class="form-group col-md-4" *ngFor='let fields of basic_set'> -->
-      <div *ngIf='basic_set[0].biw.readaccess' class="col-md-2">
+      <div *ngIf='basic_set[0].biw.readaccess == "true"' class="col-md-2">
         <label for="label">{{basic_set[0].biw.labelname}}
           <span *ngIf="basic_set[0].biw.required == 'true'" class="required">*</span>
         </label>
-        <select id="prefix" formControlName="Prefix__c" class="form-control">
-          <option *ngFor="let p of prefix" [ngValue]="p">{{ p }}</option>
+        <select id="prefix" formControlName="Prefix__c" class="form-control" [required]='basic_set[0].biw.required'>
+          <option value="" selected disabled>-Select-</option>
+          <option *ngFor="let p of prefix" [ngValue]="p" [disabled]="basic_set[0].biw.updateaccess == 'false'">{{ p }}</option>
         </select>
       </div>
-      <div *ngIf='basic_set[1].biw.readaccess' class="col-md-4">
+      <div *ngIf='basic_set[1].biw.readaccess == "true"' class="col-md-4">
         <label for="label">{{basic_set[1].biw.labelname}}
           <span *ngIf="basic_set[1].biw.required =='true' " class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="First_Name__c" [required]='basic_set[1].biw.required' [readonly]='!basic_set[1].biw.updateaccess'
+        <input type="text" class="form-control" id="First_Name__c" [required]='basic_set[1].biw.required' [readonly]='basic_set[1].biw.updateaccess == "false"'
           name="First_Name__c" formControlName="First_Name__c">
       </div>
-      <div *ngIf='basic_set[2].biw.readaccess && basic_set[2].biw.columnname == "Last_Name__c"' class="col-md-4">
+      <div *ngIf='basic_set[2].biw.readaccess == "true" && basic_set[2].biw.columnname == "Last_Name__c"' class="col-md-4">
         <label for="email">{{basic_set[2].biw.labelname}}
           <span *ngIf="basic_set[2].biw.required == 'true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="Last_Name__c" [required]='basic_set[2].biw.required' [readonly]='!basic_set[2].biw.updateaccess'
+        <input type="text" class="form-control" id="Last_Name__c" [required]='basic_set[2].biw.required' [readonly]='basic_set[2].biw.updateaccess == "false"'
           name="Last_Name__c" formControlName="Last_Name__c">
       </div>
-      <div *ngIf='basic_set[5].biw.readaccess && basic_set[5].biw.columnname == "Suffix__c"' class="col-md-2">
+      <div *ngIf='basic_set[5].biw.readaccess == "true" && basic_set[5].biw.columnname == "Suffix__c"' class="col-md-2">
         <label for="label">{{basic_set[5].biw.labelname}}
           <span *ngIf="basic_set[5].biw.required =='true'" class="required">*</span>
         </label>
-        <select id="suffix" formControlName="Suffix__c" class="form-control">
-          <option *ngFor="let s of suffix" [ngValue]="s">{{ s }}</option>
+        <select id="suffix" formControlName="Suffix__c" class="form-control" [required]='basic_set[5].biw.required'>
+            <option value="" selected disabled>-Select-</option>
+          <option *ngFor="let s of suffix" [ngValue]="s" [disabled]="basic_set[5].biw.updateaccess == 'false'">{{ s }}</option>
         </select>
       </div>
-      <div *ngIf='basic_set[7].biw.readaccess' class="col-md-12">
+      <div *ngIf='basic_set[7].biw.readaccess== "true"' class="col-md-12">
         <label for="label">{{basic_set[7].biw.labelname}}
           <span *ngIf="basic_set[7].biw.required == 'true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="tkt-job" [required]='basic_set[7].biw.required' [readonly]='!basic_set[7].biw.updateaccess'
+        <input type="text" class="form-control" id="tkt-job" [required]='basic_set[7].biw.required' [readonly]='basic_set[7].biw.updateaccess == "false"'
           name="tkt-job" formControlName="TKT_Job_Title__c">
       </div>
-      <div *ngIf='basic_set[6].biw.readaccess' class="col-md-6">
+      <div *ngIf='basic_set[6].biw.readaccess == "true"' class="col-md-6">
         <label for="label">{{basic_set[6].biw.labelname}}
           <span *ngIf="basic_set[6].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="tkt-company" [required]='basic_set[6].biw.required' [readonly]='!basic_set[6].biw.updateaccess'
+        <input type="text" class="form-control" id="tkt-company" [required]='basic_set[6].biw.required' [readonly]='basic_set[6].biw.updateaccess =="false"'
           name="name" formControlName="TKT_Company__c">
       </div>
-      <div *ngIf='work_set[13].biw.readaccess' class="col-md-6">
+      <div *ngIf='work_set[13].biw.readaccess == "true"' class="col-md-6">
         <label for="label">{{work_set[14].biw.labelname}}
           <span *ngIf="work_set[14].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="dba_c" [required]='work_set[14].biw.required' [readonly]='!work_set[14].biw.updateaccess'
+        <input type="text" class="form-control" id="dba_c" [required]='work_set[14].biw.required' [readonly]='work_set[14].biw.updateaccess=="false"'
           name="name" formControlName="DBA__c">
       </div>
-      <div *ngIf='basic_set[3].biw.readaccess && basic_set[3].biw.columnname == "Email__c"' class="col-md-6">
+      <div *ngIf='basic_set[3].biw.readaccess == "true" && basic_set[3].biw.columnname == "Email__c"' class="col-md-6">
         <label for="label">{{basic_set[3].biw.labelname}}
           <span *ngIf="basic_set[3].biw.required == 'true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="Email__c" [required]='basic_set[3].biw.required' [readonly]="basic_set[3].biw.updateaccess =='false'"
           name="Email__c" formControlName="Email__c" (blur)="emailChanged($event.target.value)">
       </div>
-      <div *ngIf='basic_set[4].biw.readaccess' class="col-md-6">
+      <div *ngIf='basic_set[4].biw.readaccess == "true"' class="col-md-6">
         <label for="label">{{work_set[29].biw.labelname}}
           <span *ngIf="basic_set[4].biw.required == 'true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="verify_email" [required]='basic_set[4].biw.required' [readonly]="basic_set[4].biw.updateaccess == 'false'"
           formControlName="verify_Email__c">
       </div>
-      <div *ngIf='basic_set[8].biw.readaccess' class="col-md-6">
+      <div *ngIf='basic_set[8].biw.readaccess == "true"' class="col-md-6">
         <label for="email">{{basic_set[8].biw.labelname}}
           <span *ngIf="basic_set[8].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="mobile__c" [required]='basic_set[8].biw.required' [readonly]='!basic_set[8].biw.updateaccess'
+        <input type="number" class="form-control" id="mobile__c" [required]='basic_set[8].biw.required' [readonly]='basic_set[8].biw.updateaccess =="false"'
           name="Mobile__c" formControlName="Mobile__c">
       </div>
-      <div *ngIf='basic_set[10].biw.readaccess' class="col-md-3">
+      <div *ngIf='basic_set[10].biw.readaccess == "true"' class="col-md-3">
         <label for="email">{{basic_set[10].biw.labelname}}
           <span *ngIf="basic_set[10].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="home-phone" [required]='basic_set[10].biw.required' [readonly]='!basic_set[10].biw.updateaccess'
+        <input type="number" class="form-control" id="home-phone" [required]='basic_set[10].biw.required' [readonly]='basic_set[10].biw.updateaccess =="false"'
           name="Mobile__c" formControlName="Home_Phone__c">
       </div>
-      <div *ngIf='basic_set[9].biw.readaccess' class="col-md-3">
+      <div *ngIf='basic_set[9].biw.readaccess == "true"' class="col-md-3">
         <label for="email">{{basic_set[9].biw.labelname}}
           <span *ngIf="basic_set[9].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="dob__c" [required]='basic_set[9].biw.required' [readonly]='!basic_set[9].biw.updateaccess'
+        <input type="number" class="form-control" id="dob__c" [required]='basic_set[9].biw.required' [readonly]='basic_set[9].biw.updateaccess == "false"'
           name="DOB__c" formControlName="Work_Phone__c">
       </div>
-      <div *ngIf='work_set[6].biw.readaccess' class="col-md-6">
+      <div *ngIf='work_set[6].biw.readaccess == "true"' class="col-md-6">
         <label for="email">{{work_set[6].biw.labelname}}
           <span *ngIf="work_set[6].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="website-url__c" [required]='work_set[6].biw.required' [readonly]='!work_set[6].biw.updateaccess'
+        <input type="text" class="form-control" id="website-url__c" [required]='work_set[6].biw.required' [readonly]='work_set[6].biw.updateaccess =="false"'
           name="website-url" formControlName="Company_Website_URL__c">
       </div>
-      <div *ngIf='work_set[22].biw.readaccess' class="col-md-6">
+      <div *ngIf='work_set[22].biw.readaccess == "true"' class="col-md-6">
         <label for="email">{{work_set[22].biw.labelname}}
           <span *ngIf="work_set[22].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="fax--c" [required]='work_set[22].biw.required' [readonly]='!work_set[22].biw.updateaccess'
+        <input type="text" class="form-control" id="fax--c" [required]='work_set[22].biw.required' [readonly]='work_set[22].biw.updateaccess =="false"'
           name="fax-number" formControlName="FaxNumber__c">
       </div>
-      <div *ngIf='basic_set[13].biw.readaccess' class="col-md-4">
+      <div *ngIf='basic_set[13].biw.readaccess == "true"' class="col-md-4">
         <label for="email">{{basic_set[13].biw.labelname}}
           <span *ngIf="basic_set[13].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="date" class="form-control" id="dob__c" [required]='basic_set[13].biw.required' [readonly]='!basic_set[13].biw.updateaccess'
-          name="DOB__c" formControlName="DOB__c">
+        <input type="date" class="form-control" id="dob__c" [required]='basic_set[13].biw.required' [readonly]='basic_set[13].biw.updateaccess =="false"'
+          name="DOB__c" formControlName="DOB__c" max="9999-10-20">
       </div>
-      <div *ngIf='basic_set[11].biw.readaccess' class="col-md-2">
+      <div *ngIf='basic_set[11].biw.readaccess == "true"' class="col-md-2">
         <label for="email">{{basic_set[11].biw.labelname}}
           <span *ngIf="basic_set[11].biw.required =='true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="age__c" [required]='basic_set[11].biw.required' [readonly]='!basic_set[11].biw.updateaccess'
-          name="Age__c" formControlName="Age__c">
+        <input type="number" class="form-control" id="age__c" [required]='basic_set[11].biw.required' [readonly]='basic_set[11].biw.updateaccess =="false"'
+          name="Age__c" formControlName="Age__c" min="0">
       </div>
       <div *ngIf="basic_set[12].biw.readaccess =='true'" class="col-md-6">
         <label for="email">{{basic_set[12].biw.labelname}}
           <span *ngIf="basic_set[12].biw.required == 'true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="gender__c" [required]='basic_set[12].biw.required' [readonly]='!basic_set[12].biw.updateaccess'
-          name="Gender__c" formControlName="Gender__c">
+      <!--  <input type="text" class="form-control" id="gender__c" [required]='basic_set[12].biw.required' [readonly]='!basic_set[12].biw.updateaccess'
+          name="Gender__c" formControlName="Gender__c"> -->
+        <select id="gender" formControlName="Gender__c" class="form-control">
+          <option *ngFor="let p of gender" [ngValue]="p">{{ p }}</option>
+        </select>
       </div>
-      <div *ngIf='basic_set[14].biw.readaccess' class="col-md-12">
+      <div *ngIf='basic_set[14].biw.readaccess == "true"' class="col-md-12">
         <label for="email">{{basic_set[14].biw.labelname}}
           <span *ngIf="basic_set[14].biw.required == 'true'" class="required">*</span>
         </label>
-        <input type="text" class="form-control" id="custom-barcode" [required]='basic_set[14].biw.required' [readonly]='!basic_set[14].biw.updateaccess'
-          name="Custom_Barcode__c" formControlName="Custom_Barcode__c">
+        <input type="text" class="form-control" id="custom_Barcode__C" [required]='basic_set[14].biw.required' [readonly]='basic_set[14].biw.updateaccess =="false"'
+          name="Custom_Barcode__c" formControlName="Custom_Barcode__c" (blur)="checkBarcode($event.target.value)">
       </div>
-      <div *ngIf='speaker[7].biw.readaccess' class="col-md-12">
+      <div *ngIf='speaker[7].biw.readaccess == "true"' class="col-md-12">
           <label for="email">{{speaker[7].biw.labelname}}
-            <span *ngIf="speaker[7].biw.required == 'true'" class="required">*</span>
+            <span *ngIf="speaker[7].biw.required == 'true'" class="required">*</span> 
+            <span class="help-text"><i class="fa fa-question-circle" aria-hidden="true"></i>
+              <span class="tooltiptext">Text is limited to 1500 characters</span>
+            </span>  
           </label>
-          <simple-tiny formControlName="Biography__c"></simple-tiny>
+          <simple-tiny formControlName="Biography__c" *ngIf="speaker[7].biw.updateaccess == 'true'"></simple-tiny>
+          <p [innerHTML]="basic.Biography__c" class="readonly-text" *ngIf="speaker[7].biw.updateaccess == 'false'"></p>
+          
+
         </div>
-      <div class="col-md-3 col-md-offset-9 action-section"> 
+      <div class="col-md-4 col-md-offset-8 action-section"> 
         <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
         <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
       </div>

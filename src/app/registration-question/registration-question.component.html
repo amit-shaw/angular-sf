@@ -1,4 +1,4 @@
-<div class="container basic-views-in-adrs">
+<div class="container basic-views-in-adrs" *ngIf="(reg_ques != undefined && reg_ques != '') ||(event_ques != '' && event_ques != undefined)">
     <div class="row">
         <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialog()"></i>
         <div class="col-md-6 adrs-info">
@@ -8,8 +8,8 @@
         <div class="container tbl-brdr-pdng">
             <div class="row">
                 <div class="col-md-12" *ngFor="let reg_ques of reg_ques">
-                    <div class="item-question">{{ reg_ques.itq.Question__r.Question_Text__c }}</div>
-                    <div class="iten-answer">
+                    <div class="item-question" *ngIf="(reg_ques.SelectedAnswer != '' && reg_ques.SelectedAnswer !== undefined && reg_ques.SelectedAnswer != null) || (reg_ques.SelectedAnswerCheck != '')">{{ reg_ques.itq.Question__r.Question_Text__c }}</div>
+                    <div class="iten-answer" *ngIf="(reg_ques.SelectedAnswer != '' && reg_ques.SelectedAnswer != null) || (reg_ques.SelectedAnswerCheck != '')">
                         <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Text'" class="answer-data">
                             {{ reg_ques.SelectedAnswer }}
                         </span>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-md-12" *ngFor="let reg_ques of event_ques">
                     <div class="item-question" *ngIf="(reg_ques.SelectedAnswer !='' && reg_ques.SelectedAnswer != null) || (reg_ques.SelectedAnswerCheck != '')">{{ reg_ques.itq.Question__r.Question_Text__c }}</div>
-                    <div class="iten-answer">
+                    <div class="iten-answer" *ngIf="(reg_ques.SelectedAnswer != '' && reg_ques.SelectedAnswer != null) || (reg_ques.SelectedAnswerCheck != '')">
                         <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Text'" class="answer-data">
                             {{ reg_ques.SelectedAnswer }}
                         </span>

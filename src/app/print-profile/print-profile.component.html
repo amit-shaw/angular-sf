@@ -1,4 +1,5 @@
 <div class="col-xs-12 print-profile">
+  <span class="cancel-buuton" (click)="goBack()">Cancel</span>
   <a href="javascript:window.print();"><i class="fa fa-print" aria-hidden="true"></i></a>
 </div>
 <div class="container-fluid print-prf" id="profile-print">
@@ -43,112 +44,113 @@
           <li *ngIf="basic.Company_Website_URL__c != undefined && basic.Company_Website_URL__c !=''">
             <i class="fa fa-link" aria-hidden="true"></i>
             <strong>{{work_set[6]?.biw.labelname}}:</strong> {{basic.Company_Website_URL__c}}</li>
-          <li *ngIf="basic_set[8]?.biw.readaccess == 'true'">
+          <li *ngIf="basic_set[8]?.biw.readaccess == 'true' && basic.Mobile__c !== undefined">
             <i class="fa fa-mobile fa-mbl-ic" aria-hidden="true"></i>
             <strong>{{basic_set[8].biw.labelname}}:</strong> {{basic.Mobile__c}}</li>
-          <li *ngIf="basic_set[9]?.biw.readaccess == 'true'">
+          <li *ngIf="basic_set[9]?.biw.readaccess == 'true' && basic.Work_Phone__c !== undefined">
             <i class="fa fa-phone" aria-hidden="true"></i>
             <strong>{{basic_set[9].biw.labelname}}:</strong> {{basic.Work_Phone__c}}</li>
-          <li *ngIf="basic_set[10]?.biw.readaccess == 'true'">
+          <li *ngIf="basic_set[10]?.biw.readaccess == 'true' && basic.Home_Phone__c !== undefined">
             <i class="fa fa-phone" aria-hidden="true"></i>
             <strong>{{basic_set[10].biw.labelname}}:</strong> {{basic.Home_Phone__c}}</li>
-          <li *ngIf="work_set[22]?.biw.readaccess == 'true'">
+          <li *ngIf="work_set[22]?.biw.readaccess == 'true' && basic.FaxNumber__c !== undefined">
             <i class="fa fa-fax" aria-hidden="true"></i>
             <strong>{{work_set[22].biw.labelname}}:</strong> {{basic.FaxNumber__c}}</li>
           <li>
-            <strong>{{basic_set[11]?.biw.labelname}}:</strong> {{basic?.Age__c}} |
-            <strong>{{basic_set[13]?.biw.labelname}}:</strong> {{basic?.DOB__c}} |
-            <strong>{{basic_set[12]?.biw.labelname}}:</strong> {{basic.Gender__c}}</li>
-          <li>
+            <span *ngIf="basic?.Age__c !== undefined && basic?.Age__c != '0'"><strong>{{basic_set[11]?.biw.labelname}}:</strong> {{basic?.Age__c +" | "}} </span>
+            <span *ngIf="basic?.DOB__c !== undefined"><strong>{{basic_set[13]?.biw.labelname}}:</strong> {{basic?.DOB__c +" | "}}</span>
+            <span *ngIf="basic.Gender__c !== undefined"><strong>{{basic_set[12]?.biw.labelname}}:</strong> {{basic.Gender__c}}</span>
+          </li>
+          <li *ngIf='custom_barcode.Custom_Barcode__c != undefine && custom_barcode.Custom_Barcode__c !=""'><strong>{{basic_set[14]?.biw.labelname}}:</strong>{{ this.custom_barcode.Custom_Barcode__c }}</li>
+          <li *ngIf="basic.Biography__c !== undefined && basic.Biography__c != '<p><br></p>'">
             <strong>Biography :</strong>
             <p [innerHTML]="basic.Biography__c"></p>
           </li>
         </ul>
         <ul class="basic-view-pg">
-          <li><strong>{{speaker[3]?.biw.labelname}} : </strong>{{basic.FaceBookId__c}}</li>
-          <li><strong>{{speaker[4]?.biw.labelname}} : </strong>{{basic.LinkedInId__c}}</li>
-          <li><strong>{{speaker[5]?.biw.labelname}} : </strong>{{basic.TwitterId__c}}</li>
-          <li><strong>{{speaker[8]?.biw.labelname}} : </strong>{{basic.Video__c}}</li>
-          <li><strong>{{speaker[13]?.biw.labelname}} : </strong>{{basic.Instagram__c}}</li>
+          <li *ngIf="basic.FaceBookId__c !== undefined"><strong>{{speaker[3]?.biw.labelname}} : </strong>{{basic.FaceBookId__c}}</li>
+          <li *ngIf="basic.LinkedInId__c !== undefined"><strong>{{speaker[4]?.biw.labelname}} : </strong>{{basic.LinkedInId__c}}</li>
+          <li *ngIf="basic.TwitterId__c !== undefined"><strong>{{speaker[5]?.biw.labelname}} : </strong>{{basic.TwitterId__c}}</li>
+          <li *ngIf="basic.Video__c !== undefined"><strong>{{speaker[8]?.biw.labelname}} : </strong>{{basic.Video__c}}</li>
+          <li *ngIf="basic.Instagram__c !== undefined"><strong>{{speaker[13]?.biw.labelname}} : </strong>{{basic.Instagram__c}}</li>
         </ul>
       </div>
     </div>
-    <div class="col-xs-12 padding-0">
+    <div class="col-xs-12 padding-0" *ngIf="(basic?.Home_Address__r.Address1__c !== undefined || basic?.Home_Address__r.Address2__c !== undefined || basic?.Home_Address__r.City__c !== undefined || basic.Home_Address__r.State__r !== undefined || basic.Home_Address__r.Country__r?.Long_Name__c != null || basic?.Home_Address__r.ZipCode__c != null) || 
+    (basic?.Work_Address__r.Address1__c !== undefined ||basic?.Work_Address__r.Address2__c !== undefine || basic?.Work_Address__r.City__c !== undefined || basic?.Work_Address__r.Country__r?.Long_Name__c) ||
+    (basic?.Billing_Address__r.Address1__c !== undefined || basic?.Billing_Address__r.Address2__c !== undefined || basic.Billing_Address__r.State__r?.Long_Name__c != null || basic.Billing_Address__r.Country__r?.Long_Name__c !=null || basic?.Billing_Address__r.ZipCode__c != null) ">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text"> Address Information</span>
       </div>
       <div class="col-xs-12 print-profile-info">
         <ul class="basic-address">
-          <li>
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <strong>Home:</strong>
-            <span *ngIf="basic?.Home_Address__r.Address1__c !='' && basic?.Home_Address__r.Address1__c !='null'">
+          <li *ngIf="basic?.Home_Address__r !== undefined && (basic?.Home_Address__r.Address1__c !== undefined || basic?.Home_Address__r.Address2__c !== undefined || basic?.Home_Address__r.City__c !== undefined || basic.Home_Address__r.State__r !== undefined || basic.Home_Address__r.Country__r?.Long_Name__c != null || basic?.Home_Address__r.ZipCode__c != null)"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Home:</strong> 
+            <span *ngIf="basic?.Home_Address__r.Address1__c !='' && basic?.Home_Address__r.Address1__c !== undefined">
               {{basic?.Home_Address__r.Address1__c + ','}}
             </span>
-            <span *ngIf="basic?.Home_Address__r.Address2__c !=''">
+            <span *ngIf="basic?.Home_Address__r.Address2__c !='' && basic?.Home_Address__r.Address2__c !== undefined">
               {{basic?.Home_Address__r.Address2__c +','}}
             </span>
-            <span *ngIf="basic?.Home_Address__r.City__c !=''">
+            <span *ngIf="basic?.Home_Address__r.City__c !='' && basic?.Home_Address__r.City__c !== undefined">
               {{basic?.Home_Address__r.City__c + ','}}
             </span>
-            <span *ngIf="basic.Home_Address__r.State__r?.Long_Name__c !=''">
+            <span *ngIf="basic.Home_Address__r.State__r?.Long_Name__c !='' && basic.Home_Address__r.State__r !== undefined">
               {{basic.Home_Address__r.State__r?.Long_Name__c+','}}
             </span>
-            <span *ngIf="basic.Home_Address__r.Country__r?.Long_Name__c !=''">
+            <span *ngIf="basic.Home_Address__r.Country__r?.Long_Name__c != null">
               {{basic.Home_Address__r.Country__r?.Long_Name__c+','}}
             </span>
-            <span *ngIf="basic?.Home_Address__r.ZipCode__c !=''">
+            <span *ngIf="basic?.Home_Address__r.ZipCode__c != null">
               {{basic?.Home_Address__r.ZipCode__c}}
             </span>
           </li>
-          <li *ngIf="basic?.Work_Address__r !== undefined">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <strong>Work:</strong>
-            <span *ngIf="basic?.Work_Address__r.Address1__c !='null' && basic?.Work_Address__r.Address1__c !==  undefined">
+          <li *ngIf="basic?.Work_Address__r !== undefined && (basic?.Work_Address__r.Address1__c !== undefined ||basic?.Work_Address__r.Address2__c !== undefine || basic?.Work_Address__r.City__c !== undefined || basic?.Work_Address__r.Country__r?.Long_Name__c) "><i class="fa fa-map-marker" aria-hidden="true" ></i> <strong>Work:</strong> 
+            <span *ngIf="basic?.Work_Address__r.Address1__c !== undefined && basic?.Work_Address__r.Address1__c !==  undefined">
               {{basic?.Work_Address__r.Address1__c + ','}}
             </span>
-            <span *ngIf="basic?.Work_Address__r.Address2__c !='null' && basic?.Work_Address__r.Address2__c !== undefined">
+            <span *ngIf="basic?.Work_Address__r.Address2__c !== undefined && basic?.Work_Address__r.Address2__c !== undefined">
               {{basic?.Work_Address__r.Address2__c +','}}
             </span>
-            <span *ngIf="basic?.Work_Address__r.City__c !='null' && basic?.Work_Address__r.City__c !=''">
+            <span *ngIf="basic?.Work_Address__r.City__c !== undefined && basic?.Work_Address__r.City__c !=''">
               {{basic?.Work_Address__r.City__c + ','}}
             </span>
-            <span *ngIf="basic.Work_Address__r.State__r?.Long_Name__c !='' && basic.Work_Address__r.State__r?.Long_Name__c !='null'">
+            <span *ngIf="basic.Work_Address__r.State__r?.Long_Name__c !='' && basic.Work_Address__r.State__r?.Long_Name__c !=null">
               {{basic.Work_Address__r.State__r?.Long_Name__c+','}}
             </span>
-            <span *ngIf="basic.Work_Address__r.Country__r?.Long_Name__c !='' && basic?.Work_Address__r.Country__r?.Long_Name__c !='null'">
+            <span *ngIf="basic.Work_Address__r.Country__r?.Long_Name__c !='' && basic?.Work_Address__r.Country__r?.Long_Name__c !=null">
               {{basic.Work_Address__r.Country__r?.Long_Name__c +','}}
             </span>
             <span *ngIf="basic?.Work_Address__r.ZipCode__c !='' && basic?.Work_Address__r.ZipCode__c !='null'">
               {{basic?.Work_Address__r.ZipCode__c}}
             </span>
           </li>
-          <li>
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <strong>Billing:</strong>
-            <span *ngIf="basic?.Billing_Address__r.Address1__c !='null' && basic?.Billing_Address__r.Address1__c !=''">
+          <li *ngIf="basic?.Billing_Address__r !== undefined && (basic?.Billing_Address__r.Address1__c !== undefined || basic?.Billing_Address__r.Address2__c !== undefined || basic.Billing_Address__r.State__r?.Long_Name__c != null || basic.Billing_Address__r.Country__r?.Long_Name__c !=null || basic?.Billing_Address__r.ZipCode__c != null)"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Billing:</strong>
+            <span *ngIf="basic?.Billing_Address__r.Address1__c !== undefined && basic?.Billing_Address__r.Address1__c !=''">
               {{basic?.Billing_Address__r.Address1__c + ','}}
             </span>
-            <span *ngIf="basic?.Billing_Address__r.Address2__c !=null && basic?.Billing_Address__r.Address2__c !=''">
+            <span *ngIf="basic?.Billing_Address__r.Address2__c !== undefined && basic?.Billing_Address__r.Address2__c !=''">
               {{basic?.Billing_Address__r.Address2__c +','}}
             </span>
-            <span *ngIf="basic?.Billing_Address__r.City__c !='null' && basic?.Billing_Address__r.City__c !=''">
+            <span *ngIf="basic?.Billing_Address__r.City__c !== undefined && basic?.Billing_Address__r.City__c !=''">
               {{basic?.Billing_Address__r.City__c + ','}}
             </span>
-            <span *ngIf="basic.Billing_Address__r.State__r?.Long_Name__c !=null && basic?.Billing_Address__r.State__r?.Long_Name__c !=''">
+            <span *ngIf="basic.Billing_Address__r.State__r?.Long_Name__c != null && basic?.Billing_Address__r.State__r?.Long_Name__c !== undefined">
               {{basic.Billing_Address__r.State__r?.Long_Name__c +','}}
             </span>
-            <span *ngIf="basic.Billing_Address__r.Country__r?.Long_Name__c !='null' && basic?.Billing_Address__r.Country__r?.Long_Name__c !=''">
+            <span *ngIf="basic.Billing_Address__r.Country__r?.Long_Name__c != null">
               {{basic.Billing_Address__r.Country__r?.Long_Name__c +','}}
             </span>
-            <span *ngIf="basic?.Billing_Address__r.ZipCode__c !='null' && basic?.Billing_Address__r.ZipCode__c !='null' !=''">
+            <span *ngIf="basic?.Billing_Address__r.ZipCode__c != null && basic?.Billing_Address__r.ZipCode__c != ''">
               {{basic?.Billing_Address__r.ZipCode__c}}
             </span>
           </li>
         </ul>
       </div>
     </div>
-    <div class="col-xs-12 padding-0">
+    <div class="col-xs-12 padding-0" *ngIf="basic.Primary_Business_Category__c !== undefined  || basic.Secondary_Business_Category__c !== undefined || no_of_emp.BLN_ListLookUp__r?.List_Description__c != null ||
+    basic.Established_Date__c !== undefined || revenue.BLN_ListLookUp__r?.List_Description__c != null  || basic.Tax_Id__c !== undefined ||basic.Duns_Number__c !== undefined || basic.Blog_URL__c !== undefined || 
+    basic.BBB_Number__c !== undefined || basic.GSA_Schedule__c !== undefined || georeason.BLN_ListLookUp__r?.List_Description__c != null || ethinicity.BLN_ListLookUp__r?.List_Description__c != null || 
+    bsnstr.BLN_ListLookUp__r?.List_Description__c != null || basic.CageCode__c !== undefined|| basic.distribution_Country__c !== undefined || basic.Manufactures_Country__c !== undefined || basic.Outside_Facilities__c !== undefined || basic.Year_in_business__c !== undefined">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text"> Work Information</span>
       </div>
@@ -170,7 +172,7 @@
               <p>{{basic.Secondary_Business_Category__c}}</p>
             </div>
           </div>
-          <div class="col-xs-6 padding-0" *ngIf="work_set[2]?.biw.readaccess =='true' && no_of_emp.BLN_ListLookUp__r?.List_Description__c !== undefined">
+          <div class="col-xs-6 padding-0" *ngIf="work_set[2]?.biw.readaccess =='true' && no_of_emp.BLN_ListLookUp__r?.List_Description__c != null">
             <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
               <p>{{work_set[2]?.biw.labelname}}</p>
             </div>
@@ -186,7 +188,7 @@
               <p>{{basic.Established_Date__c}}</p>
             </div>
           </div>
-          <div class="col-xs-6 padding-0" *ngIf="work_set[4]?.biw.readaccess =='true' && revenue.BLN_ListLookUp__r?.List_Description__c !==undefined ">
+          <div class="col-xs-6 padding-0" *ngIf="work_set[4]?.biw.readaccess =='true' && revenue.BLN_ListLookUp__r?.List_Description__c != null ">
             <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
               <p>{{work_set[4]?.biw.labelname}}</p>
             </div>
@@ -234,7 +236,7 @@
               <p>{{basic.GSA_Schedule__c}}</p>
             </div>
           </div>
-          <div class="col-xs-6 padding-0" *ngIf="work_set[17]?.biw.readaccess =='true' && georeason.BLN_ListLookUp__r?.List_Description__c !== undefined">
+          <div class="col-xs-6 padding-0" *ngIf="work_set[17]?.biw.readaccess =='true' && georeason.BLN_ListLookUp__r?.List_Description__c != null ">
             <div class="col-sm-6 col-sm-6 col-sm-6 col-sm-6 tbl-brdrd tbl-frst-bck">
               <p>{{work_set[17]?.biw.labelname}}</p>
             </div>
@@ -242,7 +244,7 @@
               <p>{{ georeason.BLN_ListLookUp__r?.List_Description__c}}</p>
             </div>
           </div>
-          <div class="col-xs-6 padding-0" *ngIf="work_set[18]?.biw.readaccess =='true' && ethinicity.BLN_ListLookUp__r?.List_Description__c !== undefined">
+          <div class="col-xs-6 padding-0" *ngIf="work_set[18]?.biw.readaccess =='true' && ethinicity.BLN_ListLookUp__r?.List_Description__c != null">
             <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
               <p>{{work_set[18]?.biw.labelname}}</p>
             </div>
@@ -250,7 +252,7 @@
               <p>{{ ethinicity.BLN_ListLookUp__r?.List_Description__c }}</p>
             </div>
           </div>
-          <div class="col-xs-6 padding-0" *ngIf="work_set[19]?.biw.readaccess =='true' && bsnstr.BLN_ListLookUp__r?.List_Description__c !== undefined">
+          <div class="col-xs-6 padding-0" *ngIf="work_set[19]?.biw.readaccess =='true' && bsnstr.BLN_ListLookUp__r?.List_Description__c != null">
             <div class="col-sm-6 tbl-brdrd tbl-frst-bck">
               <p>{{work_set[19]?.biw.labelname}}</p>
             </div>
@@ -301,7 +303,7 @@
         </div>  
       </div>
     </div>
-    <div class="col-xs-12 padding-0">
+    <div class="col-xs-12 padding-0" *ngIf="basic.References1__c !== undefined || basic.ScopeOfWork1__c !== undefined || basic.References2__c !== undefined || basic.ScopeOfWork2__c !== undefined">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text">Customer Reference</span>
       </div>
@@ -344,7 +346,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12 padding-0">
+    <div class="col-xs-12 padding-0" *ngIf="naics !== undefined && naics != '' && naics != null">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text">{{naics_set[0]?.biw.groupname}}</span>
       </div>
@@ -356,7 +358,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-xs-12 padding-0">
+    <div class="col-xs-12 padding-0" *ngIf="diversity_val !== undefined && diversity_val != '' && diversity_val !=null">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text">{{settings['Diversity Type Information'][0]?.biw.groupname}}</span>
       </div>
@@ -368,7 +370,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-xs-12 padding-0">
+    <div class="col-xs-12 padding-0" *ngIf="(commodities != null && commodities !='') || (sub_commodities != null && sub_commodities !='')">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text">{{settings['Commodities Information'][0]?.biw.groupname}}</span>
       </div>
@@ -387,7 +389,7 @@
         </span>
       </div>
     </div>
-    <div class="col-xs-12 padding-0">
+    <div class="col-xs-12 padding-0" *ngIf="project !== undefined && project !=''">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text">{{settings['Project Information'][0]?.biw.groupname}}</span>
       </div>
@@ -557,7 +559,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-12 padding-0">
+    <div class="col-xs-12 padding-0" *ngIf="(reg_ques != undefined && reg_ques != '') ||(event_ques != '' && event_ques != undefined)">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text">Registration Question</span>
       </div>

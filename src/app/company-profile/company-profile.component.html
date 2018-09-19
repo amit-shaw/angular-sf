@@ -1,4 +1,4 @@
-<div class="container basic-views-in-adrs">
+<div class="container basic-views-in-adrs" *ngIf="work_set[9]?.biw.readaccess =='true' || work_set[10]?.biw.readaccess =='true' || work_set[11]?.biw.readaccess =='true'">
     <div class="row">
         <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialog()"></i>
         <div class="col-md-6 adrs-info">
@@ -7,7 +7,7 @@
         <div class="col-md-6 col-md-offset-6"> </div>
         <div class="container tbl-brdr-pdng">
             <div class="row">
-                <div class="col-md-12 padding-0 ref-sec" *ngIf="work_set[9]?.biw.readaccess =='true' && basic.Company_Description__c !== undefined && basic.Company_Description__c != ''">
+                <div class="col-md-12 padding-0 ref-sec" *ngIf="work_set[9]?.biw.readaccess =='true' && basic.Company_Description__c !== undefined && basic.Company_Description__c != '<p><br></p>'">
                     <div class="col-sm-12">
                         <p  class="font-bold">{{work_set[9]?.biw.labelname}} : </p>
                     </div>
@@ -15,20 +15,20 @@
                         <p [innerHTML]="basic.Company_Description__c | safeHTML"></p>
                     </div>
                 </div>
-                <div class="col-md-12 padding-0 ref-sec margin-top-5" *ngIf="work_set[10]?.biw.readaccess =='true' && basic.Keywords__c !== undefined && basic.Keywords__c !=''">
+                <div class="col-md-12 padding-0 ref-sec margin-top-5" *ngIf="work_set[10]?.biw.readaccess =='true' && basic.Keywords__c !== undefined && basic.Keywords__c !='<p><br></p>'">
                     <div class="col-sm-12">
                         <p  class="font-bold">{{work_set[10]?.biw.labelname}} : </p>
                     </div>
                     <div class="col-sm-12">
-                        <p [innerHTML]="basic.Keywords__c"></p>
+                        <p [innerHTML]="basic.Keywords__c | safeHTML"></p>
                     </div>
                 </div>
-                <div class="col-md-12 padding-0 ref-sec margin-top-5" *ngIf="work_set[11]?.biw.readaccess =='true' && basic.Exceptional_Keywords__c !== undefined && basic.Exceptional_Keywords__c != ''">
+                <div class="col-md-12 padding-0 ref-sec margin-top-5" *ngIf="work_set[11]?.biw.readaccess =='true' && basic.Exceptional_Keywords__c !== undefined && basic.Exceptional_Keywords__c != '<p><br></p>'">
                     <div class="col-sm-12">
                         <p class="font-bold">{{work_set[11]?.biw.labelname}} : </p>
                     </div>
                     <div class="col-sm-12">
-                        <p [innerHTML]="basic.Exceptional_Keywords__c"></p>
+                        <p [innerHTML]="basic.Exceptional_Keywords__c | safeHTML"></p>
                     </div>
                 </div>
             </div>

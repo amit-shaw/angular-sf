@@ -36,4 +36,36 @@ span.required{
     background: #8080800a;
     border: 6px solid #54545447;
 }
+.tooltiptext {
+    visibility: hidden;
+    width: 175px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+  /*  bottom: 74%; */
+    left: 12%;
+    margin-left: -60px;
+    opacity: 0;
+   /* font-size: 17px; */
+    transition: opacity 0.3s;
+}
 
+/*.tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: 30px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+} */
+
+.help-text:hover .tooltiptext {
+    visibility: visible !important;
+    opacity: 1 !important;   
+}

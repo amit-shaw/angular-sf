@@ -33,6 +33,7 @@ Start here **/
 .basic-naics {
     list-style: none;
     margin-top: 23px;
+    padding: 0 0 0 40px;
 }
 .basic-naics li span {
     background: #E6E7E8;

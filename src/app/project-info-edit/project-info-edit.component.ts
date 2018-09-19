@@ -40,6 +40,7 @@ export class ProjectInfoEditComponent implements OnInit {
   select_sub_sec:any[] = [];
   sector_val:string;
   sub_sector_val:string;
+  fin_str:any[] = [];
   constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private _fb: FormBuilder,private getdataService:GetdataService,
     private sfService: SalesforceService,
     public dialogRef: MatDialogRef<ProjectInfoEditComponent>,
@@ -59,6 +60,8 @@ export class ProjectInfoEditComponent implements OnInit {
     this.getdataService.sub_sector.subscribe(sub_sector => this.sub_sector = sub_sector);
     this.sfService.getCodes('BLN_MM_ViewAdminProfileCon.getCustomCode','interested format(s) of cooperation'
     ,this.interestedFormats, this.failedCallback);
+    this.sfService.getBusinessCategory('BLN_MM_ViewAdminProfileCon.getPickValues','BLN_Project__c','Financing_Structure__c'
+    ,this.financialStructure, this.failedCallback);
     if(this.pdata != null){
       if(this.pdata.Sectors__c != '' && this.pdata.Sectors__c !== undefined){
         this.def_sector = this.pdata.Sectors__c.split(";");
@@ -110,6 +113,16 @@ export class ProjectInfoEditComponent implements OnInit {
       this.project_loc.push({'id':data[key]['Id'],'text':data[key]['List_Description__c']});
     }
   }
+  financialStructure = (response) =>{
+    console.log(response);
+    let data = JSON.parse(response);
+    this.fin_str = data;
+    /*for (let entry of data) {
+      this.fin_str.push(entry);
+    }*/
+    console.log(this.fin_str);
+    //this.companyEdit.controls['Primary_Business_Category__c'].setValue(this.basic.Primary_Business_Category__c, {onlySelf: true});
+  }
   interestedFormats = (response) =>{
     let data = JSON.parse(response);
     for(let key =0; key<data.length;key++){
@@ -155,7 +168,8 @@ export class ProjectInfoEditComponent implements OnInit {
       Interested_formats_of_cooperation__c:[data.Interested_formats_of_cooperation__c],
       Investment_Round__c:[data.Investment_Round__c],
       Project_Custom_Currency__c:[data.Project_Custom_Currency__c],
-      Project_Custom_Date_time__c:[data.Project_Custom_Date_time__c.split('T')[0]],
+     // Project_Custom_Date_time__c:[data.Project_Custom_Date_time__c.split('T')[0]],
+      Project_Custom_Date_time__c:[this.getdateValue(data.Project_Custom_Date_time__c)],
       Project_Custom_Number_1__c:[data.Project_Custom_Number_1__c],
       Project_Custom_Number_2__c:[data.Project_Custom_Number_2__c],
       Project_Custom_Picklist__c:[data.Project_Custom_Picklist__c],
@@ -210,11 +224,19 @@ changedSubSec(data: {value: string[]}){
     this.sub_sector_val = data.value.join(';');
   }
 }
+getdateValue(dataval){
+  if(dataval == '' || dataval == undefined || dataval == null){
+    return '';
+  }else{
+    return dataval.split('T')[0];
+  }
+}
 onSubmit(){
   //console.log(this.myForm.value.project[0]);
   //console.log("Invest : "+this.current);
  // console.log("Sector: "+this.sector_val);
   //console.log("sub sector : "+this.sub_sector_val);
+  $(".Mask").show();
   this.myForm.value.project[0].Sectors__c = this.sector_val;
   this.myForm.value.project[0].Sub_Sectors__c = this.sub_sector_val;
   this.myForm.value.project[0].Interested_formats_of_cooperation__c = this.current;
@@ -224,9 +246,13 @@ onSubmit(){
     ,this.sucessCall, this.failedCallback);
   //console.log(this.myForm.value.project[0]);
 }
+onCancel(){
+  this.dialogRef.close();
+}
 sucessCall = (response) => {
   this.getdataService.project.next(JSON.parse(response))  ;
   console.log(response);
+  $(".Mask").hide();
   this.dialogRef.close();
     this.snackBar.open(this.settings['Project Information'][0].biw.groupname+" updated successfully..",'', {
       duration: 2000,

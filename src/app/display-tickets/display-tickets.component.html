@@ -1,0 +1,49 @@
+<div class="container display-tickets">
+  <div class="row">
+      <div class="col-md-12 tickets-header">
+          Display Tickets
+        </div>
+        <div class="col-md-12 tickets-details">
+          <div class="col-md-12 header-title">
+            Would you like to change the email of the following tickets belongs to (email)
+          </div>
+          <div class="col-md-12 header-text">
+              <div class="col-md-1 border-first"><input type="checkbox" name="all" value="all" (change)="checkAllTickets($event, check)"></div>
+              <div class="col-md-3 border">Tickets</div>
+              <div class="col-md-5 border">Email</div>
+              <div class="col-md-3 border">Name</div>
+            </div>
+            <span *ngFor="let result of result">
+              <div class="col-md-12 tickets-data" *ngIf="!result?.isbuyer">
+                <div class="col-md-1 border-first"><input type="checkbox" [checked]="check" name="all1" value="{{result?.tktprofileid}}" (change)="selectedTickets($event,result?.tktprofileid)"></div>
+                <div class="col-md-3 border">{{result?.ticketname}}</div>
+                <div class="col-md-5 border">{{result?.email}}</div>
+                <div class="col-md-3 border">{{result?.name}}</div>
+              </div>
+            </span>
+        </div>
+        <div class="col-md-12 buyer-details">
+          <div class="col-md-12 header-title">
+            Buyer Details
+          </div>
+          <div class="col-md-12 header-text">
+            <div class="col-md-1 border-first"><input type="checkbox" name="all" value="all1" (change)="checkAllOrders($event, check)"></div>
+            <div class="col-md-3 border">Order ID</div>
+            <div class="col-md-5 border">Email</div>
+            <div class="col-md-3 border">Name</div>
+          </div>
+          <span *ngFor="let result of result">
+            <div class="col-md-12 tickets-data" *ngIf="result?.isbuyer">
+              <div class="col-md-1 border-first"><input type="checkbox" [checked]="ordercheck" name="all" value="{{result?.tktprofileid}}" (change)="selectedOrders($event,result?.tktprofileid)"></div>
+              <div class="col-md-3 border">{{result?.orderid}}</div>
+              <div class="col-md-5 border">{{result?.email}}</div>
+              <div class="col-md-3 border">{{result?.name}}</div>
+            </div>
+          </span>                        
+        </div>
+        <div class="col-md-3 col-md-offset-9 action-section"> 
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+          <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+        </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@ import { ProjectData, projectList } from "../project-info/project-data";
 export interface BasicData{
     First_Name__c: string, 
     Last_Name__c :string,
-    Custom_Barcode__c:string,
+    Custom_Barcode__c:any,
     Email__c:string,
     DOB__c:string,
     Gender__c:string,

@@ -8,6 +8,10 @@ import { CompanyContactComponent } from '../company-contact/company-contact.comp
 import { BasicData } from '../basic-info-edit/basicData';
 import { SocailMediaEditComponent } from '../socail-media-edit/socail-media-edit.component';
 import { Country } from '../country';
+import { SafeHtmlPipe } from '../safe-html';
+import { CustomBarcode } from '../basic-info-edit/customBarCode';
+
+
 
 @Component({
   selector: 'app-basic-info',
@@ -23,6 +27,7 @@ export class BasicInfoComponent implements OnInit {
   openDialog() {
     
     const dialogRef = this.dialog.open(BasicInfoEditComponent, {
+      disableClose: true,
       height: '500px'
       //width:'500px'
     });
@@ -33,6 +38,7 @@ export class BasicInfoComponent implements OnInit {
   }
   openDialogSocial(){
     const dialogRef = this.dialog.open(SocailMediaEditComponent, {
+      disableClose: true,
       height: '500px'
       //width:'500px'
     });
@@ -43,6 +49,7 @@ export class BasicInfoComponent implements OnInit {
   }
   openDialogWorkAddress(){
     const dialogRef = this.dialog.open(WorkAddressEditComponent, {
+      disableClose: true,
       height: '500px'
       //width:'500px'
     });
@@ -53,6 +60,7 @@ export class BasicInfoComponent implements OnInit {
   }
   openCompanyContact(){
     const dialogRef = this.dialog.open(CompanyContactComponent, {
+      disableClose: true,
       height: 'auto'
       //width:'500px'
     });
@@ -66,18 +74,22 @@ export class BasicInfoComponent implements OnInit {
   speaker:any[];
   attchment:any[];
   work_set:any[];
+  address:any[];
+  custom_barcode:CustomBarcode;
   //temp:any[];
   ngOnInit() {
     this.getdataService.getData();
-    
+    this.getdataService.getCountryData();
+    this.getdataService.getStateData();
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
     this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
-
+    this.getdataService.address_cast.subscribe(address => this.address = address);
     //this.getdataService.getSettingsData();
     //console.log(this.basic);
     this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
     this.getdataService.speaker.subscribe(speaker => this.speaker = speaker);
     this.getdataService.attchment.subscribe(attchment =>this.attchment = attchment);
+    this.getdataService.custom_barcode_cast.subscribe(custom_barcode => this.custom_barcode = custom_barcode);
     console.log(this.attchment);
   }
 

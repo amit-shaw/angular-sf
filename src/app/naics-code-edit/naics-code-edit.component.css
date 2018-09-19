@@ -2,7 +2,8 @@
     width:100%;
     background: #8080800a;
     border: 6px solid #54545447;
-    height:100%;
+    min-height: 250px;
+    height:auto;
 }
 .naics-code-edit-header{
     font-size: 25px;
@@ -23,8 +24,8 @@
 
     .action-section{
         padding:15px;
-        position: relative;
-        top: 100px;
+      /*  position: relative;
+        top: 100px;*/
     }
     .btn-cancel{
         margin-right:20px; 
