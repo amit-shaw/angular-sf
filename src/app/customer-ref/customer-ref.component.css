@@ -69,3 +69,28 @@ span.required{
     visibility: visible !important;
     opacity: 1 !important;   
 }
+.customer-ref-edit-sec{
+    min-height: 440px;
+    min-width: 800px;
+}
+.readonlytext {
+    visibility: hidden;
+   
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    bottom: 55%;
+    left: 50%; 
+    margin-left: -60px;
+}
+
+.readonly:hover .readonlytext {
+    visibility: visible;
+}

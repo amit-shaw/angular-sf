@@ -8,12 +8,12 @@
                 <div class="col-md-12 question-level-title">
                     <span>Ticket Level Registration Questions</span>
                 </div>
-                <div class="col-md-12 form-group" *ngFor="let reg_ques of reg_ques">
+                <div class="col-md-12 form-group" *ngFor="let reg_ques of reg_ques;let index=index">
                     <label for="text">{{ reg_ques.itq.Question__r.Question_Text__c }}</label>
                     <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Single Selection'" class="col-md-12">
                         <span *ngFor="let opt of reg_ques.optionList" class="radio-button">
                             <label>
-                                <input type="radio" [(ngModel)]="reg_ques.SelectedAnswer" value="{{opt.Id}}" name="radiogroup" [checked]="reg_ques.SelectedAnswer == opt.Id" />{{ opt.Answer_Text__c }}
+                                <input type="radio" [(ngModel)]="reg_ques.SelectedAnswer" value="{{opt.Id}}" name="radiogroup" [checked]="reg_ques.SelectedAnswer" />{{ opt.Answer_Text__c }}
                             </label>
                         </span>
                     </span>
@@ -39,7 +39,7 @@
                     <span *ngIf="reg_ques.itq.Question__r.Answer_Type__c == 'Checkboxes'" class="col-md-12">
                         <span *ngFor="let opt of reg_ques.optionList;let i=index" class="radio-button">
                             <label>
-                                <input type="checkbox" value="{{opt.Id}}" name="{{opt.Id}}" [(ngModel)]="reg_ques.SelectedAnswerCheck[i]" />{{ opt.Answer_Text__c }}
+                                <input type="checkbox" value="{{opt.Id}}" name="{{opt.Id}}" [(ngModel)]="reg_ques.SelectedAnswerCheck[i]" (change)="onChange('reg',index,opt.Id,$event.target.checked)"/>{{ opt.Answer_Text__c }}
                             </label>
                         </span>
                     </span>
@@ -67,10 +67,10 @@
                             </span>
                         </span>
                     <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Text'" class="col-md-12">
-                        <input type="text" class="form-control" value="{{event_ques.SelectedAnswer}}">
+                        <input type="text" class="form-control" required value="{{event_ques.SelectedAnswer}}" [(ngModel)]="event_ques.SelectedAnswer" name="{{event_ques.itq.Id}}">
                     </span>
                     <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Paragraph text'" class="col-md-12">
-                        <textarea class="form-control" id="answer-text">{{event_ques.SelectedAnswer}}</textarea>
+                        <textarea class="form-control" id="answer-text" [(ngModel)]="event_ques.SelectedAnswer " name="{{event_ques.itq.Id}}">{{event_ques.SelectedAnswer}}</textarea>
                     </span>
                     <span *ngIf="event_ques.itq.Question__r.Answer_Type__c == 'Choose from a list'">
                         <select id="answer-drop" class="form-control" [(ngModel)]="event_ques.SelectedAnswer" name="drop">

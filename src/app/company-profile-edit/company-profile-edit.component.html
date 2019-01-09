@@ -1,10 +1,10 @@
 <div class="container company-contact-edit-section">
-    <div class="row">
+    <div class="row company-cap-edit-sec">
       <div class="col-md-12 header-title" id="company-title">
         Company Capabilities
       </div>
       <form (ngSubmit)="onSubmit()" #companyEditForm="ngForm" [formGroup]="companyEdit" ngNativeValidate>
-        <div *ngIf="work_set[9].biw.readaccess == 'true'" class="col-md-12 form-group">
+        <div [ngClass]="(work_set[9].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[9].biw.readaccess == 'true'" class="col-md-12 form-group">
           <label for="label">{{work_set[9]?.biw.labelname}}
             <span *ngIf="work_set[9].biw.required =='true'" class="required">*</span>
             <span class="help-text"><i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -15,8 +15,9 @@
           <p [innerHTML]="basic.Company_Description__c" class="readonly-text" *ngIf="work_set[9].biw.updateaccess == 'false' && basic.Company_Description__c != null"></p>
           <textarea class="form-control" id="est-date" [required]="work_set[9].biw.required" readonly *ngIf="work_set[9].biw.updateaccess == 'false' && basic.Company_Description__c == null"
             name="ref-1" formControlName="Company_Description__c"></textarea>
+            <span class="readonlytext">This field has ready only access</span>
         </div>
-        <div *ngIf="work_set[10].biw.readaccess == 'true'" class="col-md-12 form-group">
+        <div [ngClass]="(work_set[10].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[10].biw.readaccess == 'true'" class="col-md-12 form-group">
           <label for="label">{{work_set[10]?.biw.labelname}}
             <span *ngIf="work_set[10].biw.required =='true'" class="required">*</span>
             <span class="help-text"><i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -27,18 +28,20 @@
           <p [innerHTML]="basic.Keywords__c" class="readonly-text" *ngIf="work_set[10].biw.updateaccess =='false' && basic.Keywords__c != null"></p>
           <textarea class="form-control" id="key-word" readonly *ngIf="work_set[10].biw.updateaccess =='false' && basic.Keywords__c == null"
             name="s"></textarea>
+            <span class="readonlytext">This field has ready only access</span>
         </div>
-        <div *ngIf="work_set[11].biw.readaccess == 'true'" class="col-md-12 form-group">
+        <div [ngClass]="(work_set[11].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[11].biw.readaccess == 'true'" class="col-md-12 form-group">
           <label for="label">{{work_set[11]?.biw.labelname}}
-            <span *ngIf="work_set[27].biw.required =='true'" class="required">*</span>
+            <span *ngIf="work_set[11].biw.required =='true'" class="required">*</span>
             <span class="help-text"><i class="fa fa-question-circle" aria-hidden="true"></i>
               <span class="tooltiptext">Text is limited to 1500 characters</span>
             </span> 
           </label>
           <simple-tiny formControlName="Exceptional_Keywords__c" *ngIf="work_set[11].biw.updateaccess =='true'"></simple-tiny>
           <p [innerHTML]="basic.Exceptional_Keywords__c" class="readonly-text" *ngIf="work_set[11].biw.updateaccess =='false' && basic.Exceptional_Keywords__c != null"></p>
-          <textarea class="form-control" id="est-date" [required]="work_set[27].biw.required" readonly *ngIf="work_set[27].biw.updateaccess =='false' && basic.Exceptional_Keywords__c ==null"
+          <textarea class="form-control" id="est-date" [required]="work_set[11].biw.required" readonly *ngIf="work_set[11].biw.updateaccess =='false' && basic.Exceptional_Keywords__c ==null"
             name="ref-2" formControlName="References2__c"></textarea>
+            <span class="readonlytext">This field has ready only access</span>
         </div>
         <div class="col-md-4 col-md-offset-8 action-section">
           <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>

@@ -1,21 +1,22 @@
 <div class="container company-contact-edit-section">
-  <div class="row">
+  <div class="row work-info-edit-sec">
     <div class="col-md-12 header-title">
       {{work_set[0]?.biw.groupname}} (Company)
     </div>
     <form (ngSubmit)="onSubmit()" #companyInfoForm="ngForm" [formGroup]="companyEdit" ngNativeValidate>
-      <div *ngIf="work_set[0].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[0].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[0].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[0]?.biw.labelname}}
           <span *ngIf="work_set[0].biw.required =='true'" class="required">*</span>
         </label>
         <select2 [data]="primary_data" [options]="options" [value]='p_val' [disabled]="work_set[0].biw.updateaccess == 'false'" (valueChanged)="changedPrimary($event)">
         </select2>
+        <span class="readonlytext">This field has ready only access</span>
         <!--<select id="primary-code" class="form-control" formControlName="Primary_Business_Category__c">
             <option value="" selected disabled>-Select-</option>
           <option *ngFor="let primary_code of primary_code" value={{primary_code}} [disabled]="work_set[0].biw.updateaccess == 'false'">{{ primary_code }}</option>
         </select> -->
       </div>
-      <div *ngIf="work_set[1].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[1].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[1].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[1]?.biw.labelname}}
           <span *ngIf="work_set[1].biw.required =='true'" class="required">*</span>
         </label>
@@ -25,132 +26,149 @@
           <option value="" selected disabled>-Select-</option>
           <option *ngFor="let secondry_code of secondry_code" value={{secondry_code}} [disabled]="work_set[1].biw.updateaccess == 'false'">{{ secondry_code }}</option>
         </select> -->
+        <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[2].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[2].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[2].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[2]?.biw.labelname}}
           <span *ngIf="work_set[2].biw.required =='true'" class="required">*</span>
         </label>
-        <select id="secondry-code" class="form-control" formControlName="no_of_emp">
-          <option value="" selected disabled>-Select-</option>
+        <select id="secondry-code" class="form-control" formControlName="no_of_emp" [required]='work_set[2].biw.required'>
+          <option value="" selected>-Select-</option>
           <option *ngFor="let number_emp of number_emp" value={{number_emp.id}} [disabled]="work_set[2].biw.updateaccess == 'false'">{{ number_emp.text }}</option>
         </select>
+        <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[3].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[3].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[3].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[3]?.biw.labelname}}
           <span *ngIf="work_set[3].biw.required =='true'" class="required">*</span>
         </label>
         <input type="date" class="form-control" id="est-date" [required]="work_set[3].biw.required" [readonly]="work_set[3].biw.updateaccess == 'false'"
           name="est_date" formControlName="Established_Date__c" max="9999-10-20">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[4].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[4].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[4].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[4]?.biw.labelname}}
           <span *ngIf="work_set[4].biw.required =='true'" class="required">*</span>
         </label>
-        <select id="secondry-code" class="form-control" formControlName="bsns_revnue">
-          <option value="" selected disabled>-Select-</option>
+        <select id="secondry-code" class="form-control" formControlName="bsns_revnue" [required]='work_set[4].biw.required'>
+          <option value="" selected>-Select-</option>
           <option *ngFor="let bsns_revenue of bsns_revenue" value={{bsns_revenue.id}} [disabled]="work_set[4].biw.updateaccess == 'false'">{{ bsns_revenue.text }}</option>
         </select>
+        <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[5].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[5].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[5].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[5]?.biw.labelname}}
           <span *ngIf="work_set[5].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="bussiness-tax-id" [required]="work_set[5].biw.required" [readonly]="work_set[5].biw.updateaccess =='false'"
           name="tax-id-c" formControlName="Tax_Id__c">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[7].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[7].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[7].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[7]?.biw.labelname}}
           <span *ngIf="work_set[7].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="duns-number" [required]="work_set[7].biw.required" [readonly]="work_set[7].biw.updateaccess == 'false'"
           name="Duns_Number__c" formControlName="Duns_Number__c">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[8].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[8].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[8].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[8]?.biw.labelname}}
           <span *ngIf="work_set[8].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="blog-url" [required]="work_set[8].biw.required" [readonly]="work_set[8].biw.updateaccess =='false'"
           name="Blog_URL__c" formControlName="Blog_URL__c">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[15].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[15].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[15].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[15]?.biw.labelname}}
           <span *ngIf="work_set[15].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="bbb-number" [required]="work_set[15].biw.required" [readonly]="work_set[15].biw.updateaccess =='false'"
           name="BBB_Number__c" formControlName="BBB_Number__c">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[16].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[16].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[16].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[16]?.biw.labelname}}
           <span *ngIf="work_set[16].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="gsa-schedule-c" [required]="work_set[16].biw.required" [readonly]="work_set[16].biw.updateaccess =='false'"
           name="GSA_Schedule__c" formControlName="GSA_Schedule__c">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[17].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[17].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[17].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[17]?.biw.labelname}}
           <span *ngIf="work_set[17].biw.required =='true'" class="required">*</span>
         </label>
-        <select id="secondry-code" class="form-control" formControlName="geolocation">
-          <option value="" selected disabled>-Select-</option>
+        <select id="secondry-code" class="form-control" formControlName="geolocation" [required]='work_set[17].biw.required'>
+          <option value="" selected>-Select-</option>
           <option *ngFor="let geo_reason of geo_reason" value={{geo_reason.id}} [disabled]="work_set[17].biw.updateaccess == 'false'">{{ geo_reason.text }}</option>
         </select>
+        <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[18].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[18].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[18].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[18]?.biw.labelname}}
           <span *ngIf="work_set[18].biw.required =='true'" class="required">*</span>
         </label>
-        <select id="secondry-code" class="form-control" formControlName="ethinisity">
-          <option value="" selected disabled>-Select-</option>
+        <select id="secondry-code" class="form-control" formControlName="ethinisity" [required]='work_set[18].biw.required'>
+          <option value="" selected>-Select-</option>
           <option *ngFor="let all_ethinicity of all_ethinicity" value={{all_ethinicity.id}} [disabled]="work_set[18].biw.updateaccess == 'false'">{{ all_ethinicity.text }}</option>
         </select>
+        <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[19].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[19].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[19].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[19]?.biw.labelname}}
           <span *ngIf="work_set[19].biw.required =='true'" class="required">*</span>
         </label>
-        <select id="secondry-code" class="form-control" formControlName="business_str">
-          <option value="" selected disabled>-Select-</option>
+        <select id="secondry-code" class="form-control" formControlName="business_str" [required]='work_set[19].biw.required'>
+          <option value="" selected>-Select-</option>
           <option *ngFor="let bsns_str of bsns_str" value={{bsns_str.id}} [disabled]="work_set[19].biw.updateaccess == 'false'">{{ bsns_str.text }}</option>
         </select>
+        <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[20].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[20].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[20].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[20]?.biw.labelname}}
           <span *ngIf="work_set[20].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="cage-code-c" [required]="work_set[20].biw.required" [readonly]="work_set[20].biw.updateaccess =='false'"
           name="name" formControlName="CageCode__c" maxlength="5">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[21].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[21].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[21].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[21]?.biw.labelname}}
           <span *ngIf="work_set[21].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="dist-country-c" [required]="work_set[21].biw.required" [readonly]="work_set[21].biw.updateaccess =='false'"
           name="dist-country-data" formControlName="distribution_Country__c">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[23].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[23].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[23].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[23]?.biw.labelname}}
           <span *ngIf="work_set[23].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="manufactury-country" [required]="work_set[23].biw.required" [readonly]="work_set[23].biw.updateaccess =='false'"
           name="man-country-c" formControlName="Manufactures_Country__c">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[24].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[24].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[24].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[24]?.biw.labelname}}
           <span *ngIf="work_set[24].biw.required =='true'" class="required">*</span>
         </label>
         <input type="text" class="form-control" id="Outside_Facilities__c" [required]="work_set[24].biw.required" [readonly]="work_set[24].biw.updateaccess =='false'"
           name="outside-facility--c" formControlName="Outside_Facilities__c">
+          <span class="readonlytext">This field has ready only access</span>
       </div>
-      <div *ngIf="work_set[31].biw.readaccess == 'true'" class="col-md-6">
+      <div [ngClass]="(work_set[31].biw.updateaccess == 'false')?'readonly':''" *ngIf="work_set[31].biw.readaccess == 'true'" class="col-md-6 form-group">
         <label for="label">{{work_set[31]?.biw.labelname}}
           <span *ngIf="work_set[31].biw.required =='true'" class="required">*</span>
         </label>
        <!-- <input type="text" class="form-control" id="year-in-bussiness" [required]="work_set[31].biw.required" [readonly]="work_set[31].biw.updateaccess =='false'"
           name="year-in-bsns-c" formControlName="Year_in_business__c"> -->
-        <select id="year-in-bussiness" class="form-control" formControlName="Year_in_business__c">
-          <option value="" selected disabled>-Select-</option>
+        <select id="year-in-bussiness" class="form-control" formControlName="Year_in_business__c" [required]='work_set[31].biw.required'>
+          <option value="" selected>-Select-</option>
           <option *ngFor="let year_in_business of year_in_business" value={{year_in_business}} [disabled]="work_set[31].biw.updateaccess == 'false'">{{ year_in_business }}</option>
         </select>
+        <span class="readonlytext">This field has ready only access</span>
       </div>
       <div class="col-md-3 col-md-offset-9 action-section"> 
         <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>

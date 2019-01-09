@@ -108,29 +108,43 @@
                     <label>{{settings['Project Information'][18]?.biw.labelname}}
                       <span *ngIf="settings['Project Information'][18]?.biw.required == 'true'" class="required">*</span>
                     </label>
+                    <angular2-multiselect [data]="sector" 
+                      [(ngModel)]="Sectors__c"
+                      [settings]="setting" 
+                      formControlName="Sectors__c"
+                      (onSelect)="onItemSelect($event)"
+                      (onDeSelect)="onItemSelect($event)" 
+                      >
+                    </angular2-multiselect>
               <!--      <input type="text" class="form-control" formControlName="Sectors__c"> -->
-                    <div class="col-md-12 sector-select">
+                  <!--  <div class="col-md-12 sector-select">
                       <select2 [data]="sector"
                       [options]="options"
                       [width]="970"
                       [value]="def_sector"
                       (valueChanged)="changedSector($event)">
                       </select2>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][19]?.biw.readaccess =='true'">
                     <label>{{settings['Project Information'][19]?.biw.labelname}}
                       <span *ngIf="settings['Project Information'][19]?.biw.required == 'true'" class="required">*</span>
                     </label>
+                    <angular2-multiselect [data]="select_sub_sec" 
+                      [(ngModel)]="Sub_Sectors__c"
+                      [settings]="setting1" 
+                      formControlName="Sub_Sectors__c"
+                      >
+                    </angular2-multiselect>
                   <!--  <input type="text" class="form-control" formControlName="Sub_Sectors__c"> -->
-                    <div class="col-md-12 sub-sector-select">
+                   <!-- <div class="col-md-12 sub-sector-select">
                       <select2 [data]="select_sub_sec"
                       [options]="options"
                       [width]="970"
                       [value]="def_sub_sector"
                       (valueChanged)="changedSubSec($event)">
                       </select2>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="form-group col-xs-12" *ngIf="settings['Project Information'][11]?.biw.readaccess =='true'">
                     <label>{{settings['Project Information'][11]?.biw.labelname}}

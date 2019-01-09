@@ -178,3 +178,9 @@
     padding: 7px 17px 7px 17px;
     font-size: 18px;float: right;
 } */
+.other-info-data-list{
+    line-height: 29px;
+    color: #797979;
+    list-style: none;
+    font-size: 14px;
+}

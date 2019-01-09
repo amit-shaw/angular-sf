@@ -30,11 +30,14 @@ export class SocailMediaEditComponent implements OnInit {
     url:any='';
     attname:any='';
     delid:string='';
+    flag:boolean=false;
+    attch_length:number=0;
   ngOnInit() {
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
     this.socailEdit = this.createFormGroup();
     this.getdataService.speaker.subscribe(speaker => this.speaker = speaker);
     this.getdataService.attchment.subscribe(attchment =>this.attchment = attchment);
+    this.attch_length = this.attchment.length;
   }
   createFormGroup() {
     return new FormGroup({         
@@ -43,6 +46,11 @@ export class SocailMediaEditComponent implements OnInit {
       TwitterId__c:new FormControl(this.basic.TwitterId__c || ''),
       Instagram__c:new FormControl(this.basic.Instagram__c || ''),
       Video__c:new FormControl(this.basic.Video__c || ''),
+      WhatsApp__c:new FormControl(this.basic.WhatsApp__c || ''),
+      Wechat__c:new FormControl(this.basic.Wechat__c || ''),
+      Snapchat__c:new FormControl(this.basic.Snapchat__c || ''),
+      Skype__c:new FormControl(this.basic.Skype__c || ''),
+      Blogger__c:new FormControl(this.basic.Blogger__c || '')
      });
   }
   defaultVal(val){
@@ -54,7 +62,14 @@ export class SocailMediaEditComponent implements OnInit {
     }
   }
   onSubmit(){
-    if (this.socailEdit.valid) {
+    //console.log(this.attchment);
+    console.log(this.attch_length);
+    if(this.speaker[0].biw.required =='true'){
+      if(this.attch_length == 0 && this.url == ''){
+        this.flag = true;
+      }
+    }
+    if (this.socailEdit.valid && this.flag != true) {
      /* console.log("calling for");
       for(let i =0;this.socailEdit.value.length;i++){
         console.log("came inside");
@@ -78,7 +93,7 @@ export class SocailMediaEditComponent implements OnInit {
       this.confirmationDialogService.confirm('Alert ..', 'Please fill all the required fields ...','OK','')
       .then((confirmed) =>  {
         if(confirmed){
-       
+          this.flag = false;
         }else{
          
         }
@@ -122,6 +137,8 @@ export class SocailMediaEditComponent implements OnInit {
     .then((confirmed) =>  {
       if(confirmed){
         this.delid = id;
+        this.attchment.splice(pos,1);
+        this.attch_length = this.attch_length -1;
         this.sfService.getCodesWithouId('BLN_MM_ViewAdminProfileCon.deleteAttachment',id
         ,this.deletedAttchSucc, this.failedCallback);
         $(".Mask").show();
@@ -138,6 +155,9 @@ export class SocailMediaEditComponent implements OnInit {
   private failedCallback = (response) => console.log(response);
   deletedAttchSucc = (response) => {
    console.log(response);
+   /*if(this.attch_length == 0){
+     this.flag = true;
+   } */
    $(".Mask").hide();
   }
 }

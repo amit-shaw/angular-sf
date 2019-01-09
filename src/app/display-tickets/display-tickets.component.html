@@ -1,30 +1,32 @@
 <div class="container display-tickets">
   <div class="row">
       <div class="col-md-12 tickets-header">
-          Display Tickets
+          Attendee / Buyer Details
         </div>
         <div class="col-md-12 tickets-details">
           <div class="col-md-12 header-title">
-            Would you like to change the email of the following tickets belongs to (email)
+            Found additional tickets. To change please select the appropriate tickets,otherwise just click save.
           </div>
           <div class="col-md-12 header-text">
               <div class="col-md-1 border-first"><input type="checkbox" name="all" value="all" (change)="checkAllTickets($event, check)"></div>
-              <div class="col-md-3 border">Tickets</div>
-              <div class="col-md-5 border">Email</div>
+              <div class="col-md-2 border">Tickets</div>
+              <div class="col-md-4 border">Email</div>
               <div class="col-md-3 border">Name</div>
+              <div class="col-md-2 border">Ticket ID</div>
             </div>
             <span *ngFor="let result of result">
               <div class="col-md-12 tickets-data" *ngIf="!result?.isbuyer">
-                <div class="col-md-1 border-first"><input type="checkbox" [checked]="check" name="all1" value="{{result?.tktprofileid}}" (change)="selectedTickets($event,result?.tktprofileid)"></div>
-                <div class="col-md-3 border">{{result?.ticketname}}</div>
-                <div class="col-md-5 border">{{result?.email}}</div>
+                <div class="col-md-1 border-first" [ngClass]="(result.rd)?'read-only-check':''"><input type="checkbox" [checked]="check" [disabled]="result.rd" name="all1" value="{{result?.tktprofileid}}" (change)="selectedTickets($event,result?.tktprofileid)"></div>
+                <div class="col-md-2 border">{{result?.ticketname}}</div>
+                <div class="col-md-4 border">{{result?.email}}</div>
                 <div class="col-md-3 border">{{result?.name}}</div>
+                <div class="col-md-2 border">{{result?.orderid}}</div>
               </div>
             </span>
         </div>
         <div class="col-md-12 buyer-details">
           <div class="col-md-12 header-title">
-            Buyer Details
+            Buyer Details(Select the order if you want to change the buyer information)
           </div>
           <div class="col-md-12 header-text">
             <div class="col-md-1 border-first"><input type="checkbox" name="all" value="all1" (change)="checkAllOrders($event, check)"></div>
@@ -34,7 +36,7 @@
           </div>
           <span *ngFor="let result of result">
             <div class="col-md-12 tickets-data" *ngIf="result?.isbuyer">
-              <div class="col-md-1 border-first"><input type="checkbox" [checked]="ordercheck" name="all" value="{{result?.tktprofileid}}" (change)="selectedOrders($event,result?.tktprofileid)"></div>
+              <div class="col-md-1 border-first"><input type="checkbox" [checked]="ordercheck"  name="all" value="{{result?.tktprofileid}}" (change)="selectedOrders($event,result?.tktprofileid)"></div>
               <div class="col-md-3 border">{{result?.orderid}}</div>
               <div class="col-md-5 border">{{result?.email}}</div>
               <div class="col-md-3 border">{{result?.name}}</div>

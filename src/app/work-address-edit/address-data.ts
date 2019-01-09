@@ -6,3 +6,9 @@ export interface AddressData{
     State__c:string,
     ZipCode__c:string,
 }
+/*export interface AppSettings{
+    readaccess:string,
+    columnname:string,
+    updateaccess:string,
+    labelname:string,
+} */

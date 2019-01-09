@@ -5,142 +5,163 @@
         </div>
         <form (ngSubmit)="onSubmit()" #addressForm="ngForm" [formGroup]="addressEdit" ngNativeValidate>
             <div class="col-md-12">
-                <div class="work-prof-popup col-md-12">
+                <div class="work-prof-popup col-md-12" *ngIf="address[0]?.biw.readaccess == 'true'">
                     <div class="address-section-type">{{address[0]?.biw.labelname}}</div>
-                    <div class="col-md-12">
+                    <div [ngClass]="(address[0].biw.updateaccess == 'false')?'readonly':''" class="col-md-12 form-group">
                         <label for="label">{{address[0]?.biw.labelname}} 1
                             <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
                         </label>
                         <input type="text" class="form-control" id="address_1" [required]='address[0]?.biw.required' [readonly]="address[0]?.biw.updateaccess =='false'"
                             name="address_Name__c" formControlName="W$Address1__c">
+                            <span class="readonlytext">This field has ready only access</span>
                     </div>
-                    <div class="col-md-12">
+                    <div [ngClass]="(address[0].biw.updateaccess == 'false')?'readonly':''" class="col-md-12 form-group">
                         <label for="label">{{address[0]?.biw.labelname}} 2</label>
                         <input type="text" class="form-control" id="address_2" [readonly]="address[0]?.biw.updateaccess =='false'"
                             name="address_Name__c" formControlName="W$Address2__c">
+                            <span class="readonlytext">This field has ready only access</span>
                     </div>
-                    <div class="col-md-6">
+                    <div [ngClass]="(address[0].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                         <label for="label">City
                             <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
                         </label>
                         <input type="text" class="form-control" id="city_1" [required]='address[0].biw.required' [readonly]="address[0].biw.updateaccess =='false'"
                             name="address_Name__c" formControlName="W$City__c">
+                            <span class="readonlytext">This field has ready only access</span>
                     </div>
-                    <div class="col-md-6">
+                    <div [ngClass]="(address[0].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                         <label for="email">Country
                             <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
                         </label>
                         <select id="country" class="form-control" (change)="onSelect($event,'work')"  formControlName="W$Country__c">
                             <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}} [disabled]="address[0]?.biw.updateaccess =='false'">{{country.Long_Name__c}}</option>
                         </select>
+                        <span class="readonlytext">This field has ready only access</span>
                     </div>
-                    <div class="col-md-6">
+                    <div [ngClass]="(address[0].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                         <label for="label">State
                             <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
                         </label>
                         <select id="country" class="form-control" formControlName="W$State__c">
+                            <option value="" selected>-Select-</option>
                             <option *ngFor="let state_work of state_work" value={{state_work.Id}} id={{state_work.Name}} [disabled]="address[0]?.biw.updateaccess =='false'">{{state_work.Long_Name__c}}</option>
                         </select>
+                        <span class="readonlytext">This field has ready only access</span>
                     </div>
-                    <div class="col-md-6">
+                    <div [ngClass]="(address[0].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                         <label for="label">Zip Code
                                 <span *ngIf="address[0]?.biw.required == 'true'" class="required">*</span>
                         </label>
                         <input type="text" class="form-control" id="city_1" [required]='address[0]?.biw.required' [readonly]="address[0]?.biw.updateaccess =='false'"
                             name="address_Name__c" formControlName="W$ZipCode__c">
+                            <span class="readonlytext">This field has ready only access</span>
                     </div>
                 </div>
-                <div class="work-prof-popup col-md-12">
+                <div class="work-prof-popup col-md-12" *ngIf="address[2]?.biw.readaccess == 'true'">
                         <div class="address-section-type">{{address[2]?.biw.labelname}}</div>
-                        <div class="col-md-12">
+                        <div [ngClass]="(address[2].biw.updateaccess == 'false')?'readonly':''" class="col-md-12 form-group">
                             <label for="label">{{address[2]?.biw.labelname}} 1
                                 <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
                             </label>
                             <input type="text" class="form-control" id="address_1" [required]='address[2]?.biw.required' [readonly]="address[2]?.biw.updateaccess =='false'"
                                 name="address_Name__c" formControlName="H$Address1__c">
+                                <span class="readonlytext">This field has ready only access</span>
                         </div>
-                        <div class="col-md-12">
+                        <div [ngClass]="(address[2].biw.updateaccess == 'false')?'readonly':''" class="col-md-12 form-group">
                             <label for="label">{{address[2]?.biw.labelname}} 2</label>
                             <input type="text" class="form-control" id="address_2" [readonly]="address[2]?.biw.updateaccess =='false'"
                                 name="address_Name__c" formControlName="H$Address2__c">
+                                <span class="readonlytext">This field has ready only access</span>
                         </div>
-                        <div class="col-md-6">
+                        <div [ngClass]="(address[2].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                             <label for="label">City
                                 <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
                             </label>
                             <input type="text" class="form-control" id="city_1" [required]='address[2].biw.required' [readonly]="address[2].biw.updateaccess =='false'"
                                 name="address_Name__c" formControlName="H$City__c">
+                                <span class="readonlytext">This field has ready only access</span>
                         </div>
-                        <div class="col-md-6">
+                        <div [ngClass]="(address[2].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                             <label for="email">Country
                                 <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
                             </label>
                             <select id="country" class="form-control" (change)="onSelect($event,'home')" formControlName="H$Country__c">
                                 <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}} [disabled]="address[2]?.biw.updateaccess =='false'">{{country.Long_Name__c}}</option>
                             </select>
+                            <span class="readonlytext">This field has ready only access</span>
                         </div>
-                        <div class="col-md-6">
+                        <div [ngClass]="(address[2].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                             <label for="label">State
                                 <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
                             </label>
                             <select id="country" class="form-control" formControlName="H$State__c">
+                                <option value="" selected>-Select-</option>
                                 <option *ngFor="let state_home of state_home" value={{state_home.Id}} [disabled]="address[2]?.biw.updateaccess =='false'">{{state_home.Long_Name__c}}</option>
                             </select>
+                            <span class="readonlytext">This field has ready only access</span>
                         </div>
-                        <div class="col-md-6">
+                        <div [ngClass]="(address[2].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                             <label for="label">Zip Code
                                     <span *ngIf="address[2]?.biw.required == 'true'" class="required">*</span>
                             </label>
                             <input type="text" class="form-control" id="city_1" [required]='address[2]?.biw.required' [readonly]="address[2]?.biw.updateaccess =='false'"
                                 name="address_Name__c" formControlName="H$ZipCode__c">
+                                <span class="readonlytext">This field has ready only access</span>
                         </div>
                     </div>
-                    <div class="work-prof-popup col-md-12">
+                    <div class="work-prof-popup col-md-12" *ngIf="address[1]?.biw.readaccess == 'true'">
                             <div class="address-section-type">{{address[1]?.biw.labelname}}</div>
-                            <div class="col-md-12">
+                            <div [ngClass]="(address[1].biw.updateaccess == 'false')?'readonly':''" class="col-md-12 form-group">
                                 <label for="label">{{address[1]?.biw.labelname}} 1
                                     <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
                                 </label>
                                 <input type="text" class="form-control" id="address_1" [required]='address[1]?.biw.required' [readonly]="address[1]?.biw.updateaccess =='false'"
                                     name="address_Name__c" formControlName="B$Address1__c">
+                                    <span class="readonlytext">This field has ready only access</span>
                             </div>
-                            <div class="col-md-12">
+                            <div [ngClass]="(address[1].biw.updateaccess == 'false')?'readonly':''" class="col-md-12 form-group">
                                 <label for="label">{{address[1]?.biw.labelname}} 2</label>
                                 <input type="text" class="form-control" id="address_2" [readonly]="address[1]?.biw.updateaccess =='false'"
                                     name="address_Name__c" formControlName="B$Address2__c">
+                                    <span class="readonlytext">This field has ready only access</span>
                             </div>
-                            <div class="col-md-6">
+                            <div [ngClass]="(address[1].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                                 <label for="label">City
                                     <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
                                 </label>
                                 <input type="text" class="form-control" id="city_1" [required]='address[1].biw.required' [readonly]="address[1].biw.updateaccess =='false'"
                                     name="address_Name__c" formControlName="B$City__c">
+                                    <span class="readonlytext">This field has ready only access</span>
                             </div>
-                            <div class="col-md-6">
+                            <div [ngClass]="(address[1].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                                 <label for="email">Country
                                     <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
                                 </label>
                                 <select id="country" class="form-control" (change)="onSelect($event,'billing')" formControlName="B$Country__c">
                                     <option *ngFor="let country of country" value={{country.Id}} id={{country.Name}} [disabled]="address[1]?.biw.updateaccess =='false'">{{country.Long_Name__c}}</option>
                                 </select>
+                                <span class="readonlytext">This field has ready only access</span>
                             </div>
-                            <div class="col-md-6">
+                            <div [ngClass]="(address[1].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                                 <label for="label">State
                                     <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
                                 </label>
                                 <select id="country" class="form-control" formControlName="B$State__c">
+                                    <option value="" selected>-Select-</option>
                                     <option *ngFor="let state_billing of state_billing" value={{state_billing.Id}} [disabled]="address[1]?.biw.updateaccess =='false'">{{state_billing.Long_Name__c}}</option>
                                 </select>
+                                <span class="readonlytext">This field has ready only access</span>
                             </div>
-                            <div class="col-md-6">
+                            <div [ngClass]="(address[1].biw.updateaccess == 'false')?'readonly':''" class="col-md-6 form-group">
                                 <label for="label">Zip Code
                                         <span *ngIf="address[1]?.biw.required == 'true'" class="required">*</span>
                                 </label>
                                 <input type="text" class="form-control" id="city_1" [required]='address[1]?.biw.required' [readonly]="address[1]?.biw.updateaccess =='false'"
                                     name="address_Name__c" formControlName="B$ZipCode__c">
+                                    <span class="readonlytext">This field has ready only access</span>
                             </div>
                         </div>
-                <div class="col-md-3 col-md-offset-9 action-section">
+                <div class="col-md-4 col-md-offset-8 action-section">
                     <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
                     <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
                 </div>

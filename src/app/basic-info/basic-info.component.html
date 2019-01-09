@@ -10,9 +10,27 @@
         <div>
           <div class="container basic-info-main">
             <div class="row">
+              <div class="col-md-10 profile-status-section">
+                <div class="profile-total-bar col-md-8">
+                  <div class="profile-complete-bar" id="complete-percent"></div>
+                </div>
+                <div class="col-md-4 profile-status">
+                  <span class="profile-complete-percent">{{percent + '%'}}</span>
+                  <span class="complete-text">Profile completed</span>
+                </div>
+              </div> 
               <div class="basic-info">
                 <div class="basic-info-header row">
-                  <div class="col-md-6"> </div>
+                  <div class="col-md-6"> 
+                      <div class="logo-img" *ngIf='speaker[2].biw.readaccess == "true"'>
+                          <span *ngIf="basic.Company_Logo__c == undefined">
+                            <p class="no-company-logo">Logo not available</p>
+                          </span>
+                          <span *ngIf="basic.Company_Logo__c != undefined">
+                              <img src="/servlet/servlet.FileDownload?file={{basic.Company_Logo__c}}"/>
+                          </span>
+                        </div>
+                  </div>
                   <div class="col-md-5"> 
                     <!--<i class="fa fa-pencil edit-icon" aria-hidden="true"></i> -->
                     <div class="col-xs-4 col-xs-offset-4 basic-profile-picmobi" >
@@ -26,18 +44,18 @@
                   </div>
                   <div class="col-md-1"> <i aria-hidden="true" class="glyphicon glyphicon-pencil basic-pencil-ic" (click)="openDialog()"></i> </div>
                 </div>
-                <div class="logo-img" *ngIf='speaker[2].biw.readaccess == "true"'>
+               <!-- <div class="logo-img" *ngIf='speaker[2].biw.readaccess == "true"'>
                   <span *ngIf="basic.Company_Logo__c == undefined">
                     <p class="no-company-logo">Logo not available</p>
                   </span>
                   <span *ngIf="basic.Company_Logo__c != undefined">
                       <img src="/servlet/servlet.FileDownload?file={{basic.Company_Logo__c}}"/>
                   </span>
-                </div>
-                <div class="rec" *ngIf='speaker[2].biw.readaccess == "true"'></div>
+                </div> -->
+              <!--  <div class="rec" *ngIf='speaker[2].biw.readaccess == "true"'></div>
                 <div class="rec-1" *ngIf='speaker[2].biw.readaccess == "true"'></div>
                 <div class="rec-2" *ngIf='speaker[2].biw.readaccess == "true"'></div>
-                <div class="rec-3" *ngIf='speaker[2].biw.readaccess == "true"'></div>
+                <div class="rec-3" *ngIf='speaker[2].biw.readaccess == "true"'></div> -->
               </div>
             </div>
           </div>
@@ -46,8 +64,8 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
-          <div class="col-md-8">
+        <div class="col-md-7">
+          <div class="col-md-12">
             <div class="basic-view-pghead">Personal Information</div>
             <ul class="basic-view-pg">
               <li class="basic-basic-name">{{basic.Prefix__c}} {{basic.First_Name__c}} {{basic.Last_Name__c}} {{basic.Suffix__c}}</li>
@@ -56,36 +74,41 @@
                 <span *ngIf="basic.TKT_Company__c !== undefined">{{basic.TKT_Company__c}}</span>
               </li>
               <li *ngIf="basic_set[3]?.biw.readaccess == 'true'"><strong>{{basic_set[3]?.biw.labelname}}:</strong> {{basic.Email__c}}</li>
-              <li *ngIf="work_set[29]?.biw.readaccess == 'true' && basic.Secondary_email__c !== undefine"><strong>{{work_set[29]?.biw.labelname}}:</strong> {{basic.Secondary_email__c}}</li>
-              <li *ngIf="work_set[6]?.biw.readaccess == 'true' && basic.Company_Website_URL__c !== undefine"><i class="fa fa-link" aria-hidden="true"></i> <strong>{{work_set[6]?.biw.labelname}}:</strong> {{basic.Company_Website_URL__c}}</li>
-              <li *ngIf="basic_set[8]?.biw.readaccess == 'true' && basic.Mobile__c !== undefine"><i class="fa fa-mobile fa-mbl-ic" aria-hidden="true"></i> <strong>{{basic_set[8].biw.labelname}}:</strong> {{basic.Mobile__c}}</li>
+              <li *ngIf="work_set[29]?.biw.readaccess == 'true' && basic.Secondary_email__c !== undefined"><strong>{{work_set[29]?.biw.labelname}}:</strong> {{basic.Secondary_email__c}}</li>
+              <li *ngIf="work_set[14]?.biw.readaccess == 'true' && basic.DBA__c !== undefine"><strong>{{work_set[14]?.biw.labelname}}:</strong> {{basic.DBA__c}}</li>
+              <li *ngIf="work_set[6]?.biw.readaccess == 'true' && basic.Company_Website_URL__c !== undefined"><i class="fa fa-link" aria-hidden="true"></i> <strong>{{work_set[6]?.biw.labelname}}:</strong> {{basic.Company_Website_URL__c}}</li>
+              <li *ngIf="basic_set[8]?.biw.readaccess == 'true' && basic.Mobile__c !== undefined"><i class="fa fa-mobile fa-mbl-ic" aria-hidden="true"></i> <strong>{{basic_set[8].biw.labelname}}:</strong> {{basic.Mobile__c}}</li>
               <li *ngIf="basic_set[9]?.biw.readaccess == 'true' && basic.Work_Phone__c !== undefined"><i class="fa fa-phone" aria-hidden="true"></i> <strong>{{basic_set[9].biw.labelname}}:</strong> {{basic.Work_Phone__c}}</li>
-              <li *ngIf="basic_set[10]?.biw.readaccess == 'true' && basic.Home_Phone__c !== undefine"><i class="fa fa-phone" aria-hidden="true"></i> <strong>{{basic_set[10].biw.labelname}}:</strong> {{basic.Home_Phone__c}}</li>
-              <li *ngIf="work_set[22]?.biw.readaccess == 'true' && basic.FaxNumber__c !== undefine"><i class="fa fa-fax" aria-hidden="true"></i> <strong>{{work_set[22].biw.labelname}}:</strong> {{basic.FaxNumber__c}}</li>
+              <li *ngIf="basic_set[10]?.biw.readaccess == 'true' && basic.Home_Phone__c !== undefined"><i class="fa fa-phone" aria-hidden="true"></i> <strong>{{basic_set[10].biw.labelname}}:</strong> {{basic.Home_Phone__c}}</li>
+              <li *ngIf="work_set[22]?.biw.readaccess == 'true' && basic.FaxNumber__c !== undefined"><i class="fa fa-fax" aria-hidden="true"></i> <strong>{{work_set[22].biw.labelname}}:</strong> {{basic.FaxNumber__c}}</li>
               <li>
-                <span *ngIf="basic_set[11]?.biw.readaccess == 'true' && basic?.Age__c != '0' && basic?.Age__c !== undefine">
+                <span *ngIf="basic_set[11]?.biw.readaccess == 'true' && basic?.Age__c != '0' && basic?.Age__c !== undefined">
                     <strong>{{basic_set[11]?.biw.labelname}}:</strong> {{basic?.Age__c + " | "}}
                 </span>
-                <span *ngIf='basic_set[13]?.biw.readaccess =="true" && basic?.DOB__c !== undefine'>
+                <span *ngIf='basic_set[13]?.biw.readaccess =="true" && basic?.DOB__c !== undefined'>
                     <strong>{{basic_set[13]?.biw.labelname}}:</strong> {{basic?.DOB__c | date: 'MM-dd-yyyy' + " | "}}
                 </span>
-                <span *ngIf='basic_set[12]?.biw.readaccess == "true" && basic.Gender__c !== undefine'>
+                <span *ngIf='basic_set[12]?.biw.readaccess == "true" && basic.Gender__c !== undefined'>
                     <strong>{{basic_set[12]?.biw.labelname}}:</strong> {{basic.Gender__c}}
                 </span>
               </li>
-              <li *ngIf='custom_barcode.Custom_Barcode__c != undefine && custom_barcode.Custom_Barcode__c !=""'><strong>{{basic_set[14]?.biw.labelname}}:</strong>{{ this.custom_barcode.Custom_Barcode__c }}</li>
-            </ul>
+              <li *ngIf='custom_barcode.Custom_Barcode__c != undefined && custom_barcode.Custom_Barcode__c !=""'><strong>{{basic_set[14]?.biw.labelname}}:</strong>{{ this.custom_barcode.Custom_Barcode__c }}</li>
+            </ul> 
           </div>
           <div class="col-md-4 offset-md-4"> </div>
         </div>
-        <div class="col-md-4"> 
-            <div class="social-icns-basic" *ngIf="speaker[3]?.biw.readaccess == 'true' || speaker[4]?.biw.readaccess == 'true' || speaker[5]?.biw.readaccess == 'true' || speaker[8]?.biw.readaccess == 'true' || speaker[13]?.biw.readaccess =='true'"> 
+        <div class="col-md-5"> 
+            <div class="social-icns-basic" *ngIf="speaker[0]?.biw.readaccess == 'true' || speaker[3]?.biw.readaccess == 'true' || speaker[4]?.biw.readaccess == 'true' || speaker[5]?.biw.readaccess == 'true' || speaker[13]?.biw.readaccess =='true'|| speaker[9]?.biw.readaccess =='true' || speaker[10]?.biw.readaccess =='true' || speaker[11]?.biw.readaccess =='true' || speaker[12]?.biw.readaccess =='true'|| speaker[6]?.biw.readaccess =='true'"> 
                 <a href="{{basic.FaceBookId__c}}" class="fa fa-facebook" *ngIf="basic.FaceBookId__c !== undefined && basic.FaceBookId__c !=''" target="_blank"></a>
                 <a href="{{basic.LinkedInId__c}}" class="fa fa-linkedin" target="_blank" *ngIf="basic.LinkedInId__c !== undefined && basic.LinkedInId__c !=''"></a> 
                 <a href="{{basic.TwitterId__c}}" class="fa fa-twitter" target="_blank" *ngIf="basic.TwitterId__c !== undefined && basic.TwitterId__c !=''"></a> 
-                <a href="{{basic.Video__c}}" class="" target="_blank" *ngIf="basic.Video__c !== undefined && basic.Video__c != ''"><img class="icon-insta" src="http://eventdex.com/wp-content/themes/eventdex/assets/images/youtube-icons-ev.png"></a> 
+                <a href="{{basic.Wechat__c}}" target="_blank" *ngIf="basic.Wechat__c !== undefined && basic.Wechat__c !=''"><i class="fa fa-weixin wechat-icon" aria-hidden="true"></i></a>
+                <a href="{{basic.Skype__c}}" target="_blank" *ngIf="basic.Skype__c != undefined && basic.Skype__c !=''"><i class="fa fa-skype skype_c" aria-hidden="true"></i></a>
+                <a href="{{ basic.Snapchat__c }}" target="_blank" *ngIf="basic.Snapchat__c != undefined && basic.Snapchat__c !=''"><i class="fa fa-snapchat-ghost snapchat_c" aria-hidden="true"></i></a>
+                <a href="{{ basic.Blogger__c}}" target="_blank" *ngIf="basic.Blogger__c != undefined && basic.Blogger__c !=''"><i class="fa fa-rss bloger_c" aria-hidden="true"></i></a>
+               <!-- <a href="{{basic.Video__c}}" class="" target="_blank" *ngIf="basic.Video__c !== undefined && basic.Video__c != ''"><img class="icon-insta" src="http://eventdex.com/wp-content/themes/eventdex/assets/images/youtube-icons-ev.png"></a> -->
                 <a href="{{basic.Instagram__c}}" class="" target="_blank" *ngIf="basic.Instagram__c !== undefined && basic.Instagram__c !=''"><img class="icon-insta" src="http://eventdex.com/wp-content/themes/eventdex/assets/images/instaimg.png"></a>
-                <span class="no-socail-media" *ngIf="basic.FaceBookId__c == undefined && basic.LinkedInId__c == undefined && basic.TwitterId__c == undefined && basic.Video__c == undefined && basic.Instagram__c == undefined">Add your socail media link here</span>
+                <span class="no-socail-media" *ngIf="basic.FaceBookId__c == undefined && basic.LinkedInId__c == undefined && basic.TwitterId__c == undefined && basic.Wechat__c == undefined && basic.Snapchat__c == undefined && basic.Skype__c == undefined && basic.WhatsApp__c == undefined && basic.Instagram__c == undefined && basic.Blogger__c == undefined">Add your social media link here</span>
                 <i aria-hidden="true" class="glyphicon glyphicon-pencil basic-pencil-ic-social" (click)="openDialogSocial()"></i>
               </div>
               <div class="attachements-view col-md-8 col-md-offset-1" *ngIf="attchment != null && attchment !=''">
@@ -99,11 +122,22 @@
         </div>
       </div>
     </div>
-    <div class="container" *ngIf='speaker[3]?.biw.readaccess == "true" && basic.Biography__c !== undefine && basic.Biography__c != "<p><br></p>"'>
+    <div class="container" *ngIf='speaker[3]?.biw.readaccess == "true" && basic.Biography__c !== undefined && basic.Biography__c != "<p><br></p>"'>
       <div class="row">
         <div class="col-md-11 basic-biography">
           <div><strong>Biography:</strong></div>
           <div class="basic-biogr-info"><p [innerHTML]="basic.Biography__c | safeHTML"></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="container video-section" *ngIf="speaker[8].biw.readaccess == 'true'">
+      <div class="row youtube-section">
+        <div class="col-md-2 video-header"><strong>{{speaker[8].biw.labelname}}:</strong></div>
+        <div class="col-md-10">
+          <i aria-hidden="true" class="glyphicon glyphicon-pencil youtube-edit" (click)="openDialogYoutubeEdit()"></i>
+        </div>
+        <div class="col-md-3 utube-videos" *ngFor="let videos of videos">
+            <p class="video-play" [innerHTML]="videos | safeHTML"></p>
         </div>
       </div>
     </div>
@@ -112,9 +146,12 @@
 <div class="container basic-views-in-adrs" *ngIf="address[0]?.biw.readaccess == 'true' || address[1]?.biw.readaccess == 'true' || address[2]?.biw.readaccess == 'true'">
   <div class="row"> <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialogWorkAddress()"></i>
     <div class="col-md-10 adrs-info">
-      <div class="basic-view-pghead-adrs">Address Information</div>
+      <div class="basic-view-pghead-adrs">
+        Address Information
+        <span *ngIf="address[0]?.biw.required == 'true' || address[1]?.biw.required == 'true' || address[2]?.biw.required == 'true'" class="required">*</span>
+      </div>
       <ul class="basic-address">
-        <li *ngIf="basic?.Home_Address__r !== undefined && (basic?.Home_Address__r.Address1__c !== undefined || basic?.Home_Address__r.Address2__c !== undefined || basic?.Home_Address__r.City__c !== undefined || basic.Home_Address__r.State__r !== undefined || basic.Home_Address__r.Country__r?.Long_Name__c != null || basic?.Home_Address__r.ZipCode__c != null)"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Home:</strong> 
+        <li *ngIf="basic?.Home_Address__r !== undefined && ((basic?.Home_Address__r.Address1__c !== undefined && basic?.Home_Address__r.Address1__c!='' ) || (basic?.Home_Address__r.Address2__c !== undefined && basic?.Home_Address__r.Address2__c !='') || (basic?.Home_Address__r.City__c !== undefined && basic?.Home_Address__r.City__c !='') || (basic.Home_Address__r.State__r !== undefined && basic.Home_Address__r.State__r !='') || (basic.Home_Address__r.Country__r?.Long_Name__c != null && basic.Home_Address__r.Country__c !='') || (basic?.Home_Address__r.ZipCode__c != null && basic?.Home_Address__r.ZipCode__c !=''))"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Home:</strong> 
           <span *ngIf="basic?.Home_Address__r.Address1__c !='' && basic?.Home_Address__r.Address1__c !== undefined">
             {{basic?.Home_Address__r.Address1__c + ','}}
           </span>
@@ -134,7 +171,7 @@
             {{basic?.Home_Address__r.ZipCode__c}}
           </span>
         </li>
-        <li *ngIf="basic?.Work_Address__r !== undefined && (basic?.Work_Address__r.Address1__c !== undefined ||basic?.Work_Address__r.Address2__c !== undefine || basic?.Work_Address__r.City__c !== undefined || basic?.Work_Address__r.Country__r?.Long_Name__c) "><i class="fa fa-map-marker" aria-hidden="true" ></i> <strong>Work:</strong> 
+        <li *ngIf="basic?.Work_Address__r !== undefined && ((basic?.Work_Address__r.Address1__c !== undefined && basic?.Work_Address__r.Address1__c !='') ||(basic?.Work_Address__r.Address2__c !== undefined && basic?.Work_Address__r.Address2__c !='') || (basic?.Work_Address__r.City__c !== undefined && basic?.Work_Address__r.City__c !='')|| (basic?.Work_Address__r.Country__r?.Long_Name__c && basic?.Work_Address__r.Country__c !='')) "><i class="fa fa-map-marker" aria-hidden="true" ></i> <strong>Work:</strong> 
           <span *ngIf="basic?.Work_Address__r.Address1__c !== undefined && basic?.Work_Address__r.Address1__c !==  undefined">
             {{basic?.Work_Address__r.Address1__c + ','}}
           </span>
@@ -154,7 +191,7 @@
             {{basic?.Work_Address__r.ZipCode__c}}
           </span>
         </li>
-        <li *ngIf="basic?.Billing_Address__r !== undefined && (basic?.Billing_Address__r.Address1__c !== undefined || basic?.Billing_Address__r.Address2__c !== undefined || basic.Billing_Address__r.State__r?.Long_Name__c != null || basic.Billing_Address__r.Country__r?.Long_Name__c !=null || basic?.Billing_Address__r.ZipCode__c != null)"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Billing:</strong>
+        <li *ngIf="basic?.Billing_Address__r !== undefined && ((basic?.Billing_Address__r.Address1__c !== undefined && basic?.Billing_Address__r.Address1__c !='') || (basic?.Billing_Address__r.Address2__c !== undefined && basic?.Billing_Address__r.Address2__c !='') || basic.Billing_Address__r.State__r?.Long_Name__c != null || basic.Billing_Address__r.Country__r?.Long_Name__c !=null || (basic?.Billing_Address__r.ZipCode__c != null && basic?.Billing_Address__r.ZipCode__c != ''))"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Billing:</strong>
           <span *ngIf="basic?.Billing_Address__r.Address1__c !== undefined && basic?.Billing_Address__r.Address1__c !=''">
             {{basic?.Billing_Address__r.Address1__c + ','}}
           </span>

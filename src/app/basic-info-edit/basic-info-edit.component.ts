@@ -44,6 +44,9 @@ export class BasicInfoEditComponent implements OnInit {
   custom_barcode:CustomBarcode;
   deletelogo:boolean=false;
   deletepic:boolean=false;
+  formvalue:any;
+  formimg:string='';
+  formlogo:string='';
   createFormGroup() {
     return new FormGroup({
       First_Name__c: new FormControl(this.basic.First_Name__c,[this.noWhitespaceValidator]),
@@ -67,6 +70,7 @@ export class BasicInfoEditComponent implements OnInit {
       Biography__c: new FormControl(this.basic.Biography__c),
       Company_Logo__c: new FormControl(this.basic.Company_Logo__c),
       User_Pic__c:new FormControl(this.basic.User_Pic__c),
+      Secondary_email__c:new FormControl(this.basic.Secondary_email__c),
     });
   }
   checkAge(val){
@@ -124,36 +128,62 @@ export class BasicInfoEditComponent implements OnInit {
     //console.log(this.basicEdit.value);
     //console.log("Value"+this.basic_set.find(basic_set => basic_set == 'First_Name__c'));
     //console.log(this.basic_set);
-    if (this.basicEdit.valid) {
+    let biostatus = '0';
+    if((this.basicEdit.value.Biography__c == '' || this.basicEdit.value.Biography__c == undefined || this.basicEdit.value.Biography__c =='<p><br></p>') &&
+     (this.speaker[7].biw.updateaccess == 'true' && this.speaker[7].biw.required == 'true') ){
+      biostatus = '1';
+      //console.log("Bio status : "+biostatus);
+    }
+    console.log("Bi : bi: "+biostatus);
+    if (this.basicEdit.valid && biostatus =='0') {
      // console.log("sending image");
      $(".Mask").show();
       if(this.basicEdit.value.Custom_Barcode__c != this.custom_barcode.Custom_Barcode__c){
         this.getdataService.updateBarcode(this.basicEdit.value.Custom_Barcode__c);
       }
-      if (this.displayticketpopup && (this.res != null && this.res != undefined && this.res != '')) {
+      if (this.basic.Email__c != this.basicEdit.value.Email__c) {
         this.dialogRef.close();
-        console.log("calling popup");
+        this.formvalue = this.basicEdit.value;
+       // console.log("calling popup : "+this.res.length);
         let logo='',img='';
         if(this.logourl != '/servlet/servlet.FileDownload?file=' + this.basic.Company_Logo__c){
           logo = this.logourl.split(',')[1];
+          this.formlogo = logo;
         }
         if (this.url != '/servlet/servlet.FileDownload?file=' + this.basic.User_Pic__c) {
           img = this.url.split(',')[1];
+          this.formimg = img;
         }
-        const dialogRef = this.dialog.open(DisplayTicketsComponent, {
-          height: '400px',
-          data: {
-            data: this.res,
-            baisc_data:this.basicEdit.value,
-            logo:logo,
-            img:img,
+        this.sfService.getCodes('BLN_MM_ViewAdminProfileCon.getEmailsTickets', this.basic.Email__c
+        , this.successAll, this.failedCallback);
+       /* if(this.res.length <= 2){
+          console.log("called save without displaying popup");
+          let oid = '';
+          for(let i=0;i<this.res.length;i++){
+            if(this.res[i].isbuyer == true ){
+              oid = this.res[i].tktprofileid;
+              console.log("value : "+this.res[i].tktprofileid);
+            }  
           }
+          this.getdataService.updateSepcificData(this.basicEdit.value,img,'','',logo,oid);
+          $(".Mask").show();
+        }else{
+          console.log("Opup come with data");
+          const dialogRef = this.dialog.open(DisplayTicketsComponent, {
+            height: '400px',
+            data: {
+              data: this.res,
+              baisc_data:this.basicEdit.value,
+              logo:logo,
+              img:img,
+            }
           //width:'500px'
-        });
+          });
 
-        dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result}`);
-        });
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+          });
+        }*/
       }
       else {
         if (this.deletelogo == false && this.deletepic == false && this.url != '/servlet/servlet.FileDownload?file=' + this.basic.User_Pic__c && this.logourl != '/servlet/servlet.FileDownload?file=' + this.basic.Company_Logo__c) {
@@ -182,7 +212,7 @@ export class BasicInfoEditComponent implements OnInit {
       }
     }
     else {
-      this.confirmationDialogService.confirm('Alert ..', 'Please fill all the required fields ...', 'OK', '')
+      this.confirmationDialogService.confirm('Alert', 'Please fill all the required fields.', 'OK', '')
         .then((confirmed) => {
           if (confirmed) {
 
@@ -202,7 +232,7 @@ export class BasicInfoEditComponent implements OnInit {
     if(event.target.files[0].size > 5*1024*1024){
      // this.status = true;
      // this.error_text = 'Please select the file less then 5MB';
-     this.confirmationDialogService.confirm('Alert..', 'Please select the image less than 5MB.','Ok','')
+     this.confirmationDialogService.confirm('Alert', 'Please select the image less than 5MB.','Ok','')
         .then((confirmed) => {
           if (confirmed) {
           }
@@ -230,7 +260,7 @@ export class BasicInfoEditComponent implements OnInit {
     if(event.target.files[0].size > 5*1024*1024){
       // this.status = true;
       // this.error_text = 'Please select the file less then 5MB';
-      this.confirmationDialogService.confirm('Alert..', 'Please select the logo less than 5MB.','Ok','')
+      this.confirmationDialogService.confirm('Alert', 'Please select the logo less than 5MB.','Ok','')
         .then((confirmed) => {
           if (confirmed) {
           }
@@ -315,7 +345,42 @@ export class BasicInfoEditComponent implements OnInit {
     this.displayticketpopup = true;
     this.res = response;
     $(".Mask").hide();
+    if(this.res.length <= 2){
+      
+      let oid = '';
+      for(let i=0;i<this.res.length;i++){
+        if(this.res[i].isbuyer == true ){
+          oid = this.res[i].tktprofileid;
+          console.log("value : "+this.res[i].tktprofileid);
+        }  
+      }
+      this.getdataService.updateSepcificData(this.formvalue,this.formimg,'','',this.formlogo,oid);
+      $(".Mask").hide();
+    }else{
+     
+      const dialogRef = this.dialog.open(DisplayTicketsComponent, {
+        height: '400px',
+        data: {
+          data: this.res,
+          baisc_data:this.formvalue,
+          logo:this.formlogo,
+          img:this.formimg,
+        }
+      //width:'500px'
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
     // let res = JSON.parse(response);
+  }
+  emailChangeFunctionality(changed_email){
+    if (this.basic.Email__c != changed_email) {
+      $(".Mask").show();
+      this.sfService.getCodes('BLN_MM_ViewAdminProfileCon.getEmailsTickets', this.basic.Email__c
+        , this.successAll, this.failedCallback);
+    }
   }
   successTicket = (response) => {
     console.log(response);
@@ -332,7 +397,7 @@ export class BasicInfoEditComponent implements OnInit {
     console.log(response);
     $(".Mask").hide();
     if(response){
-      this.confirmationDialogService.confirm('Alert ..', 'Please fill correct barcode ...', 'OK', '')
+      this.confirmationDialogService.confirm('Alert', 'Please fill correct barcode.', 'OK', '')
         .then((confirmed) => {
           if (confirmed) {
 

@@ -2,7 +2,10 @@
     <div class="row">
         <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialog()"></i>
         <div class="col-md-6 adrs-info">
-            <div class="basic-view-pghead-adrs work-in-head">Company Capabilities </div>
+            <div class="basic-view-pghead-adrs work-in-head">
+                Company Capabilities
+                <span *ngIf="work_set[9].biw.required =='true' || work_set[10].biw.required =='true' || work_set[11].biw.required =='true' " class="required">*</span> 
+            </div>
         </div>
         <div class="col-md-6 col-md-offset-6"> </div>
         <div class="container tbl-brdr-pdng">

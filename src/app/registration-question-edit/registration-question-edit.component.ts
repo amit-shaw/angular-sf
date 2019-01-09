@@ -36,6 +36,7 @@ export class RegistrationQuestionEditComponent implements OnInit {
     this.dialogRef.close();
     //let d = [{'UserAnswer':this.reg_ques}];
    // console.log(JSON.stringify(d[0]));
+    //console.log(formData.ge);
     this.sfService.updateRegistration('BLN_MM_ViewAdminProfileCon.saveTicketLevelSurveyQuestionAnswers',JSON.stringify(this.reg_ques),
     this.successTicketData, this.failedCallback);
     this.sfService.updateRegistration('BLN_MM_ViewAdminProfileCon.saveEventLevelSurveyQuestionAnswers',JSON.stringify(this.event_ques),
@@ -77,7 +78,7 @@ export class RegistrationQuestionEditComponent implements OnInit {
     });
   }
   onChange(type,index,id,status){
-   // console.log("Type : "+type+" |index : "+index+"  |Id : "+id+" | status : "+status);
+    console.log("Type : "+type+" |index : "+index+"  |Id : "+id+" | status : "+status);
     if(type=="event"){
       if(status == false){
         const ind:number = this.event_ques[index].SelectedAnswerCheck.indexOf('false');
@@ -96,12 +97,15 @@ export class RegistrationQuestionEditComponent implements OnInit {
       if(status == false){
         this.reg_ques[index].SelectedAnswerCheck.splice(this.reg_ques[index].SelectedAnswerCheck.indexOf(id),1);
       }else{
+        const ind:number = this.reg_ques[index].SelectedAnswerCheck.indexOf('true');
+        this.reg_ques[index].SelectedAnswerCheck.splice(ind,1);
         this.reg_ques[index].SelectedAnswerCheck.push(id);
+        //this.reg_ques[index].SelectedAnswerCheck.push(id);
       }
     }
   }
   updateChild(id){
-    let ele = document.getElementById(id);
+   /* let ele = document.getElementById(id);
     if(ele != null){
       this.child_id = id;
       ele.style.display = 'block';
@@ -112,6 +116,6 @@ export class RegistrationQuestionEditComponent implements OnInit {
       if(chk == true){
         document.getElementById(this.child_id).style.display = 'none';
       }
-    }
+    }*/
   }
 }

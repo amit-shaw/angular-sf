@@ -9,12 +9,14 @@ import { ServiceData } from './company-contact-edit/service-data';
 import { ProjectData } from './project-info/project-data';
 import { RegQuestionData } from './registration-question/registration-data';
 import { CustomBarcode } from './basic-info-edit/customBarCode';
+import { ProfileData } from './basic-info-edit/profileData';
 
 @Injectable()
 export class GetdataService {
 
   private all:any[];
   private tkt:any[];
+  
   //public basic = new BehaviorSubject<any[]>([]);
   public basic = new BehaviorSubject<BasicData>({First_Name__c:'',Last_Name__c:'',Custom_Barcode__c:'',Prefix__c:'',Suffix__c:'',Email__c:'',
    verify_Email__c:'',Age__c:'',DOB__c:'',Gender__c:'',Home_Phone__c:'',Work_Phone__c:'',Mobile__c:'',TKT_Company__c:''
@@ -63,7 +65,16 @@ export class GetdataService {
    References1__c:'',References2__c:'',
    ScopeOfWork1__c:'',Tax_Id__c:'',
    Year_in_business__c:'',Secondary_email__c:'',
-  
+   Skype__c:'',
+   Snapchat__c:'',
+   Wechat__c:'',
+   WhatsApp__c:'',
+   Blogger__c:'',
+   Bln_Custom_Fields__r:{
+     Id:'',
+     Non_WBENC_Awards__c:'',
+     RPO__c:'',
+   }
 });
   basic_cast = this.basic.asObservable();
   public basic_set = new BehaviorSubject<any[]>([]);
@@ -131,9 +142,21 @@ export class GetdataService {
   primary_data = new BehaviorSubject<any[]>([]);
   primary_data_cast = this.naics_data.asObservable();
   secondry_data = new BehaviorSubject<any[]>([]);
-  secondry_data_cast = this.naics_data.asObservable();
+  secondry_data_cast = this.secondry_data.asObservable();
+  print_status = new BehaviorSubject<boolean>(false);
+  print_status_cast = this.print_status.asObservable();
+  profile_sts = new BehaviorSubject<ProfileData>({total:0,tktProf:0,naics:0,attachment:0});
+  profile_sts_cast = this.profile_sts.asObservable();
+  total:number=0;
+  tkttotal:number=0;
+  que:number=0;
+  ans:number = 0;
   constructor(private sfService: SalesforceService) { }
   //temp:any[];
+  backToEditorPart(){
+    console.log("coming here");
+    this.print_status.next(false);
+  }
   getData(){
     this.sfService.callRemote('BLN_MM_ViewAdminProfileCon.getProfileData',
     this.successCallback, this.failedCallback);
@@ -144,9 +167,12 @@ export class GetdataService {
   }
   getPersonalInfo(){
     this.updatePersonalInfo(this.all['tktProf']);
+    //console.log("data after value");
+    //console.log(this.basic);
   }
   updatePersonalInfo(newData){
     this.basic.next(newData);
+
     //console.log("Upadted ");
     //console.log(this.basic);
   }
@@ -154,10 +180,28 @@ export class GetdataService {
     this.naics.next(naicsdata);
   }
   attachmentUpdate(attch){
-    console.log(attch);
+   // console.log(attch);
     this.attchment.next(attch);
   }
+  updateYoutube(video){
+    let all_data = this.all['tktProf'];
+    all_data.Video__c = video;
+    all_data = JSON.stringify(all_data);
+    this.sfService.callRemoteUpdateForBasic('BLN_MM_ViewAdminProfileCon.updateProfileData',all_data,'','','','','',
+    this.updateData, this.failedCallback);
+  }
+  updateOtherInfo(info1,info2){
+    let all_data = this.all['tktProf'];
+    all_data['Bln_Custom_Fields__r']['Non_WBENC_Awards__c'] = info1;
+    all_data['Bln_Custom_Fields__r']['RPO__c'] = info2;
+    console.log(all_data);
+    all_data = JSON.stringify(all_data);
+    
+    this.sfService.callRemoteUpdateForBasic('BLN_MM_ViewAdminProfileCon.updateProfileData',all_data,'','','','','',
+    this.updateData, this.failedCallback);
+  }
   updateAddressInfo(address){
+    //console.log(address);
     let data = this.all['tktProf'];
     let k;
     Object.keys(address).forEach(function(key) {
@@ -185,12 +229,12 @@ export class GetdataService {
     //console.log(all_data);
   }
   updateSepcificData(newData,url,attachment,atatname,logo,ticketdata){
-    console.log(newData);
+   // console.log(newData);
     for(let key in newData){
       //console.log(key);
       //console.log(typeof newData[key]);
       //if(newData[key] !='' && newData[key] != null){
-        console.log("Key "+key+" ->value "+newData[key]);
+      //  console.log("Key "+key+" ->value "+newData[key]);
         if(key == 'DOB__c'){
           if(newData[key] == ''){
             this.all['tktProf'][key] = null;
@@ -199,7 +243,7 @@ export class GetdataService {
         if(key != 'business_str' && key != 'ethinisity' && key != 'geolocation' && key !='bsns_revnue' && key !='no_of_emp'){
           this.all['tktProf'][key] = newData[key];
         }
-        if(key == 'FaceBookId__c' || key == 'LinkedInId__c' || key == 'TwitterId__c' || key =='Instagram__c'){
+        if(key == 'FaceBookId__c' || key == 'LinkedInId__c' || key == 'TwitterId__c' || key =='Instagram__c' || key =='Snapchat__c' || key=='Wechat__c' || key=='Skype__c'){
           if(newData[key].substring(0,4) !='http'){
             if(newData[key] ==''){
               this.all['tktProf'][key] = newData[key];
@@ -220,14 +264,103 @@ export class GetdataService {
     //this.basic.next(this.all['tktProf']);
   }
   updateNaicsCode(naics_data){
-    console.log("Calling remote action :");
+  //  console.log("Calling remote action :");
     this.sfService.callRemoteUpdateForNaics('BLN_MM_ViewAdminProfileCon.updateNAICSData',naics_data,
     this.updateDataNaics, this.failedCallback);
   }
   public getSFResourse = (path: string) => this.sfService.getSFResource;
   public successCallback = (response) => {
-    console.log(response);
     this.all = JSON.parse(response);
+    console.log("response value");
+    console.log(this.all);
+    console.log("tktProf : =>"+this.all['tktProf'].length);
+    console.log("tcktcont data :=> "+Object.keys(this.all['tktProf']).length);
+    let count = 0;
+    for(let key in this.all['tktProf']){
+      if(key == 'Accept_term_and_condition__c' || key == 'BLN_GN_User__c' || key == 'BLN_MM_EnableSchedules__c' || key == 'BLN_MM_ProfileStatus__c' || key == 'Billing_Address__c' || key =='Bln_Custom_Fields__c'
+       || key =='Bln_Custom_Fields__r' || key =='Home_Address__c' || key =='Id' || key =='Work_Address__c' || key =='attributes'){
+
+      }else if(key =='Home_Address__r' || key == 'Work_Address__r' || key =='Billing_Address__r'){
+        if(this.all['tktProf'][key]['Address1__c'] != '' && this.all['tktProf'][key]['Address1__c'] != undefined){
+          count++;
+        }
+      }else{
+        count++;
+      }
+    }
+    let na;
+    if(this.all['naicsCodes'].length > 0){
+      count++;
+    }
+    if(this.all['attachments'].length > 0){
+      count++;
+    }
+    if(this.all['diversityCodes'].length > 0){
+      count++;
+    }
+    if(this.all['commodities'].length > 0){
+      count++;
+    }
+    if(this.all['subcommodities'].length > 0){
+      count++;
+    }
+    if(this.all['noofemp'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    if(this.all['revenue'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    if(this.all['geogregion'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    if(this.all['ethnicity'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    if(this.all['busnstruct'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    this.tkttotal = count;
+    this.profile_sts.next({total:this.total,tktProf:this.tkttotal,naics:0,attachment:0});
+    console.log("Original count for tktprof"+count);
+    console.log("Attchments : => "+ this.all['attachments'].length);
+    console.log("Naics "+this.all['naicsCodes'].length);
+    //console.log();
+    if(this.all['tktProf']['Bln_Custom_Fields__r'] == undefined){
+      this.all['tktProf'].Bln_Custom_Fields__r ={
+        Non_WBENC_Awards__c:'',
+        RPO__c:'',
+      }
+    }
+    if(this.all['tktProf']['Home_Address__r'] == undefined){
+      this.all['tktProf'].Home_Address__r = {
+        Address1__c:'',
+        Address2__c:'',
+        City__c:'',
+        Country__c:'',
+        State__c:'',
+        ZipCode__c:'',
+       };
+    }
+    if(this.all['tktProf']['Work_Address__r'] == undefined){
+      this.all['tktProf'].Work_Address__r = {
+        Address1__c:'',
+        Address2__c:'',
+        City__c:'',
+        Country__c:'',
+        State__c:'',
+        ZipCode__c:'',
+      }
+    }
+    if(this.all['tktProf']['Billing_Address__r'] == undefined){
+      this.all['tktProf'].Billing_Address__r = {
+        Address1__c:'',
+        Address2__c:'',
+        City__c:'',
+        Country__c:'',
+        State__c:'',
+        ZipCode__c:'',
+      }
+    }
     this.getPersonalInfo();
     this.naicsCodeUpdate(this.all['naicsCodes']);
     this.attachmentUpdate(this.all['attachments']);
@@ -245,10 +378,10 @@ export class GetdataService {
       this.project.next(this.all['tktProf']['BLN_Projects__r']['records']);
     }
     this.question.next(this.all['UserAnswer']);
-    if(this.all['UserAnswer'] != '' && this.all['UserAnswer'] !== undefined){
+    //if(this.all['UserAnswer'] != '' && this.all['UserAnswer'] !== undefined){
       this.getTicketLevelQuestion();
       this.getEventLevelQuestion();
-    }
+   // }
     //console.log(this.all['tktProf']['BLN_Projects__r']['records']);
   }
   public successCallback1 = (response) => {
@@ -260,6 +393,28 @@ export class GetdataService {
     this.getAddressSettings(this.allSettings['Address Information']);
     this.getNaicsSetting(this.allSettings['Naics Code Information']);
     this.settings.next(this.allSettings);
+    let item = 0;
+    
+    for(let key in this.allSettings){
+     // console.log("key -> "+key);
+      let data = this.allSettings[key];
+      for(let key1 in data){
+       // this.appset = data[key1].biw;
+        if(data[key1].biw != undefined){
+         // console.log(data[key1].biw.labelname);
+          if(data[key1].biw.readaccess == 'true'){
+            item++;
+          /*  if(key == 'Basic Information'){
+
+            } */
+         //   console.log(data[key1].biw.labelname);
+          }
+        }
+      }
+    }
+    this.total = item;
+    this.profile_sts.next({total:this.total,tktProf:this.tkttotal,naics:0,attachment:0});
+   // console.log("count"+item);
   }
   private failedCallback = (response) => console.log(response);
   getPersonalInfoSettings(basic_setting){
@@ -279,9 +434,45 @@ export class GetdataService {
     this.naics_set.next(settings);
   }
   public updateData = (response) => {
-    //console.log(response);
+    console.log(response);
     let res = JSON.parse(response);
     this.all = JSON.parse(response);
+    if(this.all['tktProf']['Bln_Custom_Fields__r'] == undefined){
+      this.all['tktProf'].Bln_Custom_Fields__r ={
+        Non_WBENC_Awards__c:'',
+        RPO__c:'',
+      }
+    }
+    if(this.all['tktProf']['Home_Address__r'] == undefined){
+      this.all['tktProf'].Home_Address__r = {
+        Address1__c:'',
+        Address2__c:'',
+        City__c:'',
+        Country__c:'',
+        State__c:'',
+        ZipCode__c:'',
+       };
+    }
+    if(this.all['tktProf']['Work_Address__r'] == undefined){
+      this.all['tktProf'].Work_Address__r = {
+        Address1__c:'',
+        Address2__c:'',
+        City__c:'',
+        Country__c:'',
+        State__c:'',
+        ZipCode__c:'',
+      }
+    }
+    if(this.all['tktProf']['Billing_Address__r'] == undefined){
+      this.all['tktProf'].Billing_Address__r = {
+        Address1__c:'',
+        Address2__c:'',
+        City__c:'',
+        Country__c:'',
+        State__c:'',
+        ZipCode__c:'',
+      }
+    }
     //console.log("Resposnse data");
     //console.log(res);
     //console.log("Data after save");
@@ -289,6 +480,7 @@ export class GetdataService {
     this.basic.next(res['tktProf']);
     this.attachmentUpdate(res['attachments']);
     $(".Mask").hide();
+    this.profileUpdateStatus(res);
     //this.naics
   }
 
@@ -317,8 +509,10 @@ export class GetdataService {
   successCodes = (response) => { 
     let data = JSON.parse(response);
     this.val = [];
+    let nicsid = '';
     for(let key in data){
-      this.val.push({'id':data[key]['Id'],'text':data[key]['List_Code__c']+' '+data[key]['List_Description__c']});
+      nicsid = data[key]['List_Code__c'] == undefined ? '' :data[key]['List_Code__c'];
+      this.val.push({'id':data[key]['Id'],'itemName':data[key]['List_Code__c']+' '+data[key]['List_Description__c']});
     }
     //console.log(this.val);
     this.naics_data.next(this.val);
@@ -333,6 +527,7 @@ export class GetdataService {
     let data1 = JSON.parse(response);
     let values = [];
     this.val = [];
+    this.val.push({'id':'','text':'--select--'});
     for (let entry of data1) {
       this.val.push({'id':entry,'text':entry});
     }
@@ -343,16 +538,18 @@ export class GetdataService {
     let data2 = JSON.parse(response);
     let values = [];
     this.val = [];
+    this.val.push({'id':'','text':'--select--'});
     for (let entry of data2) {
       this.val.push({'id':entry,'text':entry});
     }
-    console.log("secondry value ...");
-    console.log(this.val);
+  //  console.log("secondry value ...");
+  //  console.log(this.val);
     this.secondry_data.next(this.val);
   }
   updateDataNaics = (response) => {
     let res = JSON.parse(response);
     this.naics.next(res['naicsCodes']);
+    this.profileUpdateStatus(res);
   }
   /* Diversity code -> */
   getDiversityCode(){
@@ -363,7 +560,7 @@ export class GetdataService {
     let val1=[];
     let data = JSON.parse(response);
     for(let key in data){
-      val1.push({'id':data[key]['Id'],'text':data[key]['List_Description__c']});
+      val1.push({'id':data[key]['Id'],'itemName':data[key]['List_Description__c']});
     }
    // console.log(this.val);
     this.diversity.next(val1);
@@ -375,6 +572,7 @@ export class GetdataService {
   updateDataDiversity = (response) => { 
     let res = JSON.parse(response);
     this.diversity_val.next(res['diversityCodes']);
+    this.profileUpdateStatus(res);
   }
   /* End here diviersity code */
 
@@ -387,7 +585,7 @@ export class GetdataService {
     let val1=[];
     let data = JSON.parse(response);
     for(let key in data){
-      val1.push({'id':data[key]['Id'],'text':data[key]['List_Description__c']});
+      val1.push({'id':data[key]['Id'],'itemName':data[key]['List_Description__c']});
     }
     this.comm_all.next(val1);
   }
@@ -409,9 +607,10 @@ export class GetdataService {
   }
   updateComm = (response) => { 
     let res = JSON.parse(response);
-    console.log(res);
+  //  console.log(res);
     this.commodities.next(res['commodities']);
     this.sub_commodities.next(res['subcommodities']);
+    this.profileUpdateStatus(res);
   }
   /** getting Investment  formats data */
   getInvestementFormatData(){
@@ -421,7 +620,7 @@ export class GetdataService {
   interestedFormats = (response) => {
     let data = JSON.parse(response);
     let val1 = [];
-    console.log(data)
+  //  console.log(data)
     for(let key in data){
       val1.push({'id':data[key]['List_Description__c'],'text':data[key]['List_Description__c']});
     }
@@ -437,9 +636,12 @@ export class GetdataService {
     let val1 = [];
     //console.log(data)
     for(let key in data){
-      val1.push({'id':data[key]['List_Description__c'],'text':data[key]['List_Description__c'],'list':data[key]['Id']});
+      if(data[key]['List_Description__c'] != undefined){
+        val1.push({'id':data[key]['List_Description__c'],'itemName':data[key]['List_Description__c'],'list':data[key]['Id']});
+      }
     }
-  //  console.log("secor value");
+    console.log("secor value");
+    console.log(val1);
     this.sector.next(val1);
   //  console.log(val1);
   }
@@ -467,7 +669,11 @@ export class GetdataService {
     //console.log(JSON.parse(response));
     let data = JSON.parse(response);
     data = data['UserAnswer']; 
+    this.updateProfileRegQuestions(data);
     this.reg_ques.next(data);
+    console.log("Ticket data length "+data.length);
+    this.que = data.length;
+   // this.profile_sts.next({total:this.total,tktProf:this.tkttotal,naics:this.que,attachment:0});
     console.log(this.reg_ques);
    // console.log(this.test);
   }
@@ -479,8 +685,13 @@ export class GetdataService {
     console.log("Event level questins : ");
     let data = JSON.parse(response);
     data = data['UserAnswer'];
+    this.updateProfileRegQuestions(data);
     this.event_ques.next(data);
     console.log(JSON.parse(response));
+   // console.log("Event count : "+data.length);
+    this.que = this.que + data.length;
+    console.log("this.que =>"+this.que);
+    this.profile_sts.next({total:this.total,tktProf:this.tkttotal,naics:this.que,attachment:0});
   }
   updateBarcode(ticket){
     this.tkt['Custom_Barcode__c'] = ticket;
@@ -490,5 +701,72 @@ export class GetdataService {
   }
   successTicket = (response) => {
     console.log(response);
+  }
+  profileUpdateStatus(res){
+    let count = 0;
+    for(let key in res['tktProf']){
+      if(key == 'Accept_term_and_condition__c' || key == 'BLN_GN_User__c' || key == 'BLN_MM_EnableSchedules__c' || key == 'BLN_MM_ProfileStatus__c' || key == 'Billing_Address__c' || key =='Bln_Custom_Fields__c'
+       || key =='Bln_Custom_Fields__r' || key =='Home_Address__c' || key =='Id' || key =='Work_Address__c' || key =='attributes'){
+
+      }else if(key =='Home_Address__r' || key == 'Work_Address__r' || key =='Billing_Address__r'){
+        if(res['tktProf'][key]['Address1__c'] != '' && res['tktProf'][key]['Address1__c'] != undefined){
+          count++;
+        }
+      }else{
+        count++;
+      }
+    }
+    let na;
+    if(res['naicsCodes'].length > 0){
+      count++;
+    }
+    if(res['attachments'].length > 0){
+      count++;
+    }
+    if(res['diversityCodes'].length > 0){
+      count++;
+    }
+    if(res['commodities'].length > 0){
+      count++;
+    }
+    if(res['subcommodities'].length > 0){
+      count++;
+    }
+    if(res['revenue'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    if(res['geogregion'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    if(res['ethnicity'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    if(res['busnstruct'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    if(res['noofemp'].BLN_ListLookUp__c != undefined){
+      count++;
+    }
+    this.tkttotal = count;
+    this.profile_sts.next({total:this.total,tktProf:this.tkttotal,naics:this.que,attachment:this.ans});
+    console.log("Original count for tktprof"+count);
+    console.log("Attchments : => "+ this.all['attachments'].length);
+  }
+  updateProfileRegQuestions(data){
+    let count=0;
+    let i =0;
+    for(let key in data){
+      if((data[key].SelectedAnswer != '' && data[key].SelectedAnswer != undefined) || (data[key].SelectedAnswerCheck != undefined && data[key].SelectedAnswerCheck.length >0)){
+        count++;
+      //  console.log("Amit : "+data[key].SelectedAnswer);
+      //  console.log(data[key].SelectedAnswerCheck)
+      }
+    }
+    i++;
+   // console.log("value of i => "+i);
+    
+    this.ans = this.ans +count;
+    console.log("count reg question :"+this.ans);
+    this.profile_sts.next({total:this.total,tktProf:this.tkttotal,naics:this.que,attachment:this.ans});
   }
 }

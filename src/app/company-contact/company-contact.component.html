@@ -8,7 +8,16 @@ work_set[32]?.biw.readaccess =='true'">
   <div class="row">
     <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openCompanyEditDialog()"></i>
     <div class="col-md-6 adrs-info">
-      <div class="basic-view-pghead-adrs work-in-head">{{work_set[0]?.biw.groupname}} (Company) </div>
+      <div class="basic-view-pghead-adrs work-in-head">
+        {{work_set[0]?.biw.groupname}} (Company) 
+        <span *ngIf="work_set[0]?.biw.required =='true' || work_set[1]?.biw.required =='true' ||
+        work_set[2]?.biw.required =='true' || work_set[3]?.biw.required =='true' || work_set[4]?.biw.required =='true' ||
+        work_set[5]?.biw.required =='true' || work_set[7]?.biw.required =='true' || work_set[8]?.biw.required =='true' ||
+        work_set[15]?.biw.required =='true' || work_set[16]?.biw.required =='true' || work_set[17]?.biw.required =='true' ||
+        work_set[18]?.biw.required =='true' || work_set[19]?.biw.required =='true' || work_set[20]?.biw.required =='true' ||
+        work_set[21]?.biw.required =='true' || work_set[23]?.biw.required =='true' || work_set[24]?.biw.required =='true'||
+        work_set[32]?.biw.required =='true'" class="required">*</span>
+      </div>
     </div>
     <div class="col-md-6 col-md-offset-6"> </div>
     <div class="container tbl-brdr-pdng">
@@ -272,7 +281,11 @@ work_set[32]?.biw.readaccess =='true'">
   <div class="row">
     <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openCustomerRefEditDialog()"></i>
     <div class="col-md-6 adrs-info">
-      <div class="basic-view-pghead-adrs work-in-head">Customer Reference </div>
+      <div class="basic-view-pghead-adrs work-in-head">
+        Customer Reference 
+        <span *ngIf="work_set[25].biw.required == 'true' || work_set[26].biw.required == 'true' 
+        || work_set[27].biw.required == 'true' || work_set[28].biw.required == 'true'" class="required">*</span>
+      </div>
     </div>
     <div class="col-md-6 col-md-offset-6"> </div>
     <div class="container tbl-brdr-pdng">

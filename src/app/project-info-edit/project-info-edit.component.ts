@@ -41,6 +41,9 @@ export class ProjectInfoEditComponent implements OnInit {
   sector_val:string;
   sub_sector_val:string;
   fin_str:any[] = [];
+  setting = {};
+  setting1 = {};
+  defsectorval:any[]=[];
   constructor(public dialog: MatDialog,public snackBar: MatSnackBar,private _fb: FormBuilder,private getdataService:GetdataService,
     private sfService: SalesforceService,
     public dialogRef: MatDialogRef<ProjectInfoEditComponent>,
@@ -66,6 +69,9 @@ export class ProjectInfoEditComponent implements OnInit {
       if(this.pdata.Sectors__c != '' && this.pdata.Sectors__c !== undefined){
         this.def_sector = this.pdata.Sectors__c.split(";");
         console.log(this.def_sector);
+        for(let key =0; key<this.def_sector.length;key++){
+          this.defsectorval.push({'id':this.def_sector[key],'text':this.def_sector[key]});
+        }
         let val = this.def_sector;
         for(let k=0;k<val.length;k++){
           let sub_id = this.sector.filter((item) => item.id == val[k]);
@@ -85,6 +91,33 @@ export class ProjectInfoEditComponent implements OnInit {
         console.log(this.def_sub_sector);
       }
     }
+    this.setting = {
+      text: "Select Sectors",
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      classes: "myclass custom-class",
+      enableCheckAll:false,
+      enableSearchFilter:true,
+      enableFilterSelectAll:false,
+     // showCheckbox:false,
+      maxHeight:'200',
+    //  disabled:this.naics_set[0].biw.updateaccess == 'false' ? true : false,
+      noDataLabel:'No Sector found',
+  };
+  this.setting1 = {
+    text: "Select Sub Sectors",
+    selectAllText: 'Select All',
+    unSelectAllText: 'UnSelect All',
+    classes: "myclass custom-class",
+    enableCheckAll:false,
+    enableSearchFilter:true,
+    enableFilterSelectAll:false,
+   // showCheckbox:false,
+    maxHeight:'200',
+  //  disabled:this.naics_set[0].biw.updateaccess == 'false' ? true : false,
+    noDataLabel:'No Sub Sector found',
+    groupBy: "category",
+};
    /* this.sfService.getCodes('BLN_MM_ViewAdminProfileCon.getCustomCode','sectors'
     ,this.sectorSuc, this.failedCallback); */
    /* this.sfService.getCodes('BLN_MM_ViewAdminProfileCon.getCustomCode','sectors'
@@ -152,8 +185,8 @@ export class ProjectInfoEditComponent implements OnInit {
       Project_Custom_Text__c:[''],
       Project_Custom_Text_2__c:[''],
       Project_Location__c:[''],
-      Sectors__c:[''],
-      Sub_Sectors__c:[''],
+      Sectors__c:[[]],
+      Sub_Sectors__c:[[]],
       Project_Description__c:[''],
       Project_Description_2__c:[''],
       Project_Custom_Rich_Text_Area__c:[''],
@@ -176,7 +209,8 @@ export class ProjectInfoEditComponent implements OnInit {
       Project_Custom_Text__c:[data.Project_Custom_Text__c],
       Project_Custom_Text_2__c:[data.Project_Custom_Text_2__c],
       Project_Location__c:[data.Project_Location__c],
-      Sectors__c:[data.Sectors__c],
+      //Sectors__c:[data.Sectors__c],
+      Sectors__c:[this.defsectorval],
       Sub_Sectors__c:[data.Sub_Sectors__c],
       Project_Description__c:[data.Project_Description__c],
       Project_Description_2__c:[data.Project_Description_2__c],
@@ -198,6 +232,30 @@ changed(data: {value: string[]}) {
     this.current = '';
   }else{
     this.current = data.value.join(';');
+  }
+}
+onItemSelect(item: any) {
+  if(this.myForm.value.project[0].Sectors__c == null){
+    this.sector_val = '';
+    this.select_sub_sec = [];
+  }else{
+    //this.sector_val = data.value.join(";");
+    let val = this.myForm.value.project[0].Sectors__c;
+    
+    this.select_sub_sec = [];
+    console.log(val);
+    for(let k=0;k<val.length;k++){
+      let sub_id = this.sector.filter((item) => item.id == val[k].id);
+      console.log(sub_id);
+      let sub = this.sub_sector.filter((item) => item.list == sub_id[0].list);
+      console.log(sub);
+      if(sub.length >= 1){
+        for(let i=0;i<sub.length;i++){
+          this.select_sub_sec.push({'id':sub[i].id,'itemName':sub[i].text,'category':sub_id[0].itemName});
+        }
+      }
+    } 
+    console.log(this.select_sub_sec);
   }
 }
 changedSector(data: {value: string[]}){
@@ -237,8 +295,36 @@ onSubmit(){
  // console.log("Sector: "+this.sector_val);
   //console.log("sub sector : "+this.sub_sector_val);
   $(".Mask").show();
-  this.myForm.value.project[0].Sectors__c = this.sector_val;
-  this.myForm.value.project[0].Sub_Sectors__c = this.sub_sector_val;
+  let secval='';
+  let subsecval = '';
+  if(this.myForm.value.project[0].Sectors__c != null){
+    let data = this.myForm.value.project[0].Sectors__c;
+    for(let key in data){
+      if(data[key].id !== undefined){
+        if(secval !=''){
+          secval= secval+';'+data[key].id;
+        }else{
+          secval = data[key].id;
+        }
+      } 
+    }
+  }
+  if(this.myForm.value.project[0].Sub_Sectors__c != null){
+    let data = this.myForm.value.project[0].Sub_Sectors__c;
+    for(let key in data){
+      if(data[key].id !== undefined){
+        if(subsecval !=''){
+          subsecval= subsecval+';'+data[key].id;
+        }else{
+          subsecval = data[key].id;
+        }
+      } 
+    }
+  }
+  //this.myForm.value.project[0].Sectors__c = this.sector_val;
+  //this.myForm.value.project[0].Sub_Sectors__c = this.sub_sector_val;
+  this.myForm.value.project[0].Sectors__c = secval;
+  this.myForm.value.project[0].Sub_Sectors__c = subsecval;
   this.myForm.value.project[0].Interested_formats_of_cooperation__c = this.current;
   console.log("Data sending");
   console.log(JSON.stringify(this.myForm.value.project[0]));

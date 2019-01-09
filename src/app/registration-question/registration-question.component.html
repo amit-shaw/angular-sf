@@ -1,3 +1,26 @@
+<!--Other information -->
+<div class="container other-info-section basic-views-in-adrs" *ngIf="settings['Other Information'][0]?.biw.readaccess =='true' || settings['Other Information'][0]?.biw.readaccess =='true'">
+  <div class="row other-info-row">
+    <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialogOtherInfoEdit()"></i>
+    <div class="col-md-6 header-title adrs-info">
+        <div class="basic-view-pghead-adrs work-in-head">{{settings['Other Information'][0]?.biw.groupname}}</div> 
+    </div>
+    <div class="col-md-6 col-md-offset-6"> </div>
+    <div class="container tbl-brdr-pdng">
+      <div class="row">
+        <ul class="other-info-data-list col-md-12" *ngIf="basic.Bln_Custom_Fields__r != undefined">
+          <li class="other-info-data" *ngIf="basic.Bln_Custom_Fields__r.Non_WBENC_Awards__c != undefined && basic.Bln_Custom_Fields__r.Non_WBENC_Awards__c != ''">
+              <strong>{{settings['Other Information'][0]?.biw.labelname +' : '}}</strong>{{basic.Bln_Custom_Fields__r.Non_WBENC_Awards__c}}
+            </li>
+          <li class="other-info-data" *ngIf="basic.Bln_Custom_Fields__r.RPO__c != undefined && basic.Bln_Custom_Fields__r.RPO__c != ''">   
+              <strong>{{settings['Other Information'][1]?.biw.labelname +' : '}}</strong>{{basic.Bln_Custom_Fields__r.RPO__c}}
+          </li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End here-->
 <div class="container basic-views-in-adrs" *ngIf="(reg_ques != undefined && reg_ques != '') ||(event_ques != '' && event_ques != undefined)">
     <div class="row">
         <i aria-hidden="true" class="glyphicon glyphicon-pencil adrs-pencil" (click)="openDialog()"></i>

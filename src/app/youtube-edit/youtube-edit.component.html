@@ -1,0 +1,26 @@
+<div class="container video-section" *ngIf="speaker[8].biw.readaccess == 'true'">
+  <div class="row youtube-section">
+    <div class="col-md-12 video-header">{{speaker[8].biw.labelname}}</div>
+    <div *ngIf='speaker[8].biw.readaccess' class="col-md-10 padding-left-right-40 form-group">
+      <label for="label">Youtube video
+        <span *ngIf="speaker[8].biw.required =='true' " class="required">*</span>
+        <span class="help-text"><i class="fa fa-question-circle" aria-hidden="true"></i>
+          <span class="tooltiptext">Enter the youtube embed code here</span>
+        </span> 
+      </label>
+      <input type="text" class="form-control" id="video__c" [required]='speaker[8].biw.required' [readonly]="speaker[8].biw.updateaccess == 'false'"
+        name="Video__c" [(ngModel)]="youtubelink">
+    </div>
+    <div class="col-md-2">
+      <i class="fa fa-floppy-o utube-save" aria-hidden="true" (click)="onSave()"></i>
+    </div>
+    <div class="col-md-3 utube-videos" *ngFor="let videos of videos; let i = index">
+      <span class="delete-youtube" (click)="deleteYoutube(i)" *ngIf="speaker[8].biw.updateaccess == 'true'">X</span>
+      <p class="video-play" [innerHTML]="videos | safeHTML"></p>
+    </div>
+    <div class="col-md-4 col-md-offset-8 action-section"> 
+      <button type="button" class="btn btn-primary" (click)="onSubmit()"  [disabled]="status=='true'">Save</button>
+      <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>

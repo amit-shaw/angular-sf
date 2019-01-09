@@ -2,5 +2,71 @@
     float: right;
     position: relative;
     left: -100px;
-    top: 15px;
+    top: 3px;
+}
+.basic-prnt-icon{
+    position: relative;
+    float: right;
+    font-size: 25px;
+    color: #44619c;
+    cursor: pointer;
+}
+.basic-print-btn{
+    clear: both;
+    float: right;
+}
+.dropdown-content{
+    background: #fdfbfb;
+    -webkit-box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    padding: 17px;
+}
+.propic{    
+    display: inline-block;
+    text-align: center;
+    list-style: none;
+}
+.dropdown-content .nav.nav-tabs{
+    display: flex;
+    text-align: center;
+}
+.dropdown-content .nav.nav-tabs ul { 
+    list-style: none;
+}
+.collapseExample{    
+    background: #fdfbfb;
+    -webkit-box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+    padding: 16px 12px 10px 30px;
+}
+.active-event-clone img{
+    height: 90px;
+    border: 1px solid white;
+    box-shadow: 0 7px 19px rgba(0, 0, 0, 0.51);
+    width: 110px;
+}
+.readonlytext {
+    visibility: hidden;
+   
+    background-color: #19101094;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    right: 6%; 
+    
+}
+.cloneshow{
+    top:-4px;
+}
+.printshow{
+    top:14px;
+}
+.readonly:hover .readonlytext {
+    visibility: visible;
 }

@@ -5,6 +5,7 @@ import { ServiceData } from '../company-contact-edit/service-data';
 import { ProjectData } from '../project-info/project-data';
 import { RegQuestionData } from '../registration-question/registration-data';
 import { CustomBarcode } from '../basic-info-edit/customBarCode';
+import { SafeHtmlPipe } from '../safe-html';
 
 @Component({
   selector: 'app-print-profile',
@@ -36,7 +37,10 @@ export class PrintProfileComponent implements OnInit {
 
   reg_ques:RegQuestionData[];
   event_ques:RegQuestionData[];
+  print_status:boolean = false;
   ngOnInit() {
+    $(".Mask").show();
+    this.getdataService.print_status.subscribe(print_status => this.print_status = print_status);
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
     this.getdataService.work_set_cast.subscribe(work_set => this.work_set = work_set);
     this.getdataService.basic_set_cast.subscribe(basic_set => this.basic_set = basic_set);
@@ -62,6 +66,27 @@ export class PrintProfileComponent implements OnInit {
     this.getdataService.event_ques.subscribe(event_ques =>this.event_ques = event_ques);
     console.log("caming here home address__r");
     console.log(this.basic.Home_Address__r);
+    console.log(this.print_status);
+    setTimeout(function(){
+      $(".Mask").hide();
+      let el:HTMLElement = document.getElementById("printbtn");
+      el.click(); 
+    },2500);
+   // this.getdataService.backToEditorPart();
+   setTimeout(() => {
+     $(".Mask").show();
+   },2200)
+    setTimeout(() =>{
+      //window.location.href=window.location.href;
+      console.log("came here");
+      $(".Mask").hide();
+      this.getdataService.backToEditorPart();
+      console.log(this.print_status);
+    },2700);
+  }
+  goBackToEdit(){
+   // this.getdataService.backToEditorPart();
+    this.getdataService.print_status.next(false);
   }
   print(): void {
     //window.prin

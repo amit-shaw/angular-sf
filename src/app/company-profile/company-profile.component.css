@@ -30,6 +30,7 @@
    font-size: 22px;
    color: #44619c;
    cursor: pointer;
+   z-index: 99;
 }
 .adrs-info {
    padding: 39px;
@@ -63,4 +64,7 @@
 }
 .font-bold{
     font-weight: bold;
+}
+span.required{
+    color:red; 
 }

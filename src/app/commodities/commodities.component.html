@@ -3,28 +3,50 @@
       <div class="col-md-12 naics-header">
         {{settings['Commodities Information'][0]?.biw.groupname}}
         </div>
-        <div class="col-md-12 niacs-code-selector">
-          <div><label>{{settings['Commodities Information'][0]?.biw.labelname}}</label></div>
-            <select2 [data]="comm_all"
+        <div [ngClass]="(settings['Commodities Information'][0].biw.updateaccess == 'false')?'readonly':''" class="col-md-12 niacs-code-selector" *ngIf="settings['Commodities Information'][0]?.biw.readaccess == 'true'">
+          <div>
+            <label>{{settings['Commodities Information'][0]?.biw.labelname}}</label>
+            <span *ngIf="settings['Commodities Information'][0]?.biw.required == 'true'" class="required">*</span>
+          </div>
+           <!-- <select2 [data]="comm_all"
             [options]="options"
             [width]="650"
             [value]="def"
             [disabled] ="settings['Commodities Information'][0]?.biw.updateaccess == 'false'"
             (valueChanged)="changed($event)">
-            </select2>
+            </select2> -->
+            <angular2-multiselect [data]="comm_all" 
+                      name="def"
+                      [(ngModel)]="def"
+                      [settings]="setting" 
+                      (onSelect)="onItemSelect($event)"
+                      (onDeSelect)="onItemSelect($event)" 
+                      >
+            </angular2-multiselect>
+            <span class="readonlytext">This field has ready only access</span>
           </div>
-          <div class="col-md-12 sub-comm-selector">
-             <div><label>{{settings['Commodities Information'][1]?.biw.labelname}}</label></div>
-              <select2 [data]="sub_def"
+          <div [ngClass]="(settings['Commodities Information'][1].biw.updateaccess == 'false')?'readonly':''" class="col-md-12 sub-comm-selector" *ngIf="settings['Commodities Information'][1]?.biw.readaccess == 'true'">
+             <div>
+               <label>{{settings['Commodities Information'][1]?.biw.labelname}}</label>
+               <span *ngIf="settings['Commodities Information'][1]?.biw.required == 'true'" class="required">*</span>
+              </div>
+            <!--  <select2 [data]="sub_def"
               [options]="options"
               [width]="650"
               [value]="sub_com_def"
               [disabled] ="settings['Commodities Information'][1]?.biw.updateaccess == 'false'"
               (valueChanged)="changed1($event)">
-              </select2>
+              </select2> -->
+              <angular2-multiselect [data]="sub_def1" 
+                      name="subcom_sel"
+                      [(ngModel)]="subcom_sel"
+                      [settings]="setting1"
+                      >
+              </angular2-multiselect>
+              <span class="readonlytext">This field has ready only access</span>
           </div>
           <div class="col-md-5 col-md-offset-7 action-section"> 
-              <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
+              <button type="button" class="btn btn-primary" (click)="onSubmit()">Save</button>
               <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
             </div>
   </div>

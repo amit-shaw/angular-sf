@@ -167,3 +167,28 @@ font-size: 25px;
   .error-text{
     color:red;
   }
+  .social-media-edit{
+    min-height: 500px;
+    min-width: 1000px;
+  }
+  .readonlytext {
+    visibility: hidden;
+   
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    bottom: 55%;
+    left: 50%; 
+    margin-left: -60px;
+}
+
+.readonly:hover .readonlytext {
+    visibility: visible;
+}

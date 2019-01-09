@@ -5,6 +5,7 @@ import { BasicData } from '../basic-info-edit/basicData';
 import { NgForm } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialog,MatDialogRef,MAT_DIALOG_DATA,MatSnackBar} from '@angular/material';
+import { ConfirmationDialogService } from './../confirmation-dialog/confirmation-dialog.service';
 //import { ServiceData } from './service-data';
 
 
@@ -17,7 +18,7 @@ export class CustomerRefComponent implements OnInit {
 
   constructor(private getdataService:GetdataService,private sfService: SalesforceService,public dialog: MatDialog,public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<CustomerRefComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,private confirmationDialogService: ConfirmationDialogService) { }
     work_set:any[];
     basic:BasicData;
     customerRefEdit: FormGroup;
@@ -56,6 +57,17 @@ export class CustomerRefComponent implements OnInit {
        this.snackBar.open("customer reference updated successfully..",'', {
          duration: 2000,
        });
+     }
+     else{
+      this.confirmationDialogService.confirm('Alert ..', 'Please fill all the required fields ...', 'OK', '')
+      .then((confirmed) => {
+        if (confirmed) {
+
+        } else {
+
+        }
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
      }
    }
    onCancel(){

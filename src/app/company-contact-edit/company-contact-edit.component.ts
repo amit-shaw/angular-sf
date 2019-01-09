@@ -86,10 +86,13 @@ export class CompanyContactEditComponent implements OnInit {
   changedPrimary(data: {value: string[]}) {
     console.log(data.value);
     this.companyEdit.value.Primary_Business_Category__c = data.value;
+    this.companyEdit.controls['Primary_Business_Category__c'].setValue(data.value, {onlySelf: true});
+    //console.log(this.);
   }
   changedSecondry(data: {value: string[]}) {
     console.log(data.value);
     this.companyEdit.value.Secondary_Business_Category__c = data.value;
+    this.companyEdit.controls['Secondary_Business_Category__c'].setValue(data.value, {onlySelf: true});
   }
   public getSFResourse = (path: string) => this.sfService.getSFResource;
   private failedCallback = (response) => console.log(response);
@@ -99,14 +102,14 @@ export class CompanyContactEditComponent implements OnInit {
       this.primary_code_val.push({'id':entry,'text':entry});
     }
     console.log(this.primary_code_val);
-    this.companyEdit.controls['Primary_Business_Category__c'].setValue(this.basic.Primary_Business_Category__c, {onlySelf: true});
+    //this.companyEdit.controls['Primary_Business_Category__c'].setValue(this.basic.Primary_Business_Category__c, {onlySelf: true});
     //this.country = JSON.parse(response);
     //this.country.next(JSON.parse(response));
    // console.log(this.country);
   }
   secondryCode= (response) => {
     this.secondry_code = JSON.parse(response);
-    this.companyEdit.controls['Secondary_Business_Category__c'].setValue(this.basic.Secondary_Business_Category__c, {onlySelf: true});
+    //this.companyEdit.controls['Secondary_Business_Category__c'].setValue(this.basic.Secondary_Business_Category__c, {onlySelf: true});
    // console.log("Secondry code ->");
     //console.log(JSON.parse(response));
   }
@@ -200,6 +203,7 @@ export class CompanyContactEditComponent implements OnInit {
     this.getdataService.georeason.next(data['geogregion']);
     this.getdataService.ethinicity.next(data['ethnicity']);
     this.getdataService.bsnstr.next(data['busnstruct']);
+    this.getdataService.profileUpdateStatus(data);
   }
   createFormGroup() {
     return new FormGroup({         
@@ -227,7 +231,20 @@ export class CompanyContactEditComponent implements OnInit {
    // console.log("Saving the data");
   // console.log(this.companyEdit.value);
    //console.log("Ethi : "+this.companyEdit.value.ethinisity);
-    if (this.companyEdit.valid) {
+    let required = 0;
+    if(this.work_set[0].biw.required == 'true'){
+      console.log("Primary value : "+this.companyEdit.value.Primary_Business_Category__c);
+      if(this.companyEdit.value.Primary_Business_Category__c == '' || this.companyEdit.value.Primary_Business_Category__c == undefined){
+        required = 1;
+      }
+    }
+    if(this.work_set[1].biw.required == 'true'){
+      console.log("secondy value : "+this.companyEdit.value.Secondary_Business_Category__c);
+      if(this.companyEdit.value.Secondary_Business_Category__c == '' || this.companyEdit.value.Secondary_Business_Category__c == undefined){
+        required = 1;
+      }
+    }
+    if (this.companyEdit.valid && required == 0) {
      // console.log(this.companyEdit.value);
       let eth = (this.companyEdit.value.ethinisity != undefined) ? this.companyEdit.value.ethinisity : '';
       let geo = (this.companyEdit.value.geolocation != undefined) ? this.companyEdit.value.geolocation :'';

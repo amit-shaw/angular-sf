@@ -52,3 +52,9 @@
 .btn-primary{
     margin-right: 9%;
 }
+.form-control[disabled], .form-control[readonly], fieldset[disabled] {
+    background-color: #8080806b !important;
+}
+.modal-open {
+    overflow: initial !important;
+}

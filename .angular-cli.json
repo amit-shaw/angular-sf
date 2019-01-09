@@ -21,7 +21,8 @@
       "styles": [
         "styles.css",
         "../node_modules/font-awesome/css/font-awesome.css",
-        "../src/assets/select2.min.css"
+        "../src/assets/select2.min.css",
+        "default.theme.scss"
       ],
       "scripts": ["../src/assets/select2.min.js"],
       "environmentSource": "environments/environment.ts",

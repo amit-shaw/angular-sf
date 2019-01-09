@@ -1,14 +1,54 @@
-<div class="basic-print-btn" *ngIf="!print">
-    <button type="button" class="btn btn-primary basic-prnt" (click)="printProfile()">Print</button>
-</div>
-<app-basic-info *ngIf="!print"></app-basic-info>
-<app-company-contact *ngIf="!print"></app-company-contact>
-<app-naics-code *ngIf="!print"></app-naics-code>
-<app-project-info *ngIf="!print"></app-project-info>
-<app-company-profile *ngIf="!print"></app-company-profile>
+
+<!-- copy profile html -->
+<li class="navigation-items"> 
+    <div class="basic-print-btn" *ngIf="!print_status">
+        <span class="readonly">
+            <i class="fa fa-print basic-prnt-icon basic-prnt" aria-hidden="true" (click)="printProfile()"></i>
+            <span class="readonlytext printshow">Print Profile</span>
+        </span>
+        <span class="readonly">
+            <i class="fa fa-copy" (click)="isvisible=true" (dblclick)="isvisible=false" style="float: right;  margin-right: 112px;background: #337ab7;   color: white; padding: 9px; border-radius: 3px;"></i>
+            <span class="readonlytext cloneshow">Already have a profile? Copy using this option.</span>
+        </span>
+    </div>
+    <div *ngIf="isvisible == true" class="dropdown-content" style="margin: 63px 99px 11px 91px;">
+      <div id="collapseExample" >
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+          <div class="my-2 my-md-0 mr-md-3 nav nav-tabs"> 
+           <span class="p-2 text-dark user-log" (click)="DropdownVarsb=1" data-toggle="tab" *ngFor="let pdata of profileclonedata">
+            <ul class="propic" (click)="cloneProfile(pdata.tkt_profile__c)">
+              <li [class.active-event-clone]="cloneid==pdata.tkt_profile__c">
+                  <img *ngIf="pdata?.tkt_profile__r.User_Pic__c !== undefined" src="/servlet/servlet.FileDownload?file={{pdata?.tkt_profile__r.User_Pic__c}}" width="100px" height="80px"/>
+                  <img *ngIf="pdata?.tkt_profile__r.User_Pic__c == undefined" src="https://www.eventdex.com/copypro.png" width="100px"/>
+              </li>
+              <li>
+                  <span>{{pdata.Event__r.Name}}</span>
+              </li>
+            </ul>
+           </span> 
+         </div>
+        </div>
+        <div class="profile-copy-action" *ngIf="cloneselected">
+            <p style="text-align: right;margin-top: 10px;">
+              <a class="btn btn-default" (click)="cancelClone()" style="margin-right: 6px;">Cancel</a>
+              <a class="btn btn-primary" (click)="applycopy()">Apply</a></p>
+        </div>
+      </div>
+    </div>
+  </li>
+  <!-- copy profile html end -->
+<!--<div class="basic-print-btn" *ngIf="!print_status">
+    <i class="fa fa-print basic-prnt-icon basic-prnt" aria-hidden="true" (click)="printProfile()"></i>
+        <button type="button" class="btn btn-primary basic-prnt" (click)="printProfile()">Print</button>
+</div> -->
+<app-basic-info *ngIf="!print_status"></app-basic-info>
+<app-company-contact *ngIf="!print_status"></app-company-contact>
+<app-naics-code *ngIf="!print_status"></app-naics-code>
+<app-project-info *ngIf="!print_status"></app-project-info>
+<app-company-profile *ngIf="!print_status"></app-company-profile>
 <!--<app-naics-code-edit></app-naics-code-edit>-->
-<app-registration-question *ngIf="!print"></app-registration-question>
+<app-registration-question *ngIf="!print_status"></app-registration-question>
 <!--<app-project-info-edit></app-project-info-edit>
 <app-print-profile></app-print-profile> 
 <app-work-address-edit></app-work-address-edit>-->
-<app-print-profile *ngIf="print"></app-print-profile>
+<app-print-profile *ngIf="print_status"></app-print-profile>

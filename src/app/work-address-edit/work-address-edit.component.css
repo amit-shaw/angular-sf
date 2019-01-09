@@ -53,3 +53,30 @@ span.required{
         padding: 1%;
         cursor: pointer;
       }
+.work-pop-bg{
+    min-height: 500px;
+}
+.readonlytext {
+    visibility: hidden;
+   
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    bottom: 55%;
+    left: 50%; 
+    margin-left: -60px;
+}
+
+.readonly:hover .readonlytext {
+    visibility: visible;
+}
+.readonly select{
+    background: #8080806b !important;
+}

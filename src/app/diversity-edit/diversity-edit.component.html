@@ -1,20 +1,31 @@
 <div class="container naics-code-edit-section">
   <div class="row">
+    <form (ngSubmit)="onSubmit()" #personalInfoForm="ngForm">
       <div class="col-md-12 naics-header">
         {{settings['Diversity Type Information'][0]?.biw.groupname}}
+        <span *ngIf="settings['Diversity Type Information'][0]?.biw.required =='true'" class="required">*</span>
         </div>
-        <div class="col-md-12 niacs-code-selector">
-            <select2 [data]="diversity"
+        <div [ngClass]="(settings['Diversity Type Information'][0]?.biw.updateaccess == 'false')?'readonly':''" class="col-md-12 niacs-code-selector">
+          <!--  <select2 [data]="diversity"
             [options]="options"
             [width]="650"
             [value]="def"
             [disabled] ="settings['Diversity Type Information'][0]?.biw.updateaccess == 'false'"
-            (valueChanged)="changed($event)">
-            </select2>
+            (valueChanged)="changed($event)"> 
+          </select2>-->
+            <angular2-multiselect [data]="diversity" 
+                      name="def"
+                      [(ngModel)]="def"
+                      [settings]="setting" 
+                      >
+            </angular2-multiselect>
+            
+            <span class="readonlytext">This field has ready only access</span>
           </div>
           <div class="col-md-5 col-md-offset-7 action-section"> 
               <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save</button>
               <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
             </div>
+    </form>
   </div>
 </div>

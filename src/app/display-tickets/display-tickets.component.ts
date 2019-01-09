@@ -29,6 +29,10 @@ export class DisplayTicketsComponent implements OnInit {
     console.log(this.data.logo);
     console.log("Img src => "+this.data.img);
     console.log(this.result);
+    $(".Mask").hide();
+    setTimeout(() =>{
+    $(".read-only-check input").prop("checked", true);
+    },500);
   }
   checkAllTickets(event,check){
     if(event.target.checked){
@@ -93,5 +97,7 @@ export class DisplayTicketsComponent implements OnInit {
     console.log("complete value"+value);
     console.log(this.ticketselect);
   }
-
+  onCancel() {
+    this.dialogRef.close();
+  }
 }

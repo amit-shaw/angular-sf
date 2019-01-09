@@ -39,9 +39,9 @@ export class WorkAddressEditComponent implements OnInit {
     
     this.getdataService.basic_cast.subscribe(basic => this.basic = basic);
    // console.log(this.state);
-    if(this.basic.Work_Address__r == undefined && this.basic.Home_Address__r == undefined && this.basic.Billing_Address__r == undefined){
+    /*if(this.basic.Work_Address__r == undefined && this.basic.Home_Address__r == undefined && this.basic.Billing_Address__r == undefined){
       this.addressEdit = this.createFormGroupNull();
-    }else{
+    }else{*/
     this.addressEdit = this.createFormGroup();
     this.addressEdit.controls['W$Country__c'].setValue(this.setNullVal(this.basic.Work_Address__r.Country__c), {onlySelf: true});
     this.addressEdit.controls['H$Country__c'].setValue(this.basic.Home_Address__r.Country__c, {onlySelf: true});
@@ -55,7 +55,7 @@ export class WorkAddressEditComponent implements OnInit {
     st = this.country.filter((item)=>item.Id == this.basic.Billing_Address__r.Country__c);
     this.state_billing = this.state.filter((item)=>item.COUNTRY_CODE__c == st[0].Name);
     this.addressEdit.controls['B$State__c'].setValue(this.basic.Billing_Address__r.State__c, {onlySelf: true});
-    }
+   // }
   }
   setNullVal(def_val){
     console.log(def_val+" : came here");
@@ -70,10 +70,15 @@ export class WorkAddressEditComponent implements OnInit {
     let temp = this.country.filter((item)=>item.Id == countryid.target.value);
     if(type =='work'){
       this.state_work = this.state.filter((item)=>item.COUNTRY_CODE__c == temp[0].Name);
+      console.log(this.state_work[0]['Id']);
+      console.log(this.state_work[0]);
+      this.addressEdit.controls['W$State__c'].setValue('');
     }else if(type=='home'){
       this.state_home = this.state.filter((item)=>item.COUNTRY_CODE__c == temp[0].Name);
+      this.addressEdit.controls['H$State__c'].setValue('');
     }else{
      this.state_billing = this.state.filter((item)=>item.COUNTRY_CODE__c == temp[0].Name);
+     this.addressEdit.controls['B$State__c'].setValue('');
     }
     //console.log(this.state.filter((item)=>item.COUNTRY_CODE__c == ));
     //let temp = this.country.filter((item)=>item.Name == '113');

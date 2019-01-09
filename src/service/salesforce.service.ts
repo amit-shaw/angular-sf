@@ -270,4 +270,53 @@ export class SalesforceService {
       config || { buffer: false, escape: false }
       );
     }
+    public getProfileFromoTherEvent(methodName: string, resolve, reject, config?: any) {
+      console.log(methodName);
+      console.log(this.apexid);
+      Visualforce.remoting.Manager.invokeAction(
+       methodName,
+       this.apexid,
+       function (result, event) {
+          /*try {
+            result = JSON.parse(result);
+            //console.log("Calling ");
+          } catch (error) {
+            reject(error);
+          }*/
+          if (event.status) {
+              resolve(result);
+              //console.log("Result of getProfileFromoTherEvent");
+              //console.log(result);
+          } else {
+            reject(result);
+          }
+        },
+        config || { buffer: false, escape: false }
+      );
+    }
+    public profileCloneRemoteAction(methodName: string,id:string, resolve, reject, config?: any) {
+      console.log(methodName);
+      console.log(this.apexid);
+      Visualforce.remoting.Manager.invokeAction(
+       methodName,
+       this.apexid,
+       id,
+       function (result, event) {
+          /*try {
+            result = JSON.parse(result);
+            //console.log("Calling ");
+          } catch (error) {
+            reject(error);
+          }*/
+          if (event.status) {
+              resolve(result);
+             // console.log("Result of getProfileFromoTherEvent");
+              console.log(result);
+          } else {
+            reject(result);
+          }
+        },
+        config || { buffer: false, escape: false }
+      );
+    }
 }

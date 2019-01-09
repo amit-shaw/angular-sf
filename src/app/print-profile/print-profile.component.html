@@ -1,6 +1,6 @@
 <div class="col-xs-12 print-profile">
-  <span class="cancel-buuton" (click)="goBack()">Cancel</span>
-  <a href="javascript:window.print();"><i class="fa fa-print" aria-hidden="true"></i></a>
+ <!-- <span class="cancel-buuton" (click)="goBack()">Cancel</span> -->
+  <a href="javascript:window.print();" id="printbtn"><i class="fa fa-print" aria-hidden="true"></i></a>
 </div>
 <div class="container-fluid print-prf" id="profile-print">
   <div class="row">
@@ -56,6 +56,9 @@
           <li *ngIf="work_set[22]?.biw.readaccess == 'true' && basic.FaxNumber__c !== undefined">
             <i class="fa fa-fax" aria-hidden="true"></i>
             <strong>{{work_set[22].biw.labelname}}:</strong> {{basic.FaxNumber__c}}</li>
+            <li *ngIf="work_set[14]?.biw.readaccess == 'true' && basic.DBA__c !== undefined">
+              <strong>{{work_set[14]?.biw.labelname}}:</strong> {{basic.DBA__c}}
+            </li>
           <li>
             <span *ngIf="basic?.Age__c !== undefined && basic?.Age__c != '0'"><strong>{{basic_set[11]?.biw.labelname}}:</strong> {{basic?.Age__c +" | "}} </span>
             <span *ngIf="basic?.DOB__c !== undefined"><strong>{{basic_set[13]?.biw.labelname}}:</strong> {{basic?.DOB__c +" | "}}</span>
@@ -71,20 +74,26 @@
           <li *ngIf="basic.FaceBookId__c !== undefined"><strong>{{speaker[3]?.biw.labelname}} : </strong>{{basic.FaceBookId__c}}</li>
           <li *ngIf="basic.LinkedInId__c !== undefined"><strong>{{speaker[4]?.biw.labelname}} : </strong>{{basic.LinkedInId__c}}</li>
           <li *ngIf="basic.TwitterId__c !== undefined"><strong>{{speaker[5]?.biw.labelname}} : </strong>{{basic.TwitterId__c}}</li>
-          <li *ngIf="basic.Video__c !== undefined"><strong>{{speaker[8]?.biw.labelname}} : </strong>{{basic.Video__c}}</li>
+          <!--<li *ngIf="basic.Video__c !== undefined"><strong>{{speaker[8]?.biw.labelname}} : </strong>{{basic.Video__c}}</li> -->
           <li *ngIf="basic.Instagram__c !== undefined"><strong>{{speaker[13]?.biw.labelname}} : </strong>{{basic.Instagram__c}}</li>
+          <li *ngIf="basic.Wechat__c !== undefined"><strong>{{speaker[10]?.biw.labelname}} : </strong>{{basic.Wechat__c}}</li>
+          <li *ngIf="basic.Snapchat__c !== undefined"><strong>{{speaker[12]?.biw.labelname}} :</strong>{{basic.Snapchat__c}}</li>
+          <li *ngIf="basic.Skype__c !== undefined"><strong>{{speaker[11]?.biw.labelname}} :</strong>{{basic.Skype__c}}</li>
+          <li *ngIf="basic?.WhatsApp__c !== undefined"><strong>{{speaker[9]?.biw.labelname}} :</strong>{{ basic?.WhatsApp__c}}</li>
+          <li *ngIf="basic.Blogger__c !== undefined"><strong>{{speaker[6]?.biw.labelname}} : </strong>{{ basic.Blogger__c }}</li>
+          
         </ul>
       </div>
     </div>
-    <div class="col-xs-12 padding-0" *ngIf="(basic?.Home_Address__r.Address1__c !== undefined || basic?.Home_Address__r.Address2__c !== undefined || basic?.Home_Address__r.City__c !== undefined || basic.Home_Address__r.State__r !== undefined || basic.Home_Address__r.Country__r?.Long_Name__c != null || basic?.Home_Address__r.ZipCode__c != null) || 
-    (basic?.Work_Address__r.Address1__c !== undefined ||basic?.Work_Address__r.Address2__c !== undefine || basic?.Work_Address__r.City__c !== undefined || basic?.Work_Address__r.Country__r?.Long_Name__c) ||
-    (basic?.Billing_Address__r.Address1__c !== undefined || basic?.Billing_Address__r.Address2__c !== undefined || basic.Billing_Address__r.State__r?.Long_Name__c != null || basic.Billing_Address__r.Country__r?.Long_Name__c !=null || basic?.Billing_Address__r.ZipCode__c != null) ">
+    <div class="col-xs-12 padding-0" *ngIf="((basic?.Billing_Address__r.Address1__c !== undefined && basic?.Billing_Address__r.Address1__c !='') || (basic?.Billing_Address__r.Address2__c !== undefined && basic?.Billing_Address__r.Address2__c !='') || basic.Billing_Address__r.State__r?.Long_Name__c != null || basic.Billing_Address__r.Country__r?.Long_Name__c !=null || (basic?.Billing_Address__r.ZipCode__c != null && basic?.Billing_Address__r.ZipCode__c != '')) ||
+    ((basic?.Home_Address__r.Address1__c !== undefined && basic?.Home_Address__r.Address1__c!='' ) || (basic?.Home_Address__r.Address2__c !== undefined && basic?.Home_Address__r.Address2__c !='') || (basic?.Home_Address__r.City__c !== undefined && basic?.Home_Address__r.City__c !='') || (basic.Home_Address__r.State__r !== undefined && basic.Home_Address__r.State__r !='') || (basic.Home_Address__r.Country__r?.Long_Name__c != null && basic.Home_Address__r.Country__c !='') || (basic?.Home_Address__r.ZipCode__c != null && basic?.Home_Address__r.ZipCode__c !=''))
+    || ((basic?.Work_Address__r.Address1__c !== undefined && basic?.Work_Address__r.Address1__c !='') ||(basic?.Work_Address__r.Address2__c !== undefine && basic?.Work_Address__r.Address2__c !='') || (basic?.Work_Address__r.City__c !== undefined && basic?.Work_Address__r.City__c !='')|| (basic?.Work_Address__r.Country__r?.Long_Name__c && basic?.Work_Address__r.Country__c !=''))">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text"> Address Information</span>
       </div>
       <div class="col-xs-12 print-profile-info">
         <ul class="basic-address">
-          <li *ngIf="basic?.Home_Address__r !== undefined && (basic?.Home_Address__r.Address1__c !== undefined || basic?.Home_Address__r.Address2__c !== undefined || basic?.Home_Address__r.City__c !== undefined || basic.Home_Address__r.State__r !== undefined || basic.Home_Address__r.Country__r?.Long_Name__c != null || basic?.Home_Address__r.ZipCode__c != null)"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Home:</strong> 
+          <li *ngIf="basic?.Home_Address__r !== undefined && ((basic?.Home_Address__r.Address1__c !== undefined && basic?.Home_Address__r.Address1__c!='' ) || (basic?.Home_Address__r.Address2__c !== undefined && basic?.Home_Address__r.Address2__c !='') || (basic?.Home_Address__r.City__c !== undefined && basic?.Home_Address__r.City__c !='') || (basic.Home_Address__r.State__r !== undefined && basic.Home_Address__r.State__r !='') || (basic.Home_Address__r.Country__r?.Long_Name__c != null && basic.Home_Address__r.Country__c !='') || (basic?.Home_Address__r.ZipCode__c != null && basic?.Home_Address__r.ZipCode__c !=''))"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Home:</strong> 
             <span *ngIf="basic?.Home_Address__r.Address1__c !='' && basic?.Home_Address__r.Address1__c !== undefined">
               {{basic?.Home_Address__r.Address1__c + ','}}
             </span>
@@ -104,7 +113,7 @@
               {{basic?.Home_Address__r.ZipCode__c}}
             </span>
           </li>
-          <li *ngIf="basic?.Work_Address__r !== undefined && (basic?.Work_Address__r.Address1__c !== undefined ||basic?.Work_Address__r.Address2__c !== undefine || basic?.Work_Address__r.City__c !== undefined || basic?.Work_Address__r.Country__r?.Long_Name__c) "><i class="fa fa-map-marker" aria-hidden="true" ></i> <strong>Work:</strong> 
+          <li *ngIf="basic?.Work_Address__r !== undefined && ((basic?.Work_Address__r.Address1__c !== undefined && basic?.Work_Address__r.Address1__c !='') ||(basic?.Work_Address__r.Address2__c !== undefine && basic?.Work_Address__r.Address2__c !='') || (basic?.Work_Address__r.City__c !== undefined && basic?.Work_Address__r.City__c !='')|| (basic?.Work_Address__r.Country__r?.Long_Name__c && basic?.Work_Address__r.Country__c !='')) "><i class="fa fa-map-marker" aria-hidden="true" ></i> <strong>Work:</strong> 
             <span *ngIf="basic?.Work_Address__r.Address1__c !== undefined && basic?.Work_Address__r.Address1__c !==  undefined">
               {{basic?.Work_Address__r.Address1__c + ','}}
             </span>
@@ -124,7 +133,7 @@
               {{basic?.Work_Address__r.ZipCode__c}}
             </span>
           </li>
-          <li *ngIf="basic?.Billing_Address__r !== undefined && (basic?.Billing_Address__r.Address1__c !== undefined || basic?.Billing_Address__r.Address2__c !== undefined || basic.Billing_Address__r.State__r?.Long_Name__c != null || basic.Billing_Address__r.Country__r?.Long_Name__c !=null || basic?.Billing_Address__r.ZipCode__c != null)"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Billing:</strong>
+          <li *ngIf="basic?.Billing_Address__r !== undefined && ((basic?.Billing_Address__r.Address1__c !== undefined && basic?.Billing_Address__r.Address1__c !='') || (basic?.Billing_Address__r.Address2__c !== undefined && basic?.Billing_Address__r.Address2__c !='') || basic.Billing_Address__r.State__r?.Long_Name__c != null || basic.Billing_Address__r.Country__r?.Long_Name__c !=null || (basic?.Billing_Address__r.ZipCode__c != null && basic?.Billing_Address__r.ZipCode__c != ''))"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Billing:</strong>
             <span *ngIf="basic?.Billing_Address__r.Address1__c !== undefined && basic?.Billing_Address__r.Address1__c !=''">
               {{basic?.Billing_Address__r.Address1__c + ','}}
             </span>
@@ -559,6 +568,35 @@
         </div>
       </div>
     </div>
+    <div class="col-md-12 padding-0 company-capability" *ngIf="basic.Company_Description__c !== undefined && basic.Company_Description__c != '<p><br></p>' || basic.Keywords__c !== undefined && basic.Keywords__c !='<p><br></p>' || basic.Exceptional_Keywords__c !== undefined && basic.Exceptional_Keywords__c != '<p><br></p>' ">
+      <div class="col-xs-12 header-title tittle-background-print">
+          <span class="title-text">Company Capabilities</span>
+        </div>
+        <div class="col-md-12" *ngIf="work_set[9]?.biw.readaccess =='true' && basic.Company_Description__c !== undefined && basic.Company_Description__c != '<p><br></p>'">
+          <div class="col-sm-12">
+              <p  class="font-bold">{{work_set[9]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-sm-12">
+              <p [innerHTML]="basic.Company_Description__c | safeHTML"></p>
+          </div>
+      </div>
+      <div class="col-md-12 margin-top-5" *ngIf="work_set[10]?.biw.readaccess =='true' && basic.Keywords__c !== undefined && basic.Keywords__c !='<p><br></p>'">
+          <div class="col-sm-12">
+              <p  class="font-bold">{{work_set[10]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-sm-12">
+              <p [innerHTML]="basic.Keywords__c | safeHTML"></p>
+          </div>
+      </div>
+      <div class="col-md-12 margin-top-5" *ngIf="work_set[11]?.biw.readaccess =='true' && basic.Exceptional_Keywords__c !== undefined && basic.Exceptional_Keywords__c != '<p><br></p>'">
+          <div class="col-sm-12">
+              <p class="font-bold">{{work_set[11]?.biw.labelname}} : </p>
+          </div>
+          <div class="col-sm-12">
+              <p [innerHTML]="basic.Exceptional_Keywords__c | safeHTML"></p>
+          </div>
+      </div>
+    </div>
     <div class="col-xs-12 padding-0" *ngIf="(reg_ques != undefined && reg_ques != '') ||(event_ques != '' && event_ques != undefined)">
       <div class="col-xs-12 header-title tittle-background-print">
         <span class="title-text">Registration Question</span>
@@ -625,6 +663,21 @@
                   </span>
               </div>
           </div>
+      </div>
+    </div>
+    <div class="col-xs-12 padding-0 other-info-print" *ngIf="basic.Bln_Custom_Fields__r.Non_WBENC_Awards__c !='' || this.basic.Bln_Custom_Fields__r.RPO__c !=''">
+      <div class="col-xs-12 header-title tittle-background-print">
+        <span class="title-text">{{settings['Other Information'][0]?.biw.labelname}}</span>
+      </div>
+      <div class="col-xs-12 print-profile-info">
+        <ul class="basic-view-pg">
+            <li class="other-info-data" *ngIf="basic.Bln_Custom_Fields__r.Non_WBENC_Awards__c != undefined && basic.Bln_Custom_Fields__r.Non_WBENC_Awards__c != ''">
+                <strong>{{settings['Other Information'][0]?.biw.labelname +' : '}}</strong>{{basic.Bln_Custom_Fields__r.Non_WBENC_Awards__c}}
+              </li>
+            <li class="other-info-data" *ngIf="basic.Bln_Custom_Fields__r.RPO__c != undefined && basic.Bln_Custom_Fields__r.RPO__c != ''">   
+                <strong>{{settings['Other Information'][1]?.biw.labelname +' : '}}</strong>{{basic.Bln_Custom_Fields__r.RPO__c}}
+            </li>
+        </ul>
       </div>
     </div>
   </div>

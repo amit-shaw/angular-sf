@@ -41,6 +41,10 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
 import { SafeHtmlPipe } from './safe-html';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { DisplayTicketsComponent } from './display-tickets/display-tickets.component';
+import { YoutubeEditComponent } from './youtube-edit/youtube-edit.component';
+import { OtherInfoEditComponent } from './other-info-edit/other-info-edit.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+
 
 
 @NgModule({
@@ -69,6 +73,8 @@ import { DisplayTicketsComponent } from './display-tickets/display-tickets.compo
     RegistrationQuestionEditComponent,
     ConfirmationDialogComponent,
     DisplayTicketsComponent,
+    YoutubeEditComponent,
+    OtherInfoEditComponent,
    // LinkFormat
   ],
   imports: [
@@ -82,6 +88,7 @@ import { DisplayTicketsComponent } from './display-tickets/display-tickets.compo
     MatDialogModule,
     MatExpansionModule,
     MatSnackBarModule,
+    AngularMultiSelectModule,
     NgbModule.forRoot(),
   ],
   providers: [SalesforceService,GetdataService,ConfirmationDialogService],
@@ -93,7 +100,7 @@ import { DisplayTicketsComponent } from './display-tickets/display-tickets.compo
     CommoditiesComponent,CompanyContactEditComponent,
     ProjectInfoEditComponent,CustomerRefComponent,
     RegistrationQuestionEditComponent,ConfirmationDialogComponent,
-    DisplayTicketsComponent
+    DisplayTicketsComponent,YoutubeEditComponent,OtherInfoEditComponent
   ]
 
 })

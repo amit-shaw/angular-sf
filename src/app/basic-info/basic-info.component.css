@@ -13,7 +13,8 @@
 .basic-info-header {
 	/*background: #506b9f;*/
 	min-height: 115px;
-	background: linear-gradient(-90deg, #506b9ff5, #506b9fd6);
+/*	background: linear-gradient(-90deg, #506b9ff5, #506b9fd6); */
+	border: 1px solid #8080801f;
 	height: 151px;
 	margin-top: 44px;
 }
@@ -39,15 +40,17 @@
 }
 .basic-views-in .logo-img {
 	width: 272px;
-	position: absolute;
-	top: 86px;
-	padding: 52px;
+	position: absolute; 
+	top: -35px;
+	padding: 20px;
+	height: 185px;
+    text-align: center;
 	background: #f5f5f5;
 	z-index: 1;
 }
 .basic-views-in .logo-img img{
-	width:150px;
-	height: 77.6px;
+	width:138px;
+	height: 138px; 
 }
 .basic-views-in .rec {
 	position: absolute;
@@ -97,7 +100,7 @@
     
 }
 .basic-views-in .social-icns-basic {
-	margin: 30px 0px 10px 43px;
+	margin: 30px 0px 10px 0px;
 }
 .basic-views-in .social-icns-basic .fa {
 	padding: 7px;
@@ -188,12 +191,13 @@
 .basic-pencil-ic {
 	margin: 25px;
 	font-size: 18px;
-    color: white;
+    color: #44619c;
     cursor: pointer;
 }
 .basic-pencil-ic-social {
     font-size: 18px;
-    cursor: pointer;    
+	cursor: pointer;    
+	color: #44619c;
 }
 .icon-insta {
 	width: 33px;
@@ -223,8 +227,9 @@
 	float: right;
 	margin: 36px;
 	font-size: 22px;
-	color: #7b7a7a;
+	color: #44619c;
 	cursor: pointer;
+	z-index:99;
 }
 
 @media only screen and (max-width: 991px) {
@@ -274,6 +279,7 @@
 }
 .basic-views-in .social-icns-basic {
 	margin: 38px 0px 0 0px !important;
+	float: right;
 }
 .basic-biography {
 	padding: 32px !important;
@@ -323,9 +329,63 @@ ul.attachement-list{
 	font-size: 24px;
     font-weight: bold;
     color: #5c75a5;
-    transform: rotate(-25deg);
+	transform: rotate(-25deg);
+	padding-top:50px;
 }
 .no-socail-media{
 	font-weight: bold;
+    color: #44619c;
+}
+/*.basic-info-header{background-color:rgba(27, 25, 112, 0.84)} */
+p.video-play iframe{
+	width: 100% !important;
+	height: 100% !important;
+}
+.youtube-edit{
+	
+    margin: 1px 6px 8px 0px;
+    font-size: 17px;
+    color: #44619c;
+    cursor: pointer;
+}
+.youtube-section{
+	padding: 0px 0px 0px 53px;
+	color: #797979;
+}
+.wechat-icon{
+	background: #4f699ebd;
+    color: white;
+}
+.snapchat_c{
+	background: #ffff00d1;
+    color: white;
+}
+.skype_c{
+	background: #4f699e24;
+}
+.attachements-view{
+	float: right;
+}
+span.required{
+    color:#ff0000; 
+}
+/*profile status code*/
+.profile-total-bar{
+	text-align: center;
+    padding: 0;
+    border: none;
+	background: #80808047;
+	border-radius: 20px;
+}
+.profile-complete-bar{
+	height: 7px;
+    border-radius: 20px;
+    border: none;
+}
+.profile-complete-percent{
+	padding-right: 10px;
+}
+.profile-status{
+	margin-top: -6px;
     color: #44619c;
 }

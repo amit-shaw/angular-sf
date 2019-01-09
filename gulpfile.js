@@ -124,8 +124,9 @@ gulp.task('deploy', function () {
     .pipe(forceDeploy({
       username: 'durga@boothleads.com.qa',
       password: 'Elvis@281QdQ6GsqAOqP3QUwSMbK10Gj6',
-     // username: 'durga@boothleads.com.sharmistha',
-     // password: 'sharmistha@123tTT9XO1NdPYdL0bMMuvofexz',
       loginUrl: 'https://test.salesforce.com'
+     // username: 'durga@boothleads.com',
+     // password: 'Kellner@281imz5J6HAA48mWaAPr77ecydlt',
+     // loginUrl: 'https://login.salesforce.com'
     }))
 });
