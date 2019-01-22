@@ -485,7 +485,7 @@ export class GetdataService {
   }
 
   getCountryData(){
-    this.sfService.getCountry('BLN_MM_ViewAdminProfileCon.getCountryNameCode'
+    this.sfService.getCountryBasedOnEventId('BLN_MM_ViewAdminProfileCon.getCountryNameCode'
     ,this.successContryData, this.failedCallback);
   }
   successContryData = (response) => {

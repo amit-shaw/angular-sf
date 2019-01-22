@@ -96,6 +96,21 @@ export class SalesforceService {
     config || { buffer: false, escape: false }
     );
   }
+  public getCountryBasedOnEventId(methodName:string,resolve, reject, config?: any){
+    //  console.log(this.id);
+      Visualforce.remoting.Manager.invokeAction(
+        methodName,
+        this.apexid,
+        function (result, event) {
+          if (event.status) {     
+            resolve(result);
+          } else {
+            reject(result);
+          }
+        },
+      config || { buffer: false, escape: false }
+      );
+    }
   public getCodes(methodName:string,params:string,resolve, reject, config?: any){
   //  console.log(this.id);
     Visualforce.remoting.Manager.invokeAction(
@@ -271,8 +286,6 @@ export class SalesforceService {
       );
     }
     public getProfileFromoTherEvent(methodName: string, resolve, reject, config?: any) {
-      console.log(methodName);
-      console.log(this.apexid);
       Visualforce.remoting.Manager.invokeAction(
        methodName,
        this.apexid,
